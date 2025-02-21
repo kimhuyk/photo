@@ -44,15 +44,15 @@ public class UserController {
 			} catch (DuplicateKeyException e) {
 				model.addAttribute("mode", "user");
 				model.addAttribute("message", "등록된 아이디 입니다.");
-				return ".user.user";
+				return "/user/user";
 			} catch (DataIntegrityViolationException e) {
 				model.addAttribute("mode", "member");
 				model.addAttribute("message", "제약조건 위반 입니다.");
-				return ".user.user";
+				return "/user/user";
 			} catch (Exception e) {
 				model.addAttribute("mode", "member");
 				model.addAttribute("message", "회원 가입이 실패 했습다.");
-				return ".user.user";
+				return "/user/user";
 			}
 			
 			StringBuilder sb = new StringBuilder();
