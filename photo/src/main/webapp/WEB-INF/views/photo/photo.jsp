@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Photo</title>
+<title>박진영</title>
 <style>
 
 </style>
