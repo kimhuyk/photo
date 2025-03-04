@@ -4,8 +4,9 @@
 function deletePhoto() {
     var userName = $('#userName').val();
     var fileNum = $('#fileNum').val();
-    var userSeq = Number($('#loginUser').val()); // EL 값을 안전하게 가져오기
-  
+    var userSeq = Number($('#loginUser').val()); // el값 안가져오면 ㅈㄴ깨져가지고 난리부르스남
+  	// jsp랑 js 확실히 구분해서 하라는뜻 
+  	
   	console.log("fileNum: " + fileNum);
   	console.log("userName: " + userName);
     console.log("userSeq: " + userSeq);
@@ -77,6 +78,7 @@ function deletePhoto() {
 			closepictureModal();
 		}
 	}
+	
 //////////////////////////////////////
 // upload로 사진 등록하게 되면 /app/photo 사이트 photo dream 밑으로 불러오는
 // 가로로 3개씩 채우면서 가로로 3개가 차면 다음줄로 자동 줄생성되서 3 3 3 만들수있게 하는 스크립트
@@ -85,9 +87,7 @@ function deletePhoto() {
 		$.ajax({
 			url : '/app/photo/loadPhoto.do',
 			type : 'GET',
-			data : {
-				fileNum : 1
-			}, // 이거 안하면 컨트롤러에 null이라고 나오는데 이유는 모르겠음 뭐지? 데이터 뺴면 또 무한재귀호출나오고 햐..
+			data : { fileNum : 1 }, // 이거 안하면 컨트롤러에 null이라고 나오는데 이유는 모르겠음 뭐지? 데이터 뺴면 또 무한재귀호출나오고 햐..
 			contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 			dataType : 'json',
 			success : function(results) {
@@ -101,7 +101,7 @@ function deletePhoto() {
 						$('#insertPhotoContainer').append(currentRow);
 					}
 					//////////////////////////////////////////////////////
-					let imgPath = '/app/uploads/photo/' + photo.savefileName; // 여기가 핵심
+					let imgPath = '/app/uploads/photo/' + photo.savefileName; // 주소 이상해서 위에다선
 					console.log("리스트에서 불러오는 이미지 경로:", imgPath); // 확인용
 					//////////////////////////////////////////////////////
 					// figure 엘리먼트 생성 및 속성 설정
@@ -113,7 +113,7 @@ function deletePhoto() {
 									+ photo.filePath.replace(/\\/g, '/') + '/'
 									+ photo.savefileName + '","'
 									+ photo.originalfileName + '","'
-									+ photo.userName + '")') // 경로에서 역슬래시를 슬래시로 변경
+									+ photo.userName + '")') // 경로에서 역슬래시를 슬래시로 변경 안바꾸면 알지?
 					.append(
 							$('<img>').attr({
 								src : imgPath, // 서버 경로수정했는데 위에 let imgpath으로 값줌
@@ -134,7 +134,7 @@ function deletePhoto() {
 	//$(document).ready() 안에서 함수 정의
 	$(document).ready(function() {
 
-		// 페이지 로드 시 loadPhoto 함수 실행
+		// 페이지 로드 시 loadPhoto 실행
 		loadPhoto();
 	});
 
