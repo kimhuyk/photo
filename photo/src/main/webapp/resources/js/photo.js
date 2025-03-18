@@ -130,7 +130,6 @@ function deletePhoto() {
 			}
 		});
 	}
-
 	//$(document).ready() 안에서 함수 정의
 	$(document).ready(function() {
 
