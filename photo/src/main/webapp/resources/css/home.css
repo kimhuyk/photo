@@ -12,11 +12,12 @@ body {
 
 /* 헤더 스타일 */
 .header-top {
-	background-color: black;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 10px 20px;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: relative; /* 추가 */
 }
 
 .logo img {
@@ -31,6 +32,7 @@ body {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    top: 23px;  /* 기존보다 더 아래로 */
 }
 
 .nav-items a, .login-button a {
