@@ -4,7 +4,7 @@
 function deletePhoto() {
     var userName = $('#userName').val();
     var fileNum = $('#fileNum').val();
-    var userSeq = Number($('#loginUser').val()); // el값 안가져오면 ㅈㄴ깨져가지고 난리부르스남
+    var userSeq = Number($('#loginUser').val()); // el값 안가져오면 깨짐
   	// jsp랑 js 확실히 구분해서 하라는뜻 
   	
   	console.log("fileNum: " + fileNum);
@@ -87,7 +87,7 @@ function deletePhoto() {
 		$.ajax({
 			url : '/app/photo/loadPhoto.do',
 			type : 'GET',
-			data : { fileNum : 1 }, // 이거 안하면 컨트롤러에 null이라고 나오는데 이유는 모르겠음 뭐지? 데이터 뺴면 또 무한재귀호출나오고 햐..
+			data : { fileNum : 1 }, // 이거 안하면 컨트롤러에 null이라고 나오는데 이유는 모르겠음 뭐지? 예상으론 1장씩 등업 이런느낌인것같다
 			contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 			dataType : 'json',
 			success : function(results) {

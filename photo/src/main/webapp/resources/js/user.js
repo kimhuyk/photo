@@ -3,7 +3,7 @@ function checkId() {
     var userId = $('#userId').val();  // #userId 요소에서 값 가져오기
 
     // 아이디 길이가 4글자 이상일 때만 검사
-    if (userId.length < 4) {
+    if (userId.length < 2) {
         $('.userId_ok').css("display", "none");
         $('.userId_already').css("display", "none");
         return;  // 길이가 4자 미만이면 검사하지 않음

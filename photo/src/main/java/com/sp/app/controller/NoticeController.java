@@ -10,6 +10,6 @@ public class NoticeController {
 	@RequestMapping("")
 	public String list() {
 		
-		return "notice/notice";
+		return "notice/list";
 	}
 }
