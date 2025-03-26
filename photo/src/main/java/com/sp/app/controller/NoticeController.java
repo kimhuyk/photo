@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -112,6 +113,43 @@ public class NoticeController {
 		return "notice/list";
 	}
 	
+	@GetMapping("article")
+	public String article(@RequestParam long noticeSeq,
+			@RequestParam String page,
+			@RequestParam(defaultValue = "all") String schType,
+			@RequestParam(defaultValue = "") String kwd,
+			Model model) throws Exception {
+		
+		kwd = URLDecoder.decode(kwd, "utf-8");
+		
+		String query = "page=" + page;
+		if (kwd.length() != 0) {
+			query += "&schType=" + schType + "&kwd=" + URLEncoder.encode(kwd, "UTF-8");
+		}
+		
+		Notice dto = service.find(noticeSeq);
+		if (dto == null) {
+			return "redirect:/notice/list?" + query;
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("schType", schType);
+		map.put("kwd", kwd);
+		map.put("noticeSeq", noticeSeq);
+		
+		Notice prevDto = service.findByPrev(map);
+		Notice nextDto = service.findByNext(map);
+		
+		// 파일 리스트 넣을거면 여기
+		
+		model.addAttribute("dto", dto);
+		model.addAttribute("prevDto", prevDto);
+		model.addAttribute("nextDto", nextDto);
+		model.addAttribute("page", page);
+		model.addAttribute("query", query);
+
+		return "notice/article";
+	}
 	
 	
 	

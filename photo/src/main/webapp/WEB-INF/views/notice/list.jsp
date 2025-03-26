@@ -273,18 +273,6 @@ body {
 
 	</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
 	<script>
 function searchNotice() {
     var keyword = document.getElementById("").value.trim();

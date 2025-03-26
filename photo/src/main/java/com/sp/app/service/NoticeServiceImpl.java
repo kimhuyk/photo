@@ -17,8 +17,8 @@ public class NoticeServiceImpl implements NoticeService{
 	@Override
 	public void insertNotice(Notice dto) throws SQLException {
 		try {
-			long boardSeq = mapper.noticeSeq();
-			dto.setNoticeSeq(boardSeq);
+			long noticeSeq = mapper.noticeSeq();
+			dto.setNoticeSeq(noticeSeq);
 			mapper.insertNotice(dto);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -34,9 +34,9 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public void deleteNotice(long boardSeq) throws SQLException {
+	public void deleteNotice(long noticeSeq) throws SQLException {
 		try {
-			mapper.deleteNotice(boardSeq);
+			mapper.deleteNotice(noticeSeq);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -67,11 +67,11 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public Notice find(long boardSeq) {
+	public Notice find(long noticeSeq) {
 		Notice dto = null;
 		// 게시물 들고오기
 		try {
-			dto = mapper.find(boardSeq);
+			dto = mapper.find(noticeSeq);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

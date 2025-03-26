@@ -26,7 +26,7 @@
 		</where> 
 	</select>
 	
-	<select id="boardSeq" resultType="long">
+	<select id="noticeSeq" resultType="long">
 		SELECT notice_SEQ.NEXTVAL
 		FROM dual
 	</select>
@@ -46,6 +46,54 @@
 				OR TO_CHAR(noticeRegdate, 'YYYYMMDD') = #{kwd} )
 		</if>
 	</sql>
+	
+	<!-- article 페이지열기 -->
+	<select id="find" parameterType="long" resultType="com.sp.app.domain.Notice">
+		SELECT
+			n.notice_seq AS noticeSeq,
+			n.user_seq AS userSeq,
+			n.user_name AS userName,
+			n.notice_title AS noticeTitle,
+			TO_CHAR(n.notice_reg_date, 'yyyy-MM-dd') AS noticeRegdate,
+			n.notice_contents AS noticeContents
+		FROM notice n
+		JOIN user1 u ON n.user_seq = u.user_seq
+		WHERE n.notice_seq = #{noticeSeq}
+	</select>
+	
+	<select id="findByPrev" parameterType="map" resultType="com.sp.app.domain.Notice">
+		SELECT 
+			notice_seq AS noticeSeq,
+			notice_title AS noticeTitle
+		FROM notice n
+		JOIN user1 u ON n.user_seq = u.user_seq
+		<where>
+			<if test="kwd != null and kwd != '' ">
+				AND <include refid="where-list"/>
+			</if>
+			AND (notice_seq &gt; #{noticeSeq})
+		</where> 
+		ORDER BY n.notice_seq ASC, n.notice_reg_date DESC
+		FETCH FIRST 1 ROWS ONLY
+	</select>
+
+	
+	 <select id="findByNext" parameterType="map" resultType="com.sp.app.domain.Notice">
+		SELECT 
+			notice_seq AS noticeSeq,
+			notice_title AS noticeTitle
+		FROM notice n
+		JOIN user1 u ON n.user_seq = u.user_seq
+		<where>
+			<if test="kwd != null and kwd != '' ">
+				AND <include refid="where-list"/>
+			</if>
+			AND (notice_seq &lt; #{noticeSeq})
+		</where> 
+		ORDER BY n.notice_seq DESC, n.notice_reg_date DESC
+		FETCH FIRST 1 ROWS ONLY
+	 </select>
+	
 	
 	
 </mapper>
