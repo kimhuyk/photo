@@ -90,6 +90,80 @@ body {
 .notice-list li:hover {
 	background-color: #555;
 }
+
+.page-navigation {
+    text-align: center; /* 가운데 정렬 */
+    margin-top: 20px; /* 위쪽 여백 */
+    font-size: 20px; /* 글씨 크기 키움 */
+}
+
+.page-navigation .no-notice {
+    color: white; /* 텍스트 흰색 */
+    font-weight: bold;
+    padding: 10px 15px;
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2); /* 투명한 흰색 느낌 */
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+/* 기본 페이지 버튼 스타일 */
+.page-navigation a {
+    color: white; /* 기본 텍스트 색 */
+    text-decoration: none; /* 밑줄 제거 */
+    padding: 8px 12px;
+    margin: 1px 6px; /* 숫자 간격을 더 넓게 */
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
+    border-radius: 50%; /* 원형으로 만들기 */
+    background-color: transparent; /* 배경색 제거 */
+}
+
+/* 페이지 버튼 hover 효과 */
+.page-navigation a:hover {
+    background: rgba(255, 255, 255, 0.3); /* 배경을 살짝 하얗게 */
+    color: white; /* 텍스트 색상 유지 */
+    transform: scale(1.1); /* 크기 살짝 커짐 */
+}
+
+/* prev, next 버튼을 강조하고 크기 조정 */
+.page-navigation .prev-page,
+.page-navigation .next-page {
+    padding: 6px 12px;
+    font-size: 18px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    background-color: transparent; /* 배경색 제거 */
+}
+
+.page-navigation .prev-page:hover, .page-navigation .next-page:hover {
+    background: rgba(255, 255, 255, 0.3); /* hover 시 배경 색상 */
+    transform: scale(1.1); /* hover 시 크기 살짝 커짐 */
+}
+
+/* 현재 페이지 스타일 (원형 강조) */
+.page-navigation .active {
+    background: white;
+    color: black;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 50%;
+}
+
+/* prev와 next 버튼을 숫자들 양옆에 배치 */
+.page-navigation .prev-page {
+    margin-right: 15px; /* 이전 버튼과 숫자 사이 간격 */
+}
+
+.page-navigation .next-page {
+    margin-left: 15px; /* 다음 버튼과 숫자 사이 간격 */
+}
+
+/* 숫자 페이지를 감싸는 영역 */
+.page-navigation .page-numbers {
+    display: inline-block;
+    margin: 0 15px; /* 숫자들 간격 */
+}
 </style>
 
 <link rel="stylesheet" type="text/css"
@@ -104,7 +178,7 @@ body {
 <header class="header-top">
     <!-- 왼쪽 로고 -->
     <div class="logo">
-        <img src="resources/images/logo/logo.png" alt="Logo" 
+        <img src="${pageContext.request.contextPath}/resources/images/logo/logo.png" alt="Logo" 
              onclick="location.href='${pageContext.request.contextPath}/home';">
     </div>
 
@@ -168,51 +242,33 @@ body {
 	
 	    <ul class="notice-list">
 	        <c:choose>
-	            <c:when test="${not empty noticeList}">
-	                <c:forEach var="notice" items="${noticeList}">
+	            <c:when test="${not empty list}">
+	                <c:forEach var="notice" items="${list}">
 	                    <li>
-	                        <a href="${pageContext.request.contextPath}/notice/view?id=${notice.id}">
-	                            ${notice.title}
-	                        </a>
-	                        <span class="notice-separator">ㅇㅇ</span>
+	                        <a href="${articleUrl}&noticeSeq=${notice.noticeSeq}">
+                            	${notice.noticeTitle}
+                        	</a>
 	                        <span class="notice-date">
-	                            <fmt:formatDate value="${notice.date}" pattern="yyyy-MM-dd"/>
+							<span class="date">${notice.noticeRegdate}</span>
 	                        </span>
 	                    </li>
 	                </c:forEach>
 	            </c:when>
-	            <c:otherwise>
-	                <!-- 더미 데이터 -->
-	                <li>
-	                    <a href="#">Photo 검색 중단 오류를 알려드립니다 어쩌구저쩌구입니다~ </a>
-	                    <span class="notice-date">2024-03-25</span>
-	                </li>
-	                 <li>
-	                    <a href="#">Photo 검색 중단 오류를 알려드립니다 어쩌구저쩌구입니다~ </a>
-	                    <span class="notice-date">2024-03-26</span>
-	                </li>
-	                 <li>
-	                    <a href="#">Photo 검색 중단 오류를 알려드립니다 어쩌구저쩌구입니다~ </a>
-	                    <span class="notice-date">2024-03-25</span>
-	                </li>
-	                 <li>
-	                    <a href="#">Photo 검색 중단 오류를 알려드립니다 어쩌구저쩌구입니다~ </a>
-	                    <span class="notice-date">2024-03-25</span>
-	                </li>
-	                 <li>
-	                    <a href="#">Photo 검색 중단 오류를 알려드립니다 어쩌구저쩌구입니다~ </a>
-	                    <span class="notice-date">2024-03-25</span>
-	                </li>
-	                 <li>
-	                    <a href="#">Photo 검색 중단 오류를 알려드립니다 어쩌구저쩌구입니다~ </a>
-	                    <span class="notice-date">2024-03-25</span>
-	                </li>
-	            </c:otherwise>
-	            
+	          
 	        </c:choose>
 	    </ul>
-
-		<div class="page-navigation">${dataCount == 0 ? "등록된 게시물이 없습니다." : paging}
+	<!-- < > 누를떄마다 다음줄 11로 갈수있게 스크립트 작성 해야됌 -->
+		<div class="page-navigation">
+		    <!-- 이전 버튼 -->
+		    <a href="${listUrl}?page=${page-1}" class="prev-page">&lt;&lt;</a>
+		
+		    <!-- 페이지 번호 -->
+		    <div class="page-numbers">
+		        ${dataCount == 0 ? "등록된 공지사항이 없습니다." : paging}
+		    </div>
+		
+		    <!-- 다음 버튼 -->
+		    <a href="${listUrl}?page=${page+1}" class="next-page">&gt;&gt;</a>
 		</div>
 
 	</div>

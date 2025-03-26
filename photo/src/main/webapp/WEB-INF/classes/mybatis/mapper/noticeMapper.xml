@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sp.app.mapper.NoticeMapper">
+	
+	<select id="listNotice" parameterType="map" resultType="com.sp.app.domain.Notice">
+		SELECT
+			notice_seq AS noticeSeq,
+			user_seq AS userSeq,
+			user_name AS userName,
+			notice_title AS noticeTitle,
+			TO_CHAR(notice_reg_date, 'yyyy-MM-dd') AS noticeRegdate,
+			notice_contents AS noticeContents
+		FROM notice
+		ORDER BY noticeSeq DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{size} ROWS ONLY
+	</select>
+	
+	<select id="dataCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0)
+		FROM notice
+		<where>
+			<if test="kwd != null and kwd != '' ">
+				<include refid="where-list"/>
+			</if>
+		</where> 
+	</select>
+	
+	<select id="boardSeq" resultType="long">
+		SELECT notice_SEQ.NEXTVAL
+		FROM dual
+	</select>
+	
+	<sql id="where-list">
+		<if test="schType == 'notice_title'">
+			INSTR(noticeTitle, #{kwd}) &gt; 0
+		</if>
+		<if test="schType == 'notice_contents'">
+			INSTR(noticeContents, #{kwd}) &gt; 0
+		</if>
+		<if test="schType == 'user_name'">
+			INSTR(userName, #{kwd}) &gt; 0
+		</if>
+		<if test="schType=='notice_reg_date'">
+			( TO_CHAR(noticeRegdate, 'YYYY-MM-DD') = #{kwd}
+				OR TO_CHAR(noticeRegdate, 'YYYYMMDD') = #{kwd} )
+		</if>
+	</sql>
+	
+	
+</mapper>
