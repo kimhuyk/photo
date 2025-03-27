@@ -52,6 +52,11 @@ public class NoticeController {
 		dataCount = service.dataCount(map);
 		total_page = myUtil.pageCount(dataCount, size);
 		
+		// total_page가 0인 경우에는 1로 설정
+	    if (total_page == 0) {
+	        total_page = 1;
+	    }
+		
 		// 다른 사람이 자료를 삭제하여 전체 페이지수가 변화 된 경우
 		if (total_page < current_page) {
 			current_page = total_page;

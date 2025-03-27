@@ -12,6 +12,25 @@
 			TO_CHAR(notice_reg_date, 'yyyy-MM-dd') AS noticeRegdate,
 			notice_contents AS noticeContents
 		FROM notice
+		WHERE 1=1
+		<if test="schType != null and schType != '' and kwd != null and kwd != ''">
+	        <choose>
+	            <when test="schType == 'noticeTitle'">
+	                AND notice_title LIKE '%' || #{kwd} || '%'
+	            </when>
+	            <when test="schType == 'noticeContents'">
+	                AND notice_contents LIKE '%' || #{kwd} || '%'
+	            </when>
+	            <when test="schType == 'userName'">
+	                AND user_name LIKE '%' || #{kwd} || '%'
+	            </when>
+	            <otherwise>
+	                AND (notice_title LIKE '%' || #{kwd} || '%'
+	                    OR notice_contents LIKE '%' || #{kwd} || '%'
+	                    OR user_name LIKE '%' || #{kwd} || '%')
+	            </otherwise>
+	        </choose>
+	    </if>
 		ORDER BY noticeSeq DESC
 		OFFSET #{offset} ROWS FETCH FIRST #{size} ROWS ONLY
 	</select>

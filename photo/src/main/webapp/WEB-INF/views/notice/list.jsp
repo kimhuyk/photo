@@ -6,169 +6,13 @@
 <head>
 <title>Notice</title>
 <style>
-body {
-	background-color: #1c1c1c;
-	color: white;
-	font-family: Arial, sans-serif;
-}
 
-.notice-container {
-	width: 80%;
-	margin: 50px auto;
-	background: #2c2c2c;
-	padding: 20px;
-	border-radius: 8px;
-}
-
-.notice-title {
-	font-size: 24px;
-	font-weight: bold;
-	text-align: left;
-	border-bottom: 2px solid #4CAF50;
-	padding-bottom: 10px;
-}
-
-.search-box {
-	text-align: right;
-	margin-bottom: 10px;
-	margin-top: 10px;
-}
-
-.search-box input {
-	padding: 5px;
-	width: 200px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-}
-
-.search-box button {
-	padding: 6px 10px;
-	background-color: #4CAF50;
-	color: white;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-}
-
-/* ✅ ul li 공지사항 리스트 스타일 */
-.notice-list {
-	list-style: none;
-	padding: 0;
-}
-
-.notice-list li {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 12px;
-	border-bottom: 1px solid #444;
-	font-size: 18px;
-}
-
-.notice-list li a {
-	text-decoration: none;
-	color: white;
-	flex-grow: 1;
-}
-
-.notice-list li a:hover {
-	color: #white;
-	font-weight: bold; /* 🔹 강조 */
-}
-
-.notice-separator {
-	flex-grow: 1;
-	text-align: center;
-	color: #777;
-}
-
-.notice-date {
-	color: #bbb;
-	font-size: 18px;
-}
-
-.notice-list li:hover {
-	background-color: #555;
-}
-
-.page-navigation {
-    text-align: center; /* 가운데 정렬 */
-    margin-top: 20px; /* 위쪽 여백 */
-    font-size: 20px; /* 글씨 크기 키움 */
-}
-
-.page-navigation .no-notice {
-    color: white; /* 텍스트 흰색 */
-    font-weight: bold;
-    padding: 10px 15px;
-    display: inline-block;
-    background: rgba(255, 255, 255, 0.2); /* 투명한 흰색 느낌 */
-    border: 1px solid white;
-    border-radius: 5px;
-}
-
-/* 기본 페이지 버튼 스타일 */
-.page-navigation a {
-    color: white; /* 기본 텍스트 색 */
-    text-decoration: none; /* 밑줄 제거 */
-    padding: 8px 12px;
-    margin: 1px 6px; /* 숫자 간격을 더 넓게 */
-    display: inline-block;
-    transition: all 0.3s ease-in-out;
-    border-radius: 50%; /* 원형으로 만들기 */
-    background-color: transparent; /* 배경색 제거 */
-}
-
-/* 페이지 버튼 hover 효과 */
-.page-navigation a:hover {
-    background: rgba(255, 255, 255, 0.3); /* 배경을 살짝 하얗게 */
-    color: white; /* 텍스트 색상 유지 */
-    transform: scale(1.1); /* 크기 살짝 커짐 */
-}
-
-/* prev, next 버튼을 강조하고 크기 조정 */
-.page-navigation .prev-page,
-.page-navigation .next-page {
-    padding: 6px 12px;
-    font-size: 18px;
-    border-radius: 50%;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    background-color: transparent; /* 배경색 제거 */
-}
-
-.page-navigation .prev-page:hover, .page-navigation .next-page:hover {
-    background: rgba(255, 255, 255, 0.3); /* hover 시 배경 색상 */
-    transform: scale(1.1); /* hover 시 크기 살짝 커짐 */
-}
-
-/* 현재 페이지 스타일 (원형 강조) */
-.page-navigation .active {
-    background: white;
-    color: black;
-    font-weight: bold;
-    padding: 8px 12px;
-    border-radius: 50%;
-}
-
-/* prev와 next 버튼을 숫자들 양옆에 배치 */
-.page-navigation .prev-page {
-    margin-right: 15px; /* 이전 버튼과 숫자 사이 간격 */
-}
-
-.page-navigation .next-page {
-    margin-left: 15px; /* 다음 버튼과 숫자 사이 간격 */
-}
-
-/* 숫자 페이지를 감싸는 영역 */
-.page-navigation .page-numbers {
-    display: inline-block;
-    margin: 0 15px; /* 숫자들 간격 */
-}
 </style>
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/home.css">
-	
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/noticeList.css">
 	
 <!-- 스크립트 링크 -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -236,8 +80,10 @@ body {
 	    <div class="notice-title">📢 공지사항</div>
 	    
 	    <div class="search-box">
-	        <input type="text" id="searchInput" placeholder="제목, 내용">
-	        <button onclick="searchNotice()">검색</button>
+	    	<form name="searchForm" action="${pageContext.request.contextPath}/notice/list" method="POST">
+		        <input type="text" id="searchInput" name="kwd" value="${kwd}"placeholder="제목, 내용">
+		        <button type="submit">검색</button>
+	        </form>
 	    </div>
 	
 	    <ul class="notice-list">
@@ -273,15 +119,8 @@ body {
 
 	</div>
 
-	<script>
-function searchNotice() {
-    var keyword = document.getElementById("").value.trim();
-    if (keyword === "") {
-        alert("검색어를 입력해주세요.");
-        return;
-    }
-    location.href = "${pageContext.request.contextPath}/notice?search=" + encodeURIComponent(keyword);
-}
+<script>
+
 
 </script>
 

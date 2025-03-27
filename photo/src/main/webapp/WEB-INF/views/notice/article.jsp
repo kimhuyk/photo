@@ -6,78 +6,13 @@
 <head>
 <title>Notice</title>
 <style>
-.notice-container {
-	width: 80%;
-	margin: 50px auto;
-	background: #2c2c2c;
-	padding: 20px;
-	border-radius: 8px;
-	color: white;
-}
 
-.notice-top {
-	font-size: 24px;
-    text-align: center;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #444;
-}
-
-.notice-title {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 5px;
-}
-
-.notice-meta {
-    font-size: 20px;
-    color: #bbb;
-    text-align: right;
-    margin-bottom: 15px;
-}
-
-.notice-content {
-    font-size: 21px;
-    line-height: 1.6;
-    color: #ddd;
-    padding: 15px;
-    background-color: #3c3c3c;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-
-.separator {
-    border-top: 2px solid #444;
-    margin: 20px 0;
-}
-
-.notice-navigation {
-    margin-top: 20px;
-    text-align: left;
-}
-
-.notice-navigation div {
-    font-size: 20px;  /* 글씨 크기 */
-    font-weight: bold;
-    color: white;
-    display: flex;
-    align-items: center;
-}
-
-.notice-navigation a {
-    color: #ffcc00;
-    text-decoration: none;
-    margin-left: 5px;
-}
-
-.notice-navigation a:hover {
-    text-decoration: underline;
-}
 </style>
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/home.css">
-	
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/noticeArticle.css">
 	
 <!-- 스크립트 링크 -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -154,21 +89,23 @@
 		    <div class="notice-separator"></div>
 		
         	<div class="notice-navigation">
+        		<ul class="ultag">
 			    <c:if test="${not empty prevDto}">
-			        <div class="prev-notice">
+			        <li class="prev-notice">
 			            이전 : <a href="${pageContext.request.contextPath}/notice/article?${query}&noticeSeq=${prevDto.noticeSeq}">
 			                ${prevDto.noticeTitle}
 			            </a>
-			        </div>
+			        </li>
 			    </c:if>
 			
 			    <c:if test="${not empty nextDto}">
-			        <div class="next-notice">
+			        <li class="next-notice">
 			            다음 : <a href="${pageContext.request.contextPath}/notice/article?${query}&noticeSeq=${nextDto.noticeSeq}">
 			                ${nextDto.noticeTitle}
 			            </a>
-			        </div>
+			        </li>
 			    </c:if>
+			    </ul>
 			</div>
 		</div>
 </body>
