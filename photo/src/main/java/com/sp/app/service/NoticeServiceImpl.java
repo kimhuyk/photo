@@ -29,7 +29,12 @@ public class NoticeServiceImpl implements NoticeService{
 
 	@Override
 	public void updateNotice(Notice dto) throws SQLException {
-		// TODO Auto-generated method stub
+		try {
+			mapper.updateNotice(dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 		
 	}
 
@@ -94,6 +99,17 @@ public class NoticeServiceImpl implements NoticeService{
 		Notice dto = null;
 		try {
 			dto = mapper.findByNext(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
+
+	@Override
+	public Notice findbyNotice(long noticeSeq) {
+		Notice dto = null;
+		try {
+			dto = mapper.findbyNotice(noticeSeq);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -170,28 +170,30 @@
 		
 		<div class="notice-write-container">
 		    <h3 class="notice-write-title">| 공지사항 작성</h3>
-		    <form class="notice-write-form" id="insertForm" name="insertForm" method="POST" 
-		    	action="${pageContext.request.contextPath}/notice/write">
-		    	
+		    <form class="notice-write-form" id="updateForm" name="updateForm" method="POST" 
+		    	action="${pageContext.request.contextPath}/notice/update">
+		    	<input type="hidden" name="noticeSeq" id="noticeSeq" value="${notice.noticeSeq}">
 		        <table>
 		            <tr>
 		                <td><label for="noticeTitle">제목</label></td>
-		                <td><input type="text" id="noticeTitle" name="noticeTitle"></td>
+		                <td><input type="text" id="noticeTitle" name="noticeTitle" value="${notice.noticeTitle}"></td>
 		            </tr>
 		            <tr>
 		                <td><label for="userName">작성자</label></td>
-		                <td><input type="text" id="userName" name="userName" value="${sessionScope.loginUser.userName}" readonly></td>
+		                <td><input type="text" id="userName" name="userName" value="${notice.userName}" readonly></td>
 		            </tr>
 		            <tr>
 		                <td><label for="boardContents">내용</label></td>
-		                <td><textarea id="noticeContents" name="noticeContents"></textarea></td>
+		                <td>
+		                	<textarea id="noticeContents" name="noticeContents">${notice.noticeContents}</textarea>
+		                </td>
 		            </tr>
 		        </table>
 		
 
 		            <div class="notice-write-buttons">
-		                <button type="submit" class="submit-btn">등록하기</button>
-		                <button type="button" class="cancel-btn" onclick="location.href='${pageContext.request.contextPath}/notice/list';">등록취소</button>
+		                <button type="submit" class="submit-btn">수정하기</button>
+		                <button type="button" class="cancel-btn" onclick="location.href='${pageContext.request.contextPath}/notice/list';">수정취소</button>
 		            </div>
 
 		    </form>

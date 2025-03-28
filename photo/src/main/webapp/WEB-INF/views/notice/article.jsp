@@ -108,8 +108,8 @@
 		    </ul>
 		    <c:if test="${sessionScope.loginUser.userSeq == 1}">
 		        <button type="button" class="delete-btn" onclick="deleteNotice(${dto.noticeSeq});">삭제하기</button>
-		        <button type="button" class="update-btn" onclick="updateNotice();">수정하기</button>
-		    </c:if>
+				<button type="button" class="update-btn" onclick="updateNotice(${dto.noticeSeq});">수정하기</button>
+			</c:if>
 	</div>
 </div>
 		
@@ -122,6 +122,16 @@ function deleteNotice(noticeSeq) {
         // 페이지 이동 방식으로 삭제 요청
         location.href = url;
     }
+}
+
+
+function updateNotice(noticeSeq) {
+    if (!noticeSeq) {
+        alert("공지사항 번호가 없습니다.");
+        return;
+    }
+    const url = '${pageContext.request.contextPath}/notice/findbyNotice?noticeSeq=' + noticeSeq;
+    location.href = url;
 }
 </script>
 </body>

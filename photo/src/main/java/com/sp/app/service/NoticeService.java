@@ -14,6 +14,8 @@ public interface NoticeService {
 	public List<Notice> listNotice(Map<String, Object> map);
 	// 페이징
 	public int dataCount(Map<String, Object> map);
+	// 등록된 값 불러오기
+	public Notice findbyNotice(long noticeSeq);
 	// 글보기 불러오기 이전글 다음글
 	public Notice find(long noticeSeq);
 	public Notice findByPrev(Map<String, Object> map);

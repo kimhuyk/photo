@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -193,11 +194,38 @@ public class NoticeController {
 		return "redirect:/notice/list";
 	}
 	
-//	@GetMapping
+	// insert 등록값 불러오는 메소드
+	@GetMapping("findbyNotice")
+	public String findbyNotice(@RequestParam("noticeSeq") long noticeSeq,
+			Model model, HttpSession session) {
+		Notice notice = service.findbyNotice(noticeSeq);
+		if(notice != null) {
+			model.addAttribute("notice", notice);
+			return "notice/update";
+		} else {
+			model.addAttribute("message", "게시글을 찾을 수 없습니다.");
+			return "redirect:/notice/list";
+		}
+	}
 	
-	
-	
-	
+	// 업데이트하는기능
+	@PostMapping("update")
+	public String updateNotice(@ModelAttribute Notice notice,
+			Model model, HttpSession session) {
+		if ( notice.getNoticeSeq() == 0L) { 
+			return "notice/update";
+		}
+		
+		try {
+			service.updateNotice(notice);
+			return "redirect:/notice/list";
+		} catch (Exception e) {
+			e.printStackTrace();
+	        model.addAttribute("message", "업데이트 중 오류가 발생했습니다: " + e.getMessage());
+		}
+		
+		return "notice/update";
+	}
 	
 	
 	// 삭제
