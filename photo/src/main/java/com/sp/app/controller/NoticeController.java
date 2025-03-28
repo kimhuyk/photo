@@ -168,7 +168,7 @@ public class NoticeController {
 		return "notice/write";
 	}
 	
-	// 글쓰기 기능
+	// 공지사항 글 등록하기
 	@PostMapping("write")
 	public String writeSubmit(Notice dto, 
 			@RequestParam String userName,
