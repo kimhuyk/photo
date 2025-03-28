@@ -89,27 +89,40 @@
 		    <div class="notice-separator"></div>
 		
         	<div class="notice-navigation">
-        		<ul class="ultag">
-			    <c:if test="${not empty prevDto}">
-			        <li class="prev-notice">
-			            이전 : <a href="${pageContext.request.contextPath}/notice/article?${query}&noticeSeq=${prevDto.noticeSeq}">
-			                ${prevDto.noticeTitle}
-			            </a>
-			        </li>
-			    </c:if>
-			
-			    <c:if test="${not empty nextDto}">
-			        <li class="next-notice">
-			            다음 : <a href="${pageContext.request.contextPath}/notice/article?${query}&noticeSeq=${nextDto.noticeSeq}">
-			                ${nextDto.noticeTitle}
-			            </a>
-			        </li>
-			    </c:if>
-			    </ul>
-				    <c:if test="${sessionScope.loginUser.userSeq == 1}">
-				    	<button type="button" style="color: #ffcc00; float: right;">삭제하기</button>
-					</c:if>
-			</div>
-		</div>
+		    <ul class="ultag">
+		        <c:if test="${not empty prevDto}">
+		            <li class="prev-notice">
+		                이전 : <a href="${pageContext.request.contextPath}/notice/article?${query}&noticeSeq=${prevDto.noticeSeq}">
+		                    ${prevDto.noticeTitle}
+		                </a>
+		            </li>
+		        </c:if>
+		
+		        <c:if test="${not empty nextDto}">
+		            <li class="next-notice">
+		                다음 : <a href="${pageContext.request.contextPath}/notice/article?${query}&noticeSeq=${nextDto.noticeSeq}">
+		                    ${nextDto.noticeTitle}
+		                </a>
+		            </li>
+		        </c:if>
+		    </ul>
+		    <c:if test="${sessionScope.loginUser.userSeq == 1}">
+		        <button type="button" class="delete-btn" onclick="deleteNotice(${dto.noticeSeq});">삭제하기</button>
+		        <button type="button" class="update-btn" onclick="updateNotice();">수정하기</button>
+		    </c:if>
+	</div>
+</div>
+		
+<script>
+function deleteNotice(noticeSeq) {
+    if (confirm("공지사항을 삭제하시겠습니까?")) {
+        // 현재 페이지의 컨텍스트 패스를 가져와서 삭제 URL을 만듦
+        const url = '${pageContext.request.contextPath}/notice/deleteNotice?noticeSeq=' + noticeSeq + '&page=' + ${page};
+        
+        // 페이지 이동 방식으로 삭제 요청
+        location.href = url;
+    }
+}
+</script>
 </body>
 </html>

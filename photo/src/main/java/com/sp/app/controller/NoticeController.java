@@ -193,7 +193,15 @@ public class NoticeController {
 		return "redirect:/notice/list";
 	}
 	
-	@PostMapping("deleteNotice")
+//	@GetMapping
+	
+	
+	
+	
+	
+	
+	// 삭제
+	@GetMapping("deleteNotice")
 	public String deleteNotice(@RequestParam long noticeSeq,
 			@RequestParam String page,
 			@RequestParam(defaultValue = "all") String schType,

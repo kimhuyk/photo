@@ -74,3 +74,13 @@
 .notice-navigation a:hover {
     text-decoration: underline;
 }
+.delete-btn {
+	color: green;
+	background-color: #ffcc00;
+}
+.update-btn {
+	color: green;
+		background-color: #ffcc00;
+	
+}
+
