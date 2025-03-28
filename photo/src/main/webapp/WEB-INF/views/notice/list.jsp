@@ -6,6 +6,14 @@
 <head>
 <title>Notice</title>
 <style>
+button {
+	padding: 6px 10px;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
 
 </style>
 
@@ -115,8 +123,11 @@
 		
 		    <!-- 다음 버튼 -->
 		    <a href="${listUrl}?page=${page+1}" class="next-page">&gt;&gt;</a>
+			 <c:if test="${sessionScope.loginUser.userSeq == 1}">
+				<button class="button" type="button" style="float: right;"
+					onclick="location.href='${pageContext.request.contextPath}/notice/write';">글쓰기</button>
+			</c:if>
 		</div>
-
 	</div>
 
 <script>

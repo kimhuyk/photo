@@ -7,16 +7,19 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sp.app.common.MyUtil;
 import com.sp.app.domain.Notice;
+import com.sp.app.domain.SessionInfo;
 import com.sp.app.service.NoticeService;
 
 @Controller
@@ -27,7 +30,7 @@ public class NoticeController {
 	
 	@Autowired
 	private NoticeService service;
-	
+	// 공지사항 리스트
 	@RequestMapping("list")
 	public String listNotice(@RequestParam(value = "page", defaultValue = "1") int current_page,
 			@RequestParam(defaultValue = "all") String schType,
@@ -117,7 +120,7 @@ public class NoticeController {
 
 		return "notice/list";
 	}
-	
+	// 공지사항 글 보기 
 	@GetMapping("article")
 	public String article(@RequestParam long noticeSeq,
 			@RequestParam String page,
@@ -156,7 +159,60 @@ public class NoticeController {
 		return "notice/article";
 	}
 	
+	// 공지사항 글 쓰기 <관리자만> re글쓰기보기 
+	@RequestMapping("write")
+	public String writeForm(Model model) throws Exception {
 	
+		model.addAttribute("mode", "write");
+		
+		return "notice/write";
+	}
+	
+	// 글쓰기 기능
+	@PostMapping("write")
+	public String writeSubmit(Notice dto, 
+			@RequestParam String userName,
+			@RequestParam String noticeTitle,
+			@RequestParam String noticeContents,
+			HttpSession session) throws Exception{
+		
+		SessionInfo info = (SessionInfo) session.getAttribute("loginUser");
+		// 로그인 정보가 없거나 세션이 만료된 경우 로그인 페이지로 리다이렉트
+	    if (info == null) {
+	        return "redirect:/home";
+	    }
+	    // 로그인 회원 값 넘기기
+	    dto.setUserSeq(info.getUserSeq());
+	    dto.setUserName(info.getUserName());
+	    
+		try {
+			service.insertNotice(dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/notice/list";
+	}
+	
+	@PostMapping("deleteNotice")
+	public String deleteNotice(@RequestParam long noticeSeq,
+			@RequestParam String page,
+			@RequestParam(defaultValue = "all") String schType,
+			@RequestParam(defaultValue = "") String kwd,
+			HttpSession session) throws Exception {
+		
+		kwd = URLDecoder.decode(kwd, "utf-8");
+		String query = "page=" + page;
+		if (kwd.length() != 0) {
+			query += "&schType=" + schType + "&kwd=" + URLEncoder.encode(kwd, "UTF-8");
+		}
+		
+		try {
+			service.deleteNotice(noticeSeq);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/notice/list?" + query; 
+	}
 	
 	
 	

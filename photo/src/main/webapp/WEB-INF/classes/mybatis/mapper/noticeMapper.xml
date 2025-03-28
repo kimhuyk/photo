@@ -2,7 +2,7 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sp.app.mapper.NoticeMapper">
-	
+	<!-- notice list, 검색기능 -->
 	<select id="listNotice" parameterType="map" resultType="com.sp.app.domain.Notice">
 		SELECT
 			notice_seq AS noticeSeq,
@@ -71,12 +71,12 @@
 		SELECT
 			n.notice_seq AS noticeSeq,
 			n.user_seq AS userSeq,
-			n.user_name AS userName,
+			u.user_name AS userName,
 			n.notice_title AS noticeTitle,
 			TO_CHAR(n.notice_reg_date, 'yyyy-MM-dd') AS noticeRegdate,
 			n.notice_contents AS noticeContents
 		FROM notice n
-		JOIN user1 u ON n.user_seq = u.user_seq
+		LEFT JOIN user1 u ON n.user_seq = u.user_seq
 		WHERE n.notice_seq = #{noticeSeq}
 	</select>
 	
@@ -113,6 +113,32 @@
 		FETCH FIRST 1 ROWS ONLY
 	 </select>
 	
+	<insert id="insertNotice" parameterType="com.sp.app.domain.Notice">
+		INSERT INTO notice(
+			notice_seq, 
+			user_seq,  
+			user_name, 
+			notice_title, 
+			notice_reg_date, 
+			notice_contents )
+		VALUES (
+			#{noticeSeq},
+			#{userSeq},
+			#{userName, jdbcType=VARCHAR},
+			#{noticeTitle, jdbcType=VARCHAR},
+			SYSDATE,
+			#{noticeContents, jdbcType=VARCHAR})
+	</insert>
+	
+	<select id="notice_seq" resultType="long">
+		SELECT notice_SEQ.NEXTVAL
+		FROM dual
+	</select>
+	
+	<delete id="deleteNotice" parameterType="long">
+		DELETE FROM notice
+		WHERE notice_seq = #{noticeSeq}
+	</delete>
 	
 	
 </mapper>
