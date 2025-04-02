@@ -60,7 +60,7 @@
         <a href="${pageContext.request.contextPath}/photo">Photo</a>
         <a href="${pageContext.request.contextPath}/photouploads">Uploads</a>
         <a href="${pageContext.request.contextPath}/notice/list">Notice?</a>
-		<a href="${pageContext.request.contextPath}/notice/story">Story</a>    
+		<a href="${pageContext.request.contextPath}/notice/story.do">Story</a>    
     </div>
 
     <!-- 오른쪽 로그인 버튼 -->

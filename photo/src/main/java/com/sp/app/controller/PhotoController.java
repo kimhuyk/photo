@@ -1,10 +1,12 @@
 package com.sp.app.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -33,10 +35,25 @@ public class PhotoController {
 	@Autowired
 	private FileManager fileManager;
 	
+	@Autowired
+    private ServletContext servletContext;
+	
 	@RequestMapping("")
 	public String list(HttpServletRequest req, Model model) throws Exception {
 		
-		
+		String folderPath = servletContext.getRealPath("/resources/images/uploads"); 
+        File folder = new File(folderPath);
+
+        List<String> imageList = new ArrayList<>();
+        if (folder.exists() && folder.isDirectory()) {
+            for (File file : folder.listFiles()) {
+                if (file.isFile() && file.getName().matches(".*\\.(jpg|png|gif|jpeg)$")) {
+                    imageList.add(file.getName()); // 파일 이름만 저장
+                }
+            }
+        }
+        
+        model.addAttribute("imageList", imageList);
 		
 		return "photo/photo";
 	}
