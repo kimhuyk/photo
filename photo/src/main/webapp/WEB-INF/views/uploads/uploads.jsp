@@ -35,6 +35,7 @@
         <a href="${pageContext.request.contextPath}/photo">Photo</a>
         <a href="${pageContext.request.contextPath}/photouploads">Uploads</a>
 		<a href="${pageContext.request.contextPath}/home">Notice?</a>
+		<a href="${pageContext.request.contextPath}/story/story.do">Story</a>
         
     </div>
 

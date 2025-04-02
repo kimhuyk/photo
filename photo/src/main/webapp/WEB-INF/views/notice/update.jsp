@@ -32,6 +32,7 @@
         <a href="${pageContext.request.contextPath}/photo">Photo</a>
         <a href="${pageContext.request.contextPath}/photouploads">Uploads</a>
         <a href="${pageContext.request.contextPath}/notice/list">Notice?</a>
+    	<a href="${pageContext.request.contextPath}/story/story.do">Story</a>
     </div>
     <!-- 오른쪽 로그인 버튼 -->
       <div class="login-button">

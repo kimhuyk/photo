@@ -40,6 +40,7 @@ button {
         <a href="${pageContext.request.contextPath}/photo">Photo</a>
         <a href="${pageContext.request.contextPath}/photouploads">Uploads</a>
         <a href="${pageContext.request.contextPath}/home">Notice?</a>
+        <a href="${pageContext.request.contextPath}/story/story.do">Story</a>
     </div>
     <!-- 오른쪽 로그인 버튼 -->
       <div class="login-button">
@@ -131,7 +132,26 @@ button {
 	</div>
 
 <script>
+document.addEventListener("DOMContentLoaded", function () {
+    let currentPage = ${page}; // 현재 페이지 번호
+    let maxPage = ${total_page}; // 총 페이지 개수
 
+    // 이전 버튼 클릭 시
+    document.querySelector(".prev-page").addEventListener("click", function (event) {
+        if (currentPage <= 1) {
+            event.preventDefault(); 
+            alert("첫 페이지입니다.");
+        }
+    });
+
+    // 다음 버튼 클릭 시
+    document.querySelector(".next-page").addEventListener("click", function (event) {
+        if (currentPage >= maxPage) {
+            event.preventDefault(); 
+            alert("마지막 페이지입니다.");
+        }
+    });
+});
 
 </script>
 

@@ -98,6 +98,7 @@
         <a href="${pageContext.request.contextPath}/photo">Photo</a>
         <a href="${pageContext.request.contextPath}/photouploads">Uploads</a>
         <a href="${pageContext.request.contextPath}/home">Notice?</a>
+        <a href="${pageContext.request.contextPath}/story/story.do">Story</a>
     </div>
 
     <!-- 오른쪽 로그인 버튼 -->
@@ -181,8 +182,13 @@
             <img src="resources/images/main/sky.jpg" alt="Sky Pictures">
             <figcaption class="caption">Sky Pictures</figcaption>
         </figure>
-    </div><br><br><br>
+        
 	
+    </div>
+         <h2>PHOTO DREAM</h2>
+		<div id="insertPhotoContainer"></div>
+	
+	<br><br><br><br>
 	<!-- 세 번째 행 -->
 		<div id="insertPhotoContainer"></div>
     <div class="slideshow">
@@ -202,10 +208,6 @@
     	</c:forEach>
     </div>	
 
-    <h2>PHOTO DREAM</h2>
-		<div id="insertPhotoContainer"></div>
-	
-	
 </section>
 
 <!-- 모달창 모달창 모달창 모달창 모달창 모달창 모달창 모달창 모달창 모달창 모달창 모달창 모달창 -->
