@@ -74,13 +74,15 @@
 .notice-navigation a:hover {
     text-decoration: underline;
 }
-.delete-btn {
-	color: green;
-	background-color: #ffcc00;
-}
-.update-btn {
-	color: green;
-		background-color: #ffcc00;
-	
+.delete-btn, .update-btn {
+	float: right;
+	padding: 6px 10px;
+	margin-left: 5px;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-top: -20px; /* 버튼을 위로 올림 */
 }
 
