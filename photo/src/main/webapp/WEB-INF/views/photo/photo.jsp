@@ -6,72 +6,15 @@
 <head>
 <title>Photo</title>
 	<style>
-		body {
-            font-family: Arial, sans-serif;
-        }
-        .gallery-container {
-            text-align: center;
-            margin: 20px auto;
-        }
-        .slideshow {
-            width: 800px;
-            height: 600px;
-            position: relative;
-            margin: auto;
-            overflow: hidden;
-            border: 3px solid #333;
-            border-radius: 10px;
-        }
-        .slide {
-            display: none;
-            width: 100%;
-            height: 100%;
-        }
-        .slide img {
-            width: 100%;
-		    height: 100%;
-		    object-fit: contain; /* 이미지를 축소해서 비율 유지 */
-		    background-color: black; /* 이미지가 비지 않는 부분을 검정색으로 채우기 */
-        }
-        .prev, .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 18px;
-        }
-        .prev { left: 10px; }
-        .next { right: 10px; }
-        
-        /* 그리드 & 리스트 뷰 스타일 */
-        .grid-view, .list-view {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .grid-view img, .list-view img {
-            width: 150px;
-            height: 100px;
-            object-fit: cover;
-            margin: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .list-view {
-            flex-direction: column;
-            align-items: center;
-        }
+		
 	</style>
 <!-- CSS 링크 -->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/home.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/photo.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/photoStory.css">
 	
 <script type="text/javascript">
     var contextPath = "${pageContext.request.contextPath}";
@@ -97,7 +40,7 @@
     	<a href="${pageContext.request.contextPath}/photo">- ̗̀ෆ⎛˶'ᵕ'˶ ⎞ෆ ̖́-</a>
         <a href="${pageContext.request.contextPath}/photo">Photo</a>
         <a href="${pageContext.request.contextPath}/photouploads">Uploads</a>
-        <a href="${pageContext.request.contextPath}/home">Notice?</a>
+        <a href="${pageContext.request.contextPath}/notice/list">Notice?</a>
         <a href="${pageContext.request.contextPath}/story/story.do">Story</a>
     </div>
 

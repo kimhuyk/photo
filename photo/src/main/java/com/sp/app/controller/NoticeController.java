@@ -41,7 +41,7 @@ public class NoticeController {
 		
 		String cp = req.getContextPath();
 		// 페이지당 몇개 표출할지
-		int size = 5;
+		int size = 1;
 		int total_page;
 		int dataCount;
 		
