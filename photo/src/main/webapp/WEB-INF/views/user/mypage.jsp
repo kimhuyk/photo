@@ -333,7 +333,7 @@ input:checked + .slider:before {
     <div class="card">
         <h4>부가 정보 관리</h4>
        
-        <div class="divider-line"></div>
+        	<div class="divider-line"></div>
        
         <div class="info-row">
             <span>배송지 관리</span>
