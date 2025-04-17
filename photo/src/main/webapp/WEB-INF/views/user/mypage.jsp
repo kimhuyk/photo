@@ -6,136 +6,173 @@
 <head>
 <title>마이페이지</title>
 <style>
-/* 추가된 마이페이지 CSS (적당한 스타일) */
+/* 공통 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #fff;
+}
+
+h1, h2, h3, h4 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* 마이페이지 메인 컨테이너 */
 .container-mypage {
-    background-color: #fff;
+    max-width: 750px;
+    margin: 0 auto;
     padding: 30px;
-    margin: 30px auto; /* 가운데 정렬 */
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 700px; /* 최대 너비 조정 */
+    background-color: #1c1c1c;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
 }
 
-.container-mypage h1 {
-    color: #333;
-    text-align: center;
-    margin-bottom: 30px;
+/* 카드 공통 */
+.card {
+    background-color: #1c1c1c;
+    border: 1px solid #4CAF50;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    padding: 20px;
+    margin-bottom: 20px;
 }
 
-.profile-section {
+/* 프로필 카드 상단 */
+.profile-card .profile-header {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
+    justify-content: space-between;
 }
 
-.profile-image {
-    width: 80px;
-    height: 80px;
+.profile-img {
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    overflow: hidden;
-    margin-right: 20px;
-    border: 2px solid #ddd;
-}
-
-.profile-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.profile-info h2 {
-    color: #333;
-    margin-top: 0;
-    margin-bottom: 5px;
-    font-size: 1.5em;
-}
-
-.profile-info .user-id {
-    color: #777;
-    font-size: 0.9em;
-}
-
-.info-list {
-    margin-bottom: 25px;
-}
-
-.info-item {
-    display: flex;
-    padding: 8px 0;
-    border-bottom: 1px solid #f0f0f0;
-    align-items: center; /* 라벨과 내용 가운데 정렬 */
-}
-
-.info-item label {
-    font-weight: bold;
-    width: 100px; /* 라벨 너비 고정 */
-    color: #555;
     margin-right: 15px;
 }
 
-.info-item div {
-    color: #333;
-    flex-grow: 1; /* 남은 공간 모두 차지 */
+/* 이름, 이메일 출력 */
+.profile-info h2 {
+    font-size: 1.5em;
+    margin: 0;
 }
 
-.info-item:last-child {
-    border-bottom: none;
-}
-
-.action-buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-}
-
-.action-buttons button, .action-buttons a.button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.profile-info .user-id {
     font-size: 0.9em;
-    text-decoration: none;
-    text-align: center;
-    transition: background-color 0.3s ease;
+    color: #777;
 }
 
-.action-buttons button {
-    background-color: #007bff;
+/* 정보 라인 */
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* 버튼 공통 */
+.edit-btn, .confirm-btn {
+    background: #f2f2f2;
+    color: #000;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* 스위치 토글 */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0;
+    right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px; width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #4caf50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* 사진 리스트 영역 */
+.main2-2 {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.main3-2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.main4-2 {
+    display: flex;
+    align-items: center;
+}
+
+.q1-3 img.img5 {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 10px;
+}
+
+.q2-3 span {
+    display: block;
+    color: #fff;
+}
+
+.q3-3 button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #4CAF50;
     color: white;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-.action-buttons button:hover {
-    background-color: #0056b3;
+.q3-3 button:hover {
+    background-color: #45a049;
 }
-
-.action-buttons a.button {
-    background-color: #28a745;
-    color: white;
-}
-
-.action-buttons a.button:hover {
-    background-color: #1e7e34;
-}
-
-.action-buttons button.secondary {
-    background-color: #6c757d;
-    color: white;
-}
-
-.action-buttons button.secondary:hover {
-    background-color: #545b62;
-}
-
-.action-buttons button.danger {
-    background-color: #dc3545;
-    color: white;
-}
-
-.action-buttons button.danger:hover {
-    background-color: #c82333;
+.divider-line {
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    margin: 5px 0;
 }
 </style>
 <link rel="stylesheet" type="text/css"
@@ -145,7 +182,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home.js"></script>
 </head>
-<body style="background-color: #1c1c1c;">
+<body>
 <header class="header-top">
     <!-- 왼쪽 로고 -->
     <div class="logo">
@@ -203,72 +240,139 @@
 	    </div>
 	</div>
 	
-	<div class="container-mypage">
+<div class="container-mypage">
     <h1>마이페이지</h1>
 
     <div class="profile-section">
         <div class="profile-info">
             <h2>${sessionScope.loginUser.userName}님의 정보</h2>
-            
         </div>
     </div>
 
-    <form id="mypageForm" name="mypageForm" method="POST" 
-    	action="${pageContext.request.contextPath}/"> 
-        <div class="info-list">
- 
-            <div class="info-item">
-                <label for="mypageUserId">아이디</label>
-
-                <input type="text" id="mypageUserId" name="userId" value="${user.userId}" readonly>
+<!--   <form id="mypageForm" name="mypageForm" method="POST" action="${pageContext.request.contextPath}/">   --> 
+	<div class="card profile-card">
+    	<div class="profile-header">
+            <img src="${pageContext.request.contextPath}/resources/images/story/sajin3.jpg" class="profile-img">
+            <div>
+                <h3 style="text-align: left">김혁</h3>
+                <p style="text-align: left">rlagur1659@naver.com</p>
             </div>
-
-
-            <div class="info-item">
-                <label for="mypageUserName">이름</label>
-                <input type="text" id="mypageUserName" name="userName" value="${user.userName}">
-            </div>
-
-
-            <div class="info-item">
-                <label for="mypageEmail">이메일</label>
-                <input type="email" id="mypageEmail" name="email" value="${user.email}" placeholder="예: example@naver.com">
-            </div>
-
-
-            <div class="info-item">
-                <label for="mypageTel">연락처</label>
-                <input type="tel" id="mypageTel" name="tel" value="${user.tel}" placeholder="010-1234-5678" pattern="[0-9]{3}-[0-9]{3,4}-[0-9]{4}">
-            </div>
-
-
-            <div class="info-item">
-                <label for="mypageBirth">생년월일</label>
-
-                <fmt:formatDate value="${user.birth}" pattern="yyyy-MM-dd" var="birthDateStr" />
-                <input type="date" id="mypageBirth" name="birth" value="${birthDateStr}">
-            </div>
-
-
-            <div class="info-item">
-                <label>가입일</label>
-
-                <div class="display-value"><fmt:formatDate value="${user.regDate}" pattern="yyyy-MM-dd HH:mm:ss"/></div>
-            </div>
+            <button class="edit-btn">실명수정</button>
         </div>
-
-        <div class="action-buttons">
-
-            <button type="submit">정보 수정</button>
-
-            <button type="button" onclick="location.href='<c:url value="/member/changePassword"/>'" class="secondary">비밀번호 변경</button>
-
-            <a href="<c:url value="/photo/myList?userId=${user.userId}"/>" class="button">내 사진 보기</a>
-
-            <button type="button" onclick="location.href='<c:url value="/member/logout"/>'" class="danger">로그아웃</button>
+        
+        <div class="divider-line"></div>
+        
+        <div class="info-row">
+            <span>+82 10-6***-9***</span>
+            <button class="edit-btn">수정</button>
         </div>
-    </form> 
+        
+        <div class="divider-line"></div>
+        
+        <div class="info-row">
+            <span>이 번호로 로그인하기</span>
+            <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+        
+        <div class="divider-line"></div>
+        
+        <div class="info-row">
+            <span>rl******@n*******.com</span>
+            <button class="edit-btn">수정</button>
+        </div>
+        
+        <div class="divider-line"></div>
+        
+        <div class="info-row">
+            <span>ca******@n*******.com</span>
+            <button class="edit-btn">수정</button>
+        </div>
+        <div class="divider-line"></div>
+        
+    </div>
+
+    <!-- 프로모션 수신 동의 -->
+    <div class="card">
+        <h4>프로모션 정보수신 동의</h4>
+        
+        <div class="divider-line"></div>
+        
+        <div class="info-row">
+            <span>휴대전화</span>
+            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+        </div>
+        
+        <div class="divider-line"></div>
+        
+        <div class="info-row">
+            <span>이메일</span>
+            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+        </div>
+        <div class="divider-line"></div>
+    </div>
+
+    <!-- 게시물 조치 알림 수신 동의 -->
+    <div class="card">
+        <h4>게시물 조치 알림 수신 동의</h4>
+        
+        <div class="divider-line"></div>
+        
+        <div class="info-row">
+            <span>휴대전화(문자메시지)</span>
+            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+        </div>
+        
+        <div class="divider-line"></div>
+        
+    </div>
+
+    <!-- 부가 정보 관리 -->
+    <div class="card">
+        <h4>부가 정보 관리</h4>
+       
+        <div class="divider-line"></div>
+       
+        <div class="info-row">
+            <span>배송지 관리</span>
+            <button class="confirm-btn">확인</button>
+        </div>
+        
+        <div class="divider-line"></div>
+        
+        <div class="info-row">
+            <span>개인정보 이용내역</span>
+            <button class="confirm-btn">확인</button>
+        </div>
+        
+        <div class="divider-line"></div>
+    </div>
+
 </div>
+ <!--</form>   --> 
+
+    <!--  여기가 사진 리스트 들어갈 영역 -->
+    <h2 style="margin-left: 80px; color: white; margin-top: 50px;">내 사진 리스트</h2>
+    <div class="main2-2">
+        <c:forEach var="photo" items="${photoList}">
+            <div class="main3-2">
+                <div class="main4-2">
+                    <div class="q1-3">
+                        <img class="img5" src="${pageContext.request.contextPath}/resources/uploads/${photo.filename}">
+                    </div>
+                    <div class="q2-3">
+                        <span style="font-size: 13px;">${photo.title}</span><br>
+                        <span style="font-size: 12px; color: gray;">${photo.uploadDate}</span>
+                    </div>
+                </div>
+                <div class="q3-3"><button onclick="location.href='<c:url value='/photo/view?num=${photo.num}'/>'">보기</button></div>
+            </div>
+            <hr>
+        </c:forEach>
+    </div>
+
 
 	
 	
