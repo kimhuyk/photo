@@ -46,7 +46,9 @@ button {
       <div class="login-button">
         <c:choose>
             <c:when test="${not empty sessionScope.loginUser}">
-                <span style="color: white;">★${sessionScope.loginUser.userName}★님</span>
+                 <a href="${pageContext.request.contextPath}/mypage">
+                	★${sessionScope.loginUser.userName}★님
+            	</a>
                 <a href="${pageContext.request.contextPath}/login/logout">&nbsp;&nbsp;&nbsp;⏻Logout</a>
             </c:when>
             <c:otherwise>
@@ -154,4 +156,5 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 </script>
-
+</body>
+</html>

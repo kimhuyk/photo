@@ -38,7 +38,9 @@
       <div class="login-button">
         <c:choose>
             <c:when test="${not empty sessionScope.loginUser}">
-                <span style="color: white;">★${sessionScope.loginUser.userName}★님</span>
+                 <a href="${pageContext.request.contextPath}/mypage">
+                	★${sessionScope.loginUser.userName}★님
+            	</a>
                 <a href="${pageContext.request.contextPath}/login/logout">&nbsp;&nbsp;&nbsp;⏻Logout</a>
             </c:when>
             <c:otherwise>
@@ -79,7 +81,7 @@
 	<!--  여기부터 notice 글보기 화면단 만들기 -->
 		<div class="notice-container">
 		    <div class="notice-top">${dto.noticeTitle}</div>
-		    <div class="notice-meta">${dto.noticeRegdate}</div>
+		    <div class="notice-meta" style="margin-top: 10px;">${dto.noticeRegdate}</div>
 		
 		    <div class="notice-separator"></div>
 		

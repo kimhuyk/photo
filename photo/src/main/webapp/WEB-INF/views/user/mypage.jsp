@@ -13,7 +13,12 @@ body {
     color: #fff;
 }
 
-h1, h2, h3, h4 {
+h1 {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+h2, h3, h4 {
     color: white;
     margin-bottom: 20px;
 }
@@ -66,12 +71,18 @@ h1, h2, h3, h4 {
 /* 정보 라인 */
 .info-row {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+/* .info-row {
+    display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
     font-size: 14px;
-}
-
+} */
 /* 버튼 공통 */
 .edit-btn, .confirm-btn {
     background: #f2f2f2;
@@ -174,6 +185,21 @@ input:checked + .slider:before {
     border-bottom: 1px solid #ccc;
     margin: 5px 0;
 }
+
+.masked-text {
+    display: inline-flex;
+    align-items: center;
+}
+
+.star {
+    font-size: 1em;
+    line-height: 1;
+    vertical-align: middle;
+}
+.masked-char {
+  position: relative;
+  top: 3px; /* 값을 조절하여 원하는 위치로 이동 */
+}
 </style>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/home.css">
@@ -249,22 +275,18 @@ input:checked + .slider:before {
         </div>
     </div>
 
-<!--   <form id="mypageForm" name="mypageForm" method="POST" action="${pageContext.request.contextPath}/">   --> 
+<!--   <form id="mypageForm" name="mypageForm" method="POST" action="${pageContext.request.contextPath}/user/pwd">   --> 
 	<div class="card profile-card">
     	<div class="profile-header">
             <img src="${pageContext.request.contextPath}/resources/images/story/sajin3.jpg" class="profile-img">
             <div>
-                <h3 style="text-align: left">김혁</h3>
-                <p style="text-align: left">rlagur1659@naver.com</p>
+                <h3 style="text-align: left">${sessionScope.loginUser.userName}</h3>
             </div>
-            <button class="edit-btn">실명수정</button>
-        </div>
-        
-        <div class="divider-line"></div>
-        
-        <div class="info-row">
-            <span>+82 10-6***-9***</span>
             <button class="edit-btn">수정</button>
+        </div>
+        <div class="info-row">
+            <span>+82 10-6<span class="masked-char">***</span>-9<span class="masked-char">***</span></span>
+            <!-- <button class="edit-btn">수정</button> -->
         </div>
         
         <div class="divider-line"></div>
@@ -280,15 +302,15 @@ input:checked + .slider:before {
         <div class="divider-line"></div>
         
         <div class="info-row">
-            <span>rl******@n*******.com</span>
-            <button class="edit-btn">수정</button>
+            <span>ca<span class="masked-char">*****4</span>@n<span class="masked-char">***</span>.com</span>
+            <!-- <button class="edit-btn">수정</button> -->
         </div>
         
         <div class="divider-line"></div>
         
         <div class="info-row">
-            <span>ca******@n*******.com</span>
-            <button class="edit-btn">수정</button>
+            <span>ca<span class="masked-char">******</span>@n<span class="masked-char">*******</span>.com</span>
+            <!-- <button class="edit-btn">수정</button> -->
         </div>
         <div class="divider-line"></div>
         
@@ -297,16 +319,13 @@ input:checked + .slider:before {
     <!-- 프로모션 수신 동의 -->
     <div class="card">
         <h4>프로모션 정보수신 동의</h4>
-        
-        <div class="divider-line"></div>
-        
         <div class="info-row">
             <span>휴대전화</span>
             <label class="switch"><input type="checkbox"><span class="slider"></span></label>
         </div>
         
-        <div class="divider-line"></div>
-        
+         <div class="divider-line"></div>
+
         <div class="info-row">
             <span>이메일</span>
             <label class="switch"><input type="checkbox"><span class="slider"></span></label>
@@ -317,9 +336,6 @@ input:checked + .slider:before {
     <!-- 게시물 조치 알림 수신 동의 -->
     <div class="card">
         <h4>게시물 조치 알림 수신 동의</h4>
-        
-        <div class="divider-line"></div>
-        
         <div class="info-row">
             <span>휴대전화(문자메시지)</span>
             <label class="switch"><input type="checkbox"><span class="slider"></span></label>
@@ -332,9 +348,6 @@ input:checked + .slider:before {
     <!-- 부가 정보 관리 -->
     <div class="card">
         <h4>부가 정보 관리</h4>
-       
-        	<div class="divider-line"></div>
-       
         <div class="info-row">
             <span>배송지 관리</span>
             <button class="confirm-btn">확인</button>
@@ -374,10 +387,13 @@ input:checked + .slider:before {
     </div>
 
 
+<script>
 	
 	
-	</body>
-	</html>
+</script>
+	
+</body>
+</html>
 	
 	
 	
