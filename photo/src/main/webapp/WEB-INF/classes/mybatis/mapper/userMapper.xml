@@ -27,9 +27,15 @@
 	</update>
 	
 	<select id="findById" parameterType="String" resultType="com.sp.app.domain.User">
-		SELECT u.user_seq AS userSeq, u.user_id AS userId , u.user_name AS userName,
-				u.user_pwd AS userPwd, u.reg_date AS regDate,
-				uh.user_seq AS userSeq, TO_CHAR(uh.birth, 'YYYY-MM-DD'), uh.email, uh.tel
+		SELECT  u.user_seq AS userSeq
+				, u.user_id AS userId
+		 		, u.user_name AS userName
+		 		, u.user_pwd AS userPwd
+				, u.reg_date AS regDate
+				, uh.user_seq AS userSeq
+				, TO_CHAR(uh.birth, 'YYYY-MM-DD')
+				, uh.email
+				, uh.tel
 		FROM user1 u
 		LEFT JOIN user_history uh ON uh.user_seq = u.user_seq
 		WHERE u.user_id = #{userId}
