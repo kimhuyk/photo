@@ -4,11 +4,14 @@
 <mapper namespace="com.sp.app.mapper.PhotoMapper">
 	<!-- 사진 넣은애 불러오기 -->
 	<select id="listPhoto" parameterType="map" resultType="com.sp.app.domain.Photo">
-		SELECT u.user_seq AS userSeq, u.user_id AS userId, 
-		       u.user_name AS userName, pf.reg_date AS regDate,
-		       pf.file_num AS fileNum, pf.originalfilename AS originalfileName
-		FROM photo_file pf
-		JOIN users u ON pf.user_seq = u.user_seq
+		SELECT u.user_seq AS userSeq
+			   , u.user_id AS userId
+			   , u.user_name AS userName
+			   , pf.reg_date AS regDate
+			   , pf.file_num AS fileNum
+			   , pf.originalfilename AS originalfileName
+		FROM   photo_file pf
+		JOIN   users u ON pf.user_seq = u.user_seq
 		order by pf.reg_date desc
 	</select>
 

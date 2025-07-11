@@ -86,9 +86,9 @@
 <!-- 사진 업로드 UI -->
 <div class="upload-container">
 	<h2 style="margin-top: 20px;">${sessionScope.loginUser.userName}님의 사진 업로드</h2>
-		<form id="insertForm" action="${pageContext.request.contextPath}/photouploads/insertPhoto" 
+		<form id="insertForm" name="insertForm" action="${pageContext.request.contextPath}/photouploads/insertPhoto" 
 				method="POST" enctype="multipart/form-data">
-				<input type="hidden" id="userSeq" value="${photo.userSeq}">
+				<input type="hidden" id="userSeq" name="userSeq" value="${sessionScope.loginUser.userSeq}">
 	        <div class="upload-box">
 	            <div id="drop-file" class="drag-file">
 	                <img src="https://img.icons8.com/pastel-glyph/2x/image-file.png" alt="파일 아이콘" class="image">

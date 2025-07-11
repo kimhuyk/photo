@@ -97,6 +97,19 @@ public class UserController {
 			
 			return model;
 		}
+		
+		@GetMapping("pwd")
+		public String pwdForm(String dropout, Model model) {
+			
+			if(dropout == null) {
+				model.addAttribute("mode", "update");
+			} else {
+				model.addAttribute("mode", "dropout");
+			}
+			
+			return ".user.pwd";
+		}
+		
 		// 비밀번호 확인 후 정보수정하러 넘어가기
 		@PostMapping("pwd")
 		public String pwdSubmit(@RequestParam String userPwd,

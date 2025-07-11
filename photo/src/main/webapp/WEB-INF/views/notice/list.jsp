@@ -46,7 +46,7 @@ button {
       <div class="login-button">
         <c:choose>
             <c:when test="${not empty sessionScope.loginUser}">
-                 <a href="${pageContext.request.contextPath}/mypage">
+                 <a href="${pageContext.request.contextPath}/user/pwd">
                 	★${sessionScope.loginUser.userName}★님
             	</a>
                 <a href="${pageContext.request.contextPath}/login/logout">&nbsp;&nbsp;&nbsp;⏻Logout</a>

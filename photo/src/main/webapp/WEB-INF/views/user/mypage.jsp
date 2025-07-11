@@ -275,7 +275,7 @@ input:checked + .slider:before {
         </div>
     </div>
 
-<!--   <form id="mypageForm" name="mypageForm" method="POST" action="${pageContext.request.contextPath}/user/pwd">   --> 
+  <form id="mypageForm" name="mypageForm" method="POST" action="${pageContext.request.contextPath}/user/pwd"> 
 	<div class="card profile-card">
     	<div class="profile-header">
             <img src="${pageContext.request.contextPath}/resources/images/story/sajin3.jpg" class="profile-img">
@@ -362,12 +362,10 @@ input:checked + .slider:before {
         
         <div class="divider-line"></div>
     </div>
-
+</form>
 </div>
- <!--</form>   --> 
-
     <!--  여기가 사진 리스트 들어갈 영역 -->
-    <h2 style="margin-left: 80px; color: white; margin-top: 50px;">내 사진 리스트</h2>
+    <h2 style="margin-left: 700px; color: white; margin-top: 50px;">내 사진 리스트</h2>
     <div class="main2-2">
         <c:forEach var="photo" items="${photoList}">
             <div class="main3-2">
