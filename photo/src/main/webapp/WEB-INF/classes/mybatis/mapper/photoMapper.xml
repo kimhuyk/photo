@@ -12,7 +12,7 @@
 			   , pf.originalfilename AS originalfileName
 		FROM   photo_file pf
 		JOIN   users u ON pf.user_seq = u.user_seq
-		order by pf.reg_date desc
+		ORDER by pf.reg_date desc
 	</select>
 
 	<!-- 다운로드?되는 그런 ㅇㅇ... -->
