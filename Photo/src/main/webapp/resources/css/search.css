@@ -1,0 +1,56 @@
+/* 검색창을 가운데 정렬 */
+.search-group {
+    position: relative; /* span 텍스트가 input 위에 올 수 있도록 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* 부모 요소에 맞게 */
+}
+
+/* 검색창 스타일 */
+.search-input {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 25px; /* 원형 느낌을 주기 위한 border-radius */
+    width: 400px; /* 길게 만들기 */
+    height: 50px; /* 높이 조정 */
+    background-color: white;
+    color: black; /* 텍스트 색상 */
+    position: relative;
+    z-index: 1;
+}
+
+/* SEARCH 텍스트 스타일 */
+#searchspan {
+    position: absolute; /* input 위에 올 수 있도록 */
+    top: 50%; /* 세로 중앙 */
+    left: 50%; /* 가로 중앙 */
+    transform: translate(-50%, -50%); /* 정확히 가운데 정렬 */
+    color: white;
+    font-size: 200px; /* 텍스트 크기 조정 */
+    font-weight: bold;
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7); /* 텍스트 그림자 */
+    opacity: 0.5; /* 반투명 */
+    z-index: 0; /* input 창보다 뒤에 위치 */
+}
+
+/* 돋보기 버튼 스타일 */
+.search-icon {
+    position: absolute;
+    right: 20px; 
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 2;
+    color: black;
+}
+
+/* 돋보기 아이콘에 마우스 올렸을 때 색 변경 */
+.search-icon:hover {
+    color: #555;
+}

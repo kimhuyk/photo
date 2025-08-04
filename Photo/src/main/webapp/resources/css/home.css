@@ -1,0 +1,269 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, sans-serif;
+}
+
+/* 헤더 스타일 */
+.header-top {
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: relative; /* 추가 */
+}
+
+.logo img {
+	cursor: pointer;
+	height: 40px; /* 로고 크기 조정 */
+}
+
+.nav-items {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 23px;  /* 기존보다 더 아래로 */
+}
+
+.nav-items a, .login-button a {
+	color: white;
+	text-decoration: none;
+	font-size: 18px;
+}
+
+.login-button {
+	display: flex;
+	justify-content: flex-end;
+}
+/* 로그인 모달창 */
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6); /* 어두운 배경 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 9999; /* 최상위 레이어 */
+}
+
+/* 모달 내부 스타일 */
+.modal-content {
+	background-color: black; /* 검은색 배경 */
+	color: white; /* 하얀색 글씨 */
+	padding: 40px;
+	width: 400px; /* 크기 키움 */
+	border-radius: 10px;
+	text-align: center;
+	box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3); /* 살짝 빛나는 효과 */
+	position: relative; /* 중앙 정렬을 유지하기 위한 설정 */
+}
+
+/* 닫기 버튼 스타일 */
+.close {
+	position: absolute;
+	top: 10px;
+	right: 15px;
+	font-size: 28px;
+	font-weight: bold;
+	cursor: pointer;
+	color: white;
+}
+
+/* 로그인 제목 (h2) 스타일 */
+.modal-content h2 {
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+
+/* 입력 필드 스타일 */
+.modal-content input {
+	width: 90%;
+	padding: 12px;
+	margin: 10px 0;
+	background-color: #333;
+	border: none;
+	border-radius: 5px;
+	color: white;
+	font-size: 16px;
+	text-align: center;
+}
+
+/* 로그인 버튼 스타일 */
+.modal-content button {
+	width: 100%;
+	padding: 12px;
+	background-color: white;
+	color: black;
+	font-weight: bold;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 24px;
+	margin-top: 20px;
+}
+
+.modal-content button:hover {
+	background-color: gray;
+}
+/* ......................*/
+
+/* section-2 전체 영역 */
+.section-2, .section3, .section-4 {
+	height: 300px;
+}
+
+.center {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	margin-top: 220px;
+	margin-left: 25px;
+}
+
+.bottom {
+	display: flex;
+	width: 100%;
+	height: 50%;
+	margin-top: 320px;
+	margin-left: 15px;
+}
+
+.area-1 {
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 200%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 20px;
+}
+
+.area-2, .area-2-1 {
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 50%;
+	height: 200%;
+	margin-right: 50px;
+	transition: transform 0.3s ease;
+}
+
+.area-2-write span, .area-3-write span {
+	color: white;
+	font-size: 150px; /* 글씨 크기 더 키우기 */
+	font-weight: bold; /* 글씨 굵게 */
+	padding: 15px 30px; /* 내부 여백 더 주기 */
+	text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7); /* 텍스트 그림자 추가 */
+	opacity: 0.5;
+}
+
+.searchspan {
+    display: inline-block;  /* inline 요소를 블록 요소처럼 동작하도록 변경 */
+    color: white;
+    font-size: 150px;
+    font-weight: bold;
+    padding: 15px 30px;
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
+    opacity: 0.5;
+}
+
+.area-3, .area-3-1 {
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 70%;
+	height: 150%;
+	margin-right: 50px;
+	transition: transform 0.3s ease;
+}
+
+/* 검색창을 가운데 정렬 */
+.search-group {
+    position: relative; /* span 텍스트가 input 위에 올 수 있도록 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* 부모 요소에 맞게 */
+}
+
+/* 검색창 스타일 */
+.search-input {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 25px; /* 원형 느낌을 주기 위한 border-radius */
+    width: 400px; /* 길게 만들기 */
+    height: 50px; /* 높이 조정 */
+    background-color: white;
+    color: black; /* 텍스트 색상 */
+    position: relative;
+    z-index: 1;
+}
+
+/* SEARCH 텍스트 스타일 */
+#searchspan {
+    position: absolute; /* input 위에 올 수 있도록 */
+    top: 50%; /* 세로 중앙 */
+    left: 50%; /* 가로 중앙 */
+    transform: translate(-50%, -50%); /* 정확히 가운데 정렬 */
+    color: white;
+    font-size: 200px; /* 텍스트 크기 조정 */
+    font-weight: bold;
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7); /* 텍스트 그림자 */
+    opacity: 0.5; /* 반투명 */
+    z-index: 0; /* input 창보다 뒤에 위치 */
+}
+
+/* 돋보기 버튼 스타일 */
+.search-icon {
+    position: absolute;
+    right: 20px; 
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 2;
+    color: black;
+}
+
+/* 돋보기 아이콘에 마우스 올렸을 때 색 변경 */
+.search-icon:hover {
+    color: #555;
+}
+
+.area-2:hover, .area-2-1:hover, .area-3:hover, .area-3-1:hover {
+	transform: scale(0.7); /* 1.1배 확대 */
+}
+
+@media ( max-width : 768px) {
+	.center {
+		flex-direction: column;
+	}
+	@media ( max-width : 768px) {
+		.bottom {
+			flex-direction: column;
+		}
+		.area-2, .area-2-1, area-3, area-3-1 {
+			width: 100%;
+			height: 150px;
+		}
+	}
+}

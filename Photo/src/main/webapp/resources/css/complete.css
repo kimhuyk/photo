@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+.features-1 {
+    height: 100vh; /* 화면 전체 높이 사용 */
+    display: flex;
+    justify-content: center; /* 수평 정렬 */
+    align-items: center; /* 수직 정렬 */
+    background-color: #1c1c1c;
+}
+
+.body-container {
+    padding: 30px;
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: #1c1c1c; /* 어두운 배경 */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6); /* 그림자 효과 */
+    color: white; /* 글씨를 하얀색으로 변경 */
+}
+
+.row {
+    width: auto;
+}
+
+.justify-content-md-center {
+    background-color: var(--container-color);
+    padding: 2rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 8px 32px hsla(230, 75%, 15%, .2);
+}
+
+.div-form {
+    margin: 30px;
+}
+
+/* 버튼 스타일 */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #444;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* 구분선 스타일 */
+hr {
+    border: 1px solid #444;
+    margin-top: 20px;
+}
+
+/* 성공 메시지 스타일 */
+.success-message {
+    font-size: 18px;
+    color: #4CAF50;
+    margin-top: 20px;
+}

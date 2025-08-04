@@ -1,0 +1,174 @@
+body {
+    margin: 0;
+    font-family: 'Noto Sans KR', Arial, sans-serif;
+    background: #f5f5f5;
+    color: #222;
+}
+
+.main-visual {
+    position: relative;
+    height: 420px;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.main-visual {
+    position: relative;
+    height: 420px;
+    width: 100vw;
+    overflow: hidden;
+    /* display: flex; align-items: center; justify-content: center;  <= 이 부분 삭제! */
+}
+.visual-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 300px;
+    text-align: center;
+    color: #fff;
+}
+.visual-content h1 {
+    font-size: 3rem;
+    margin-bottom: 24px;
+    margin-top: 0;
+    text-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+.reserve-btn {
+    font-size: 1.5rem;
+    padding: 16px 48px;
+    background: #ff6f00;
+    color: #fff;
+    border: none;
+    border-radius: 32px;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    transition: background 0.2s;
+    margin-top: 0;
+}
+.reserve-btn:hover {
+    background: #d84315;
+}
+.main-nav {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 16px 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100vw;
+}
+.main-nav a {
+    color: #0078ff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+}
+.main-nav a:hover {
+    color: #ff6f00;
+}
+.section {
+    max-width: 1300px;
+    margin: 32px auto;
+    padding: 32px 24px;
+    width: 100%;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+.rooms .room-gallery, .travel-gallery {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+.room, .travel-gallery div {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    width: 23%;
+    min-width: 220px;
+    padding: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+.room img, .travel-gallery img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+.room:hover, .travel-gallery div:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+}
+.room:hover img, .travel-gallery div:hover img {
+    transform: scale(1.08);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+}
+@media (max-width: 1100px) {
+    .room, .travel-gallery div {
+        width: 48%;
+    }
+}
+@media (max-width: 700px) {
+    .rooms .room-gallery, .travel-gallery {
+        flex-direction: column;
+        gap: 18px;
+    }
+    .room, .travel-gallery div {
+        width: 100%;
+        min-width: unset;
+    }
+}
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    background: #fff;
+    border-radius: 16px;
+    padding: 16px;
+}
+.about-content img {
+    width: 320px;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.reservation ul {
+    list-style: disc;
+    margin-left: 24px;
+}
+.main-footer {
+    background: #222;
+    color: #fff;
+    padding: 32px 0 16px 0;
+    text-align: center;
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 100;
+    font-size: 1rem;
+    width: 100vw;
+}
+.main-footer a {
+    color: #ffd700;
+    margin: 0 8px;
+    text-decoration: underline;
+}

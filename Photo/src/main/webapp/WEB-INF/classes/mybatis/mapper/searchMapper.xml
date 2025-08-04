@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sp.app.mapper.SearchMapper">
+	<select id="searchList" resultType="com.sp.app.domain.User">
+    	SELECT 
+        	u.user_seq AS userSeq, u.user_id AS userId, u.user_name AS userName, u.user_pwd AS userPwd,
+        	TO_CHAR(u.reg_date, 'YYYY-MM-DD') AS regDate, uh.birth, uh.email, uh.tel,
+	        pf.file_num AS fileNum, pf.savefilename AS savefileName, pf.originalfilename AS originalfileName,
+	        pf.file_path AS filePath, TO_CHAR(pf.reg_date, 'YYYY-MM-DD') AS regDate
+        FROM user1 u
+        LEFT JOIN user_history uh ON u.user_seq = uh.user_seq
+    	LEFT JOIN photo_file pf on u.user_seq = pf.user_seq
+    	WHERE 1=1
+    		<if test="userId != null and userId != ''">
+    			AND u.user_id = #{userId}
+    		</if>
+    		<if test="userName != null and userName != ''">
+    			AND u.user_name LIKE '%' || #{userName} || '%' 
+    		</if>
+    		<if test="regDate != null"> 
+	        	AND u.reg_date = TO_DATE(#{regDate}, 'YYYY-MM-DD')
+	    	</if>
+    		<if test="originalfileName != null and originalfileName != ''">
+		        AND pf.originalfilename = #{originalfileName}
+		    </if>
+		ORDER BY userSeq DESC
+	</select>
+
+
+</mapper>
