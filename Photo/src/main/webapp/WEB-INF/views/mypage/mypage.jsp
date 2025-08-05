@@ -235,7 +235,7 @@
         <h4>부가 정보 관리</h4>
         <div class="info-row">
             <span>배송지 관리</span>
-            <button class="confirm-btn">확인</button>
+            <a href="${pageContext.request.contextPath}/mypage/delivery" class="confirm-btn">확인</a>
         </div>
         
         <div class="divider-line"></div>
