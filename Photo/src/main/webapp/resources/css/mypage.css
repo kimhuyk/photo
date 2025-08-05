@@ -1,0 +1,388 @@
+/* 공통 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #fff;
+}
+
+h1 {
+    text-align: left;  /* 왼쪽 정렬로 변경 */
+    margin-bottom: 30px;
+    margin-left: 20px;
+}
+
+h2, h3, h4 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* 마이페이지 메인 컨테이너 - 크기 키움 */
+.container-mypage {
+    max-width: 1200px;  /* 750px에서 1200px로 증가 */
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #1c1c1c;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* 통합 레이아웃 */
+.mypage-layout {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;  /* 맨 위 정렬 */
+}
+
+/* 왼쪽 사이드바 */
+.mypage-sidebar {
+    background-color: #1c1c1c;
+    border: 1px solid #4CAF50;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    padding: 20px;
+    margin-top: 63px;
+}
+
+/* 오른쪽 메인 콘텐츠 */
+.mypage-main {
+    flex: 1;
+    min-width: 0;
+    margin-top: 0;  /* 상단 여백 제거 */
+}
+
+/* 사이드바 스타일 */
+.sidebar-header {
+    margin-bottom: 30px;
+}
+
+.photo-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.logo-title {
+    font-size: 16px;
+    color: white;
+    font-weight: 500;
+}
+
+/* 프로필 섹션 */
+.profile-section {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.profile-image-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.profile-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.edit-icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #03c75a;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.profile-info {
+    margin-bottom: 20px;
+}
+
+.nickname {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.email {
+    font-size: 14px;
+    color: white;
+}
+
+.passkey-btn {
+    background: linear-gradient(135deg, #03c75a, #00a854);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+.new-tag {
+    position: absolute;
+    top: -5px;
+    right: 10px;
+    background: #ff6b35;
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.passkey-desc {
+    font-size: 12px;
+    color: white;
+    line-height: 1.4;
+}
+
+/* 네비게이션 */
+.sidebar-nav {
+    margin-bottom: 30px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-item:hover {
+    background-color: #666;
+}
+
+.nav-item.active {
+    background-color: #e8f5e8;
+    color: #03c75a;
+    font-weight: 500;
+}
+
+.nav-icon {
+    font-size: 16px;
+    color: #03c75a;
+}
+
+.nav-divider {
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 15px 0;
+}
+
+/* 프로모션 배너 */
+.promo-banner {
+    background: linear-gradient(135deg, #03c75a, #00a854);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    color: white;
+}
+
+.banner-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.banner-icon {
+    font-size: 24px;
+}
+
+.banner-text {
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+/* 하단 링크 */
+.bottom-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    font-size: 12px;
+}
+
+.bottom-link {
+    color: white;
+    text-decoration: none;
+}
+
+.bottom-link:hover {
+    color: #666;
+}
+
+.separator {
+    color: #ccc;
+}
+
+/* 하단 로고 */
+.bottom-logo {
+    text-align: center;
+    margin-top: auto;
+}
+
+.photo-text {
+    font-size: 16px;
+    font-weight: bold;
+    color: #03c75a;
+}
+
+/* 기존 카드 스타일 유지 */
+.card {
+    background-color: #1c1c1c;
+    border: 1px solid #4CAF50;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* 나머지 기존 스타일들... */
+.profile-card .profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.profile-info h2 {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.profile-info .user-id {
+    font-size: 0.9em;
+    color: #777;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.edit-btn, .confirm-btn {
+    background: #f2f2f2;
+    color: #000;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* 스위치 토글 */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0;
+    right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px; width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #4caf50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+.divider-line {
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    margin: 5px 0;
+}
+
+.masked-text {
+    display: inline-flex;
+    align-items: center;
+}
+
+.star {
+    font-size: 1em;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+.masked-char {
+    position: relative;
+    top: 3px;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .container-mypage {
+        max-width: 95%;
+        padding: 20px;
+    }
+    
+    .mypage-layout {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .mypage-sidebar {
+        width: 100%;
+    }
+}
