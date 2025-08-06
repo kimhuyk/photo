@@ -6,12 +6,11 @@
 <head>
     <meta charset="UTF-8">
     <title>배송지 관리</title>
-    <link rel="stylesheet" type="text/css" href="../css/deliveryAddress.css">
-</head>
 <style>
 
-
 </style>
+<link rel="stylesheet" type="text/css" 
+	href="${pageContext.request.contextPath}/resources/css/delivery.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/home.css">
 <!-- 스크립트 링크 -->
@@ -103,7 +102,7 @@
                         <div class="address-info">
                             <div class="address-header">
                                 <span class="address-name">우리집</span>
-                                <span class="default-tag">기본배송지</span>
+                                <span class="default-tag">Y</span>
                             </div>
                             <div class="address-phone">010-1234-5678</div>
                             <div class="address-detail">

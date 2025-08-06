@@ -71,7 +71,6 @@ public class UserController {
 			rAttr.addFlashAttribute("message", sb.toString());
 			rAttr.addFlashAttribute("title", "회원 가입");
 			
-			//return "redirect:/user/complete";
 			return "redirect:/user/complete";
 		}
 			
@@ -79,9 +78,8 @@ public class UserController {
 		// 회원 가입 완료후 메시지 출력
 		@GetMapping("complete")
 	    public String complete(@ModelAttribute("message") String message) throws Exception {
-
-	        // 컴플릿 페이지(complete.jsp)의 출력되는 message와 title는 RedirectAttributes 값이다.
-	        // F5를 눌러 새로 고침을 하면 null이 된다.
+	        
+			// F5를 눌러 새로 고침을 하면 null이 됩니둥
 
 	        if (message == null || message.length() == 0) // F5를 누른 경우
 	            return "redirect:/home";
@@ -182,6 +180,7 @@ public class UserController {
 			
 			return "redirect:/user/complete";
 		}
+		
 		// 마이페이지 회원탈퇴
 		@PostMapping(value = "delete")
 		public String delete(User dto, 

@@ -1,0 +1,267 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #fff;
+}
+
+h1 {
+    text-align: left;
+    margin-bottom: 30px;
+    margin-left: 20px;
+    color: white;
+}
+
+h2, h3, h4 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* 배송지 관리 메인 컨테이너 */
+.container-delivery {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #1c1c1c;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.main-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: white;
+}
+
+/* 탭 네비게이션 */
+.tab-container {
+    display: flex;
+    gap: 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #4CAF50;
+}
+
+.tab-button {
+    padding: 15px 30px;
+    border: none;
+    background-color: transparent;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.tab-button.active {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.tab-button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #4CAF50;
+}
+
+.tab-button:hover:not(.active) {
+    color: #fff;
+}
+
+/* 탭 콘텐츠 */
+.tab-content {
+    min-height: 400px;
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+/* 빈 상태 스타일 */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #ccc;
+}
+
+.empty-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.empty-message {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.empty-desc {
+    font-size: 14px;
+    color: #999;
+}
+
+/* 배송지 아이템 스타일 */
+.address-item {
+    background-color: #1c1c1c;
+    border: 1px solid #4CAF50;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.address-info {
+    flex: 1;
+}
+
+.address-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.address-name {
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+}
+
+.default-tag {
+    background-color: #4CAF50;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.address-phone {
+    color: #ccc;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.address-detail {
+    color: #ddd;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.address-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn {
+    padding: 8px 16px;
+    border: 1px solid #4CAF50;
+    background-color: #1c1c1c;
+    color: #4CAF50;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #d32f2f;
+    border-color: #d32f2f;
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* 정보 메시지 */
+.info-message {
+    background-color: #1c1c1c;
+    border: 1px solid #4CAF50;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.info-icon {
+    font-size: 16px;
+}
+
+/* 등록 버튼 */
+.register-section {
+    margin-top: 30px;
+}
+
+.register-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register-btn:hover {
+    background-color: #45a049;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .container-delivery {
+        max-width: 95%;
+        padding: 20px;
+    }
+    
+    .main-title {
+        font-size: 24px;
+    }
+    
+    .tab-button {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+    
+    .address-item {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .address-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
