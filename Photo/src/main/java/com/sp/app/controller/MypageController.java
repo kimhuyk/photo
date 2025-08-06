@@ -15,13 +15,6 @@ public class MypageController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
 	///////////////////////////////////////////////////////////////
 	//  개인 이용내역 메소드
 	@RequestMapping("privacy")
@@ -30,11 +23,4 @@ public class MypageController {
 		return "/mypage/privacy";
 	}
 	
-	///////////////////////////////////////////////////////////////
-	// 배송지 delivery
-	@RequestMapping(value ="delivery")
-	public String delivery() {
-		return "/mypage/delivery";
-	}
-
 }

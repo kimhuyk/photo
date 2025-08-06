@@ -102,7 +102,7 @@
                         <div class="address-info">
                             <div class="address-header">
                                 <span class="address-name">우리집</span>
-                                <span class="default-tag">Y</span>
+                                <span class="default-tag">기본배송지</span>
                             </div>
                             <div class="address-phone">010-1234-5678</div>
                             <div class="address-detail">
@@ -135,7 +135,7 @@
 
         <!-- 배송지 등록 버튼 -->
         <div class="register-section">
-            <button class="register-btn" onclick="registerAddress()">배송지 등록</button>
+            <button class="register-btn" onclick="addAddress()">배송지 등록</button>
         </div>
     </div>
 
@@ -158,7 +158,7 @@
             document.getElementById(tabName).classList.add('active');
         }
 
-        function registerAddress() {
+        function addAddress() {
             alert('배송지 등록 기능이 개발 중입니다.');
             // 실제로는 배송지 등록 페이지로 이동하거나 모달을 띄움
         }
