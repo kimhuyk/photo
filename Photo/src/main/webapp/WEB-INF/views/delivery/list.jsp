@@ -141,7 +141,6 @@
 
     <script>
         function showTab(tabName) {
-            // 모든 탭 버튼에서 active 클래스 제거
             document.querySelectorAll('.tab-button').forEach(button => {
                 button.classList.remove('active');
             });
@@ -151,17 +150,18 @@
                 panel.classList.remove('active');
             });
             
-            // 클릭된 탭 버튼에 active 클래스 추가
             event.target.classList.add('active');
             
-            // 해당 탭 패널 보이기
             document.getElementById(tabName).classList.add('active');
         }
-
+		// 배송지 입력 페이지
         function addAddress() {
-            alert('배송지 등록 기능이 개발 중입니다.');
-            // 실제로는 배송지 등록 페이지로 이동하거나 모달을 띄움
+            location.href = " ${pageContext.request.contextPath}/delivery/insert ";
         }
+        
+		
+        
+        
     </script>
 </body>
 </html>

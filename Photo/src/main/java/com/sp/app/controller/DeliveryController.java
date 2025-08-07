@@ -12,10 +12,10 @@ public class DeliveryController {
 	@RequestMapping(value = "list")
 	public String delivery() {
 		
-		return "/delivery/delivery";
+		return "/delivery/list";
 	}
 	
-	@PostMapping(value = "insert")
+	@RequestMapping(value = "insert")
 	public String deliveryInsert() {
 		
 		return "/delivery/insert";
