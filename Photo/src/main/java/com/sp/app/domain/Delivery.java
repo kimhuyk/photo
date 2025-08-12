@@ -8,13 +8,13 @@ import lombok.NoArgsConstructor;
 public class Delivery {
 	private long deNum;	// 배송지 번호
 	private long userSeq;	// 사용자 번호
-	private String de_name;	// 배송지명
+	private String deName;	// 배송지명
 	private String receiverName;	// 수령인
 	private String address;	// 주소
 	private String addressZip;	// 우편번호
 	private String detailAddress;	// 상세주소
-	private String phone1;	// 배송지 번호
-	private String phone2;	// 배송지 번호
+	private String phone1;	// 전화번호 번호
+	private String phone2;	// 예비전화번호
 	private String dlvrpl;	// 기본배송지
 	
 	
@@ -31,11 +31,11 @@ public class Delivery {
 	public void setUserSeq(long userSeq) {
 		this.userSeq = userSeq;
 	}
-	public String getDe_name() {
-		return de_name;
+	public String getDeName() {
+		return deName;
 	}
-	public void setDe_name(String de_name) {
-		this.de_name = de_name;
+	public void setDeName(String deName) {
+		this.deName = deName;
 	}
 	public String getReceiverName() {
 		return receiverName;

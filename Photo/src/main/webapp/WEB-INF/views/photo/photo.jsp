@@ -248,6 +248,7 @@
     </div>
 </div>
 	<script>
+	// photo 밑단 사진 자동 넘기기
 	    let slides = document.querySelectorAll(".slide");
 	    let currentSlide = 0;
 	    let slideInterval;

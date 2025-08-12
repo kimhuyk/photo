@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* 회원가입 css */
+/* 배송지 css */
 
 /* 기본 스타일 설정 */
 body {
@@ -87,12 +87,12 @@ select option {
     color: white;
 }
 /* 사용자 그룹 스타일 */
-.user-group {
+.delivery-group {
     margin-bottom: 20px;
 }
 
 /* 이메일 입력 필드 스타일 */
-.user-group .at-symbol {
+.delivery .at-symbol {
   font-size: 18px;
   color: white;
   margin: 0 5px;

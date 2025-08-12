@@ -15,7 +15,7 @@
 	href="${pageContext.request.contextPath}/resources/css/user.css">
 	
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user.js"></script>
 </head>
 <body style="background-color: #1c1c1c;">
 	<!-- 헤더 영역 -->
@@ -52,44 +52,48 @@
 	<!-- 배송지 등록 form -->
 	<div class="features-1">
 		<div class="body-container">
-			<form id="deliveryForm" name="deliveryForm">
+			<form id="deliveryForm" name="deliveryForm" method="POST" action="${pageContext.request.contextPath}/delivery/insert">
 				<h2 style="text-align: center; color: white;">배송지 등록</h2>
 
 				<div class="delivery-group">
-					<label for="de_name">배송지명</label> 
-					<input type="text" id="de_name" name="de_name" placeholder="예: 우리집, 회사" required>
+					<label for="deName">배송지명</label> 
+					<input type="text" id="deName" name="deName" placeholder="예: 우리집, 회사" required>
 				</div>
 
 				<div class="delivery-group">
 					<label for="receiver_name">수령인</label> 
-					<input type="text" id="receiver_name" name="receiver_name" placeholder="수령인 이름" required>
+					<input type="text" id="receiverName" name="receiverName" placeholder="수령인 이름" required>
 				</div>
 
 				<div class="delivery-group">
 					<label for="phone1">연락처</label> 
 					<input type="text" id="phone1" name="phone1" placeholder="예: 010-1234-5678" required>
 				</div>
+				
 				<div class="delivery-group">
 					<label for="phone2">추가 연락처(선택)</label> 
 					<input type="text" id="phone2" name="phone2" placeholder="예: 02-1234-5678">
 				</div>
 
-				<div class="delivery-group">
-					<label for="address">주소</label> 
-					<input type="text" id="address" name="address" placeholder="주소" readonly required>
-					<button type="button" onclick="daumPostcode()" 
-								style="width: auto; margin-left: 10px;">주소검색</button>
-				</div>
 				<div class="delivery-group address-group">
-					<label for="address_zip">우편번호</label>
+					<label for="address">주소</label>
+					<div style="display: flex; gap: 10px;">
+						<input type="text" id="address" name="address" placeholder="주소" readonly required>
+						<!-- 주소 검색 버튼에 클래스 추가 -->
+						<button type="button" onclick="daumPostcode()" class="address-search-button">주소검색</button>
+					</div>
+				</div>
+			
+				<div class="delivery-group address-group">
+					<label for="addressZip">우편번호</label>
 					<div style="display: flex;">
-						<input type="text" id="address_zip" name="address_zip" placeholder="우편번호" disabled readonly required>
+						<input type="text" id="addressZip" name="addressZip" placeholder="우편번호" readonly required>
 					</div>
 				</div>
 				
 				<div class="delivery-group">
 					<label for="detail_address">상세주소</label> 
-					<input type="text" id="detail_address" name="detail_address" placeholder="예: 101동 101호" required>
+					<input type="text" id="detailAddress" name="detailAddress" placeholder="예: 101동 101호" required>
 				</div>
 
 				<div class="delivery-group checkbox-group">
@@ -97,8 +101,7 @@
 					<input type="checkbox" id="dlvrpl" name="dlvrpl" value="Y">
 				</div>
 
-				<button type="button" id="submitButton" onclick="submitDeliveryForm()">등록하기</button>
-				<button type="button" id="cancelButton" onclick="window.history.back()">취소</button>
+				<button type="button" id="submitButton" onclick="deliveryOk()">등록하기</button>
 			</form>
 		</div>
 	</div>
@@ -146,24 +149,20 @@ function daumPostcode() {
 
 					// 우편번호와 주소 정보를 해당 필드에 넣는다
 					document.getElementById('address').value = fullAddr;
-					document.getElementById('address_zip').value = data.zonecode;
+					document.getElementById('addressZip').value = data.zonecode;
 
 				}
 			}).open();
 }
+
+
+
+function deliveryOk() {
+	  const f = document.deliveryForm;
+
+	f.submit();	  
+}
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>
