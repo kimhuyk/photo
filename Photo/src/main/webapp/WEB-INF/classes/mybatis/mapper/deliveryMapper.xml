@@ -19,7 +19,7 @@
 		<if test="userSeq != null">
 		AND user_seq = #{userSeq}
 		</if>
-		ORDER BY deNum DESC
+		ORDER BY deNum DESC 
 	</select>
 
 	<insert id="insertDelivery" parameterType="com.sp.app.domain.Delivery">
