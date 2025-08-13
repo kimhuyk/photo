@@ -108,21 +108,21 @@ display: none;
 </div>
 
 <script>
-    // 1. 서버(컨트롤러)가 모델에 담아 보낸 mode 값을 JS 변수에 저장합니다.
+    //서버에 모델에 담아 보낸 mode 값을 JS 변수에 저장
     const mode = "${mode}";
     const contextPath = "${pageContext.request.contextPath}";
 
-    // 페이지가 로드되면 바로 실행됩니다.
+    // 페이지 로드 바로실행
     window.onload = function() {
         const form = document.getElementById('userForm');
         const submitButton = document.getElementById('submitButton');
         const title = document.querySelector('title');
 
-        // 2. 서버가 보내준 mode가 'update'인지 확인합니다.
+        //서버가 보내준 mode가 update인지 확인합니다.
         if (mode === 'update') {
-            // 3. '정보 수정' 모드에 맞게 화면 요소를 변경합니다.
+            //정보 수정 모드에 맞게 변경
             
-            // ★★★★★ 가장 중요: 폼의 목적지를 '/user/update'로 변경 ★★★★★
+            //폼의 목적지를 '/user/update'로 변경
             form.action = contextPath + '/user/update'; 
             
             // 페이지와 버튼의 텍스트 변경
@@ -132,7 +132,7 @@ display: none;
             // 아이디는 수정할 수 없도록 막기
             document.getElementById('userId').readOnly = true;
         } else {
-            // '회원가입' 모드일 때의 처리
+            // 회원가입 모드일 때의 처리
             title.innerText = '회원가입';
             submitButton.innerText = '회원 가입';
             form.action = contextPath + '/user/user';
@@ -141,7 +141,7 @@ display: none;
     
     // 폼 유효성 검사 및 전송 함수
     function submitForm() {
-        // ... 유효성 검사 로직 ...
+        //유효성 검사 로직
         document.getElementById('userForm').submit();
     }
 </script>

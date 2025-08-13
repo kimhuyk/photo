@@ -93,6 +93,16 @@ public class DeliveryController {
 		}		
 	}
 	
+	@PostMapping(value = "update")
+	public String updateDelivery() {
+		
+		return "";
+	}
 	
+	@PostMapping(value = "delete")
+	public String deleteDelivery() {
+		
+		return "";
+	}
 
 }

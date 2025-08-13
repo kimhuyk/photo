@@ -14,6 +14,9 @@ public interface DeliveryMapper {
 	public long deNum();
 	// 등록된 배송지 리스트
 	public List<Delivery> listDelivery(Map<String, Object> map);
+	// 중복 기본배송지를 일반으로 변경하는 메소드
+	public void defaultDelivery(long userSeq) throws SQLException;
+	
 	// 배송지 등록, 수정, 삭제
 	public void insertDelivery(Delivery dto) throws SQLException;
 	public void updateDelivery(Delivery dto) throws SQLException;

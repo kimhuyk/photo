@@ -49,4 +49,16 @@
 			, #{dlvrpl, jdbcType=VARCHAR}	
 			)
 	</insert>
+	
+	<update id="defaultDelivery" parameterType="long">
+		UPDATE DELIVERY
+		   SET dlvrpl = 'N'
+		 WHERE user_seq = #{userSeq} AND dlvrpl = 'Y'
+	</update>
+	
+	
+	
+	
+	
+	
 </mapper>

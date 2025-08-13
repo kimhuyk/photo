@@ -111,8 +111,12 @@
                 <div class="info-message">
                     <span class="info-icon">ℹ️</span>
                     <strong>확인해주세요</strong>
+                    <div>
 	                    <p>각 주소 옆 저장 버튼 클릭 시 배송지 목록에 등록됩니다.</p>
+					</div>
+					<div>	
 						<p>저장 버튼이 보이지 않는 경우 이미 등록된 배송지입니다.</p>
+                	</div>
                 </div>
 	        </div>
 	

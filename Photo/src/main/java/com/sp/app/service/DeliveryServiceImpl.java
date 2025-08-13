@@ -6,9 +6,12 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sp.app.domain.Delivery;
 import com.sp.app.mapper.DeliveryMapper;
+
+
 
 @Service
 public class DeliveryServiceImpl implements DeliveryService{
@@ -27,16 +30,18 @@ public class DeliveryServiceImpl implements DeliveryService{
 	}
 	
 	@Override
+	@Transactional(rollbackFor = Exception.class)// unchecked exception이 발생하면 롤백하고, checked exception이 발생하면 커밋한다.
 	public void insertDelivery(Delivery dto) throws SQLException {
 		try {
 			
 			if (dto.getDlvrpl() == null || dto.getDlvrpl().isEmpty()) {
-	            dto.setDlvrpl("N");
+	            dto.setDlvrpl("N"); // 기본배송지가 비어있으면 n으로 체크
 	        }
-			
+			if ("Y".equals(dto.getDlvrpl())) { // 기본배송지가 y면 기존 기본배송지 초기화
+				mapper.defaultDelivery(dto.getUserSeq());
+			}
 		//	long seq = mapper.deNum();
-		//	dto.setDeNum(seq);
-			
+		//	dto.setDeNum(seq);	
 			mapper.insertDelivery(dto);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -44,7 +49,6 @@ public class DeliveryServiceImpl implements DeliveryService{
 		}
 		
 	}
-
 
 	@Override
 	public void updateDelivery(Delivery dto) throws SQLException {
