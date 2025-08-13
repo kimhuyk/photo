@@ -56,7 +56,22 @@
 		 WHERE user_seq = #{userSeq} AND dlvrpl = 'Y'
 	</update>
 	
+	<update id="updateDelivery" parameterType="com.sp.app.domain.Delivery">
+		UPDATE DELIVERY
+		   SET de_name = #{deName}
+		   		, receiver_name = #{receiverName}
+		   		, address = #{address}
+		   		, address_zip = #{addressZip}
+		   		, detail_address = #{detailAddress}
+		   		, phone1 = #{phone1}
+		   		, phone2 = #{phone2}
+		   		, dlvrpl = #{dlvrpl}
+		 WHERE de_num = #{deNum} AND user_seq = #{userSeq}
+	</update>
 	
+	<delete id="deleteDelivery" parameterType="long">
+		DELETE FROM DELIVERY WHERE de_num = #{deNum}
+	</delete>
 	
 	
 	

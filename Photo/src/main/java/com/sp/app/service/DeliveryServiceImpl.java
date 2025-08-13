@@ -52,13 +52,25 @@ public class DeliveryServiceImpl implements DeliveryService{
 
 	@Override
 	public void updateDelivery(Delivery dto) throws SQLException {
-		
+		try {
+			if("Y".equals(dto.getDlvrpl())) {
+				mapper.defaultDelivery(dto.getUserSeq()); // insert 초기화와 동일
+			}
+			mapper.updateDelivery(dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void deleteDelivery(long deNum) throws SQLException {
-		// TODO Auto-generated method stub
+		try {
+			mapper.deleteDelivery(deNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 		
 	}
 
