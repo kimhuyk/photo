@@ -21,4 +21,7 @@ public interface DeliveryMapper {
 	public void insertDelivery(Delivery dto) throws SQLException;
 	public void updateDelivery(Delivery dto) throws SQLException;
 	public void deleteDelivery(long deNum) throws SQLException;
+	
+	// update버튼 누를시 배송지 정보 가져오는 메소드
+	public Delivery findByAddress(long deNum);
 }

@@ -30,7 +30,7 @@ public class DeliveryController {
 	private DeliveryService service;
 	
 	// list.jsp 페이지 보여주는 역할
-	@RequestMapping(value = "list")
+	@GetMapping(value = "list")
 	public String delivery(HttpServletRequest req, Model model) throws Exception {
 		// Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -65,7 +65,7 @@ public class DeliveryController {
 	}
 	
 	// 등록 페이지 가져오는 메소드, 명칭은 insert지만 update랑 같은 메소드
-	@GetMapping(value = "insert")
+	@RequestMapping(value = "insert")
     public String insertDeliveryForm() {
 		
 		return "/delivery/insert"; // JSP 파일 경로
@@ -82,19 +82,34 @@ public class DeliveryController {
 	            dto.setUserSeq(info.getUserSeq());
 	        } else {
 	        	model.addAttribute("message", "로그인이 필요합니다");
-	        	return "redirect/home";
+	        	return "redirect:/home";
 	        	
 	        }
 			service.insertDelivery(dto);
 			model.addAttribute("message", "배송지가 등록되었습니다");
 			// redirect를 사용안하고 return을 사용할시 post 요청 후 브라우저가 이전요청을 그대로
 			// 다시 보내서 연속 insert 발생 그래서 redirect로 수정
-			return "redirect/delivery/list";
+			return "redirect:/delivery/list";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("message", "배송지 등록중 오류가 발생했습니다" + e.getMessage());
-			return "redirect/delivery/list";
+			return "redirect:/delivery/list";
 		}		
+	}
+	// insert 된 배송지 정보 들고오는 form
+	@PostMapping("updateForm")					// long으로 바꿔도 상관x
+	public String updateDeliveryForm(@RequestParam int deNum, Model model) {
+		try {
+			Delivery dto = service.findByAddress(deNum);
+			
+			model.addAttribute("dto", dto);
+			model.addAttribute("mode", "update");
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("message", "배송지 정보 조회 중 오류가 발생했습니다.");
+		}
+		
+		return "/delivery/insert"; 
 	}
 	
 	@PostMapping(value = "update")

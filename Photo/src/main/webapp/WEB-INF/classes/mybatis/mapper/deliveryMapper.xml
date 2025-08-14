@@ -73,6 +73,21 @@
 		DELETE FROM DELIVERY WHERE de_num = #{deNum}
 	</delete>
 	
+	<select id="findByAddress" parameterType="long" resultType="com.sp.app.domain.Delivery">
+		SELECT
+			de_num AS deNum
+			, user_seq AS userSEQ
+			, de_name AS deName
+			, receiver_name AS receiverName
+			, address
+			, address_zip AS addressZip
+			, detail_address AS detailAddress
+			, phone1
+			, phone2
+			, dlvrpl
+		FROM  DELIVERY
+		WHERE de_num = #{deNum}
+	</select>
 	
 	
 	

@@ -206,7 +206,7 @@ function loadDeliveryList() {
         }
     });
 }
-
+// 배송지 삭제 스크립트
 function deleteAddress(deNum){
 	if(confirm ("주소를 삭제 하시겠습니까?")) {
 		$.ajax({
@@ -228,8 +228,25 @@ function deleteAddress(deNum){
 		alert("주소 삭제가 취소되었습니다.");
 	}
 }
+// 등록된 배송지 정보 불러오기 (button click)
+function editAddress(deNum) {
+    // 폼을 동적으로 생성하여 POST
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '${pageContext.request.contextPath}/delivery/updateForm';
 
+    // hidden input 필드를 생성하여 deNum 값을 담기
+    const hiddenField = document.createElement('input');
+    hiddenField.type = 'hidden';
+    hiddenField.name = 'deNum';
+    hiddenField.value = deNum;
 
+    // hidden input 필드를 폼에 추가합니다
+    form.appendChild(hiddenField);
+
+    document.body.appendChild(form);
+    form.submit();
+}
 		
         
         

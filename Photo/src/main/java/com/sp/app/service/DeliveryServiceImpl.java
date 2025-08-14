@@ -74,4 +74,15 @@ public class DeliveryServiceImpl implements DeliveryService{
 		
 	}
 
+	@Override
+	public Delivery findByAddress(long deNum) {
+		Delivery dto = null;
+		try {
+			dto = mapper.findByAddress(deNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
+
 }

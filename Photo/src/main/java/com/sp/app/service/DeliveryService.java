@@ -13,4 +13,6 @@ public interface DeliveryService {
 	public void insertDelivery(Delivery dto) throws SQLException;
 	public void updateDelivery(Delivery dto) throws SQLException;
 	public void deleteDelivery(long deNum) throws SQLException;
+
+	public Delivery findByAddress(long deNum);
 }
