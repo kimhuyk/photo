@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -63,9 +64,10 @@ public class DeliveryController {
 	    return result;
 	}
 	
-	// insert페이지 가져오는 메소드
+	// 등록 페이지 가져오는 메소드, 명칭은 insert지만 update랑 같은 메소드
 	@GetMapping(value = "insert")
     public String insertDeliveryForm() {
+		
 		return "/delivery/insert"; // JSP 파일 경로
 	}
 	
@@ -80,29 +82,76 @@ public class DeliveryController {
 	            dto.setUserSeq(info.getUserSeq());
 	        } else {
 	        	model.addAttribute("message", "로그인이 필요합니다");
-	        	return "/home";
+	        	return "redirect/home";
 	        	
 	        }
 			service.insertDelivery(dto);
 			model.addAttribute("message", "배송지가 등록되었습니다");
-			return "/delivery/list";
+			// redirect를 사용안하고 return을 사용할시 post 요청 후 브라우저가 이전요청을 그대로
+			// 다시 보내서 연속 insert 발생 그래서 redirect로 수정
+			return "redirect/delivery/list";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("message", "배송지 등록중 오류가 발생했습니다" + e.getMessage());
-			return "/delivery/list";
+			return "redirect/delivery/list";
 		}		
 	}
 	
 	@PostMapping(value = "update")
-	public String updateDelivery() {
+	public String updateDelivery(RedirectAttributes rAttr
+			 , Model model
+			 , HttpSession session
+			 , Delivery dto) {
 		
-		return "";
+		try {
+			SessionInfo info = (SessionInfo)session.getAttribute("loginUser");
+			if (info != null) {
+	            dto.setUserSeq(info.getUserSeq());
+	        } else {
+	        	rAttr.addFlashAttribute("message", "로그인이 필요합니다.");
+	        	return "/home";
+	        }
+			service.updateDelivery(dto);
+			rAttr.addFlashAttribute("message", "배송지 정보가 정상적으로 수정되었습니다.");
+			return "/delivery/list";
+		} catch (Exception e) {
+			e.printStackTrace();
+			rAttr.addFlashAttribute("message", "배송지 수정 중 오류가 발생했습니다.");
+		}
+		return "/delivery/list";
 	}
 	
 	@PostMapping(value = "delete")
-	public String deleteDelivery() {
-		
-		return "";
+	@ResponseBody 
+	public Map<String, Object> deleteDelivery(@RequestParam("deNum") long deNum,
+	                                          HttpSession session) {
+	    Map<String, Object> result = new HashMap<>();
+	    
+	    try {
+	        // 로그인 체크
+	        SessionInfo info = (SessionInfo) session.getAttribute("loginUser");
+	        if (info == null) {
+	            result.put("success", false);
+	            result.put("message", "로그인이 필요합니다.");
+	            return result;
+	        }
+
+	        // 유저 검증 (선택 사항)
+	        // 서비스에서 해당 유저의 배송지인지 체크 가능
+	        // dto.setUserSeq(info.getUserSeq());
+
+	        service.deleteDelivery(deNum);
+
+	        result.put("success", true);
+	        result.put("message", "주소가 삭제되었습니다.");
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        result.put("success", false);
+	        result.put("message", "주소 삭제 중 오류가 발생했습니다.");
+	    }
+
+	    return result;
 	}
 
 }

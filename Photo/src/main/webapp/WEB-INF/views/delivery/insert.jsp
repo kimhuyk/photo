@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>배송지 등록</title>
+<title>${mode == "insert" ? "배송지 등록" : "배송지 수정"}</title>
 <style>
 
 </style>
@@ -53,32 +53,32 @@
 	<div class="features-1">
 		<div class="body-container">
 			<form id="deliveryForm" name="deliveryForm" method="POST" action="${pageContext.request.contextPath}/delivery/insert">
-				<h2 style="text-align: center; color: white;">배송지 등록</h2>
+				<h2 style="text-align: center; color: white;">배송지${mode == "insert" ? "등록" : "수정"}</h2>
 
 				<div class="delivery-group">
-					<label for="deName">배송지명</label> 
-					<input type="text" id="deName" name="deName" placeholder="예: 우리집, 회사" required>
+					<label for="deName">배송지명</label> 														<!-- 값이 없을때만 placeholder 나오게하기 -->
+					<input type="text" id="deName" name="deName" placeholder="예: 우리집, 회사" required value="${empty dto.deName ? '' : dto.deName}">
 				</div>
 
 				<div class="delivery-group">
 					<label for="receiver_name">수령인</label> 
-					<input type="text" id="receiverName" name="receiverName" placeholder="수령인 이름" required>
+					<input type="text" id="receiverName" name="receiverName" placeholder="수령인 이름" required value="${dto.receiverName}">
 				</div>
 
 				<div class="delivery-group">
 					<label for="phone1">연락처</label> 
-					<input type="text" id="phone1" name="phone1" placeholder="예: 010-1234-5678" required>
+					<input type="text" id="phone1" name="phone1" placeholder="예: 010-1234-5678" required value="${dto.phone1}">
 				</div>
 				
 				<div class="delivery-group">
 					<label for="phone2">추가 연락처(선택)</label> 
-					<input type="text" id="phone2" name="phone2" placeholder="예: 02-1234-5678">
+					<input type="text" id="phone2" name="phone2" placeholder="예: 02-1234-5678" value="${dto.phone2}">
 				</div>
 
 				<div class="delivery-group address-group">
 					<label for="address">주소</label>
 					<div style="display: flex; gap: 10px;">
-						<input type="text" id="address" name="address" placeholder="주소" readonly required>
+						<input type="text" id="address" name="address" placeholder="주소" readonly required value="${dto.address}">
 						<!-- 주소 검색 버튼에 클래스 추가 -->
 						<button type="button" onclick="daumPostcode()" class="address-search-button">주소검색</button>
 					</div>
@@ -87,30 +87,28 @@
 				<div class="delivery-group address-group">
 					<label for="addressZip">우편번호</label>
 					<div style="display: flex;">
-						<input type="text" id="addressZip" name="addressZip" placeholder="우편번호" readonly required>
+						<input type="text" id="addressZip" name="addressZip" placeholder="우편번호" readonly required value="${dto.addressZip}">
 					</div>
 				</div>
 				
 				<div class="delivery-group">
 					<label for="detail_address">상세주소</label> 
-					<input type="text" id="detailAddress" name="detailAddress" placeholder="예: 101동 101호" required>
+					<input type="text" id="detailAddress" name="detailAddress" placeholder="예: 101동 101호" required value="${dto.detailAddress}">
 				</div>
 
 				<div class="delivery-group checkbox-group">
 					<label for="dlvrpl">기본 배송지로 설정</label> 
-					<input type="checkbox" id="dlvrpl" name="dlvrpl" value="Y">
+					<input type="checkbox" id="dlvrpl" name="dlvrpl" value="Y" ${dto.dlvrpl == 'Y' ? 'checked' : ''}>
 				</div>
 
-				<button type="button" id="submitButton" onclick="deliveryOk()">등록하기</button>
+				<button type="button" id="submitButton" onclick="deliveryOk()">${mode == "insert" ? "배송지 등록" : "배송지 수정" }</button>
 			</form>
 		</div>
 	</div>
 
-
-
-
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
+// 주소 Daum API
 function daumPostcode() {
 	new daum.Postcode(
 			{
@@ -154,6 +152,36 @@ function daumPostcode() {
 				}
 			}).open();
 }
+
+
+	// 등록 페이지를 UPDATE 페이지로 변환 스크립트
+	const mode = "${mode}";
+	const contextPath = "${pageContext.request.contextPath}";
+
+window.onload = function() {
+	const form = document.getElementById('deliveryForm');
+	const submitButton = document.getElementById('submitButton');
+	const title = document.querySelector('h2');
+
+	if (mode === 'update') {
+		form.action = contextPath + '/delivery/update';
+		submitButton.innerText = '수정하기';
+		title.innerText = '배송지 수정';
+		
+		// hidden input
+		const hidden = document.createElement('input');
+		hidden.type = 'hidden';
+		hidden.name = 'deNum';
+		hidden.value = "${dto.deNum}";
+		form.appendChild(hidden);
+		
+	} else {
+		form.action = contextPath + '/delivery/insert';
+		submitButton.innerText = '등록하기';
+		title.innerText = '배송지 등록'
+	}
+};
+
 
 
 

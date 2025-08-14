@@ -122,7 +122,7 @@ display: none;
         if (mode === 'update') {
             //정보 수정 모드에 맞게 변경
             
-            //폼의 목적지를 '/user/update'로 변경
+            //폼의 목적지를 /user/update'로 변경
             form.action = contextPath + '/user/update'; 
             
             // 페이지와 버튼의 텍스트 변경

@@ -206,6 +206,30 @@ function loadDeliveryList() {
         }
     });
 }
+
+function deleteAddress(deNum){
+	if(confirm ("주소를 삭제 하시겠습니까?")) {
+		$.ajax({
+			url: '${pageContext.request.contextPath}/delivery/delete',
+			type: 'POST',
+			data: { deNum: deNum},
+			success: function(response) {
+				console.log("주소 삭제 성공")
+				alert("주소가 삭제 되었습니다.");
+				loadDeliveryList();	// 목록 재갱신
+			},
+			error: function(xhr, status, error) {
+				alert("주소 삭제 중 오류가 발생하였습니다.")
+				console.error("주소 삭제 요청 실패", status, error);
+				console.error("서버 응답:", xhr.responseText);
+			}
+		});
+	} else {
+		alert("주소 삭제가 취소되었습니다.");
+	}
+}
+
+
 		
         
         
