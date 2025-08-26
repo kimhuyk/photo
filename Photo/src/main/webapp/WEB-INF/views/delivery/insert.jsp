@@ -17,38 +17,9 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user.js"></script>
 </head>
-<body style="background-color: #1c1c1c;">
-	<!-- 헤더 영역 -->
-	<header class="header-top">
-		<!-- 왼쪽 로고 -->
-		<div class="logo">
-			<img src="${pageContext.request.contextPath}/resources/images/logo/logo.png" alt="Logo"
-				onclick="location.href='${pageContext.request.contextPath}/home';">
-		</div>
-
-		<!-- 가운데 메뉴 -->
-		<div class="nav-items">
-			<a href="${pageContext.request.contextPath}/photo">- ̗̀ෆ⎛˶'ᵕ'˶ ⎞ෆ ̖́-</a>
-        <a href="${pageContext.request.contextPath}/photo">Photo</a>
-        <a href="${pageContext.request.contextPath}/photouploads">Uploads</a>
-        <a href="${pageContext.request.contextPath}/home">Notice?</a>
-        <a href="${pageContext.request.contextPath}/story/story.do">Story</a>
-		</div>
-
-		<!-- 오른쪽 로그인 버튼 -->
-		<div class="login-button">
-			<c:choose>
-				<c:when test="${not empty sessionScope.loginUser}">
-					<!-- 로그인된 사용자의 ID 표시 -->
-					<span>${sessionScope.loginUser.userName}</span>
-				</c:when>
-				<c:otherwise>
-					<!-- 로그인되지 않은 경우 로그인 버튼 -->
-					<a type="button" onclick="openModal()">Login</a>
-				</c:otherwise>
-			</c:choose>
-		</div>
-	</header>
+<body style="background-color: #121212;">
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
+	
 	<!-- 배송지 등록 form -->
 	<div class="features-1">
 		<div class="body-container">

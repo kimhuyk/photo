@@ -18,7 +18,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home.js"></script>
 </head>
-<body style="background-color: #1c1c1c;">
+<body>
 <header class="header-top">
 	<!-- 왼쪽 로고 -->
     <div class="logo">
