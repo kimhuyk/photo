@@ -4,18 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>검색</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" type="text/css" 
-    	href="${pageContext.request.contextPath}/resources/css/search.css">
-<style>
-
-</style>   	
-    
+<title>검색</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/search.css">   
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/layout/header.jsp" />
-
     <!-- 검색 페이지 메인 -->
     <div class="search-page">
         <!-- 검색 상단 영역 -->

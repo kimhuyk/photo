@@ -42,12 +42,9 @@
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home.js"></script>
-   
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
 </head>
 <body style="background-color: #121212;">
-<!-- 로그인, UI -->
-<jsp:include page="/WEB-INF/views/layout/header.jsp" />
-
 <!-- 메인 섹션 -->
 <section class="section-1" style="height: 200px;">
     <div class="top">

@@ -16,10 +16,9 @@
 <!-- 스크립트 링크 -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home.js"></script>
-</head>
-
-<body>
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
+</head>
+<body>
     <!-- 메인 콘텐츠 -->
    <div class="container-delivery">
         <h1 class="main-title">배송지 관리</h1>

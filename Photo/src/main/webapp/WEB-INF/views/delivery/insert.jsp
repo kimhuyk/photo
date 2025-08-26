@@ -16,10 +16,9 @@
 	
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user.js"></script>
-</head>
-<body style="background-color: #121212;">
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
-	
+</head>
+<body style="background-color: #121212;">	
 	<!-- 배송지 등록 form -->
 	<div class="features-1">
 		<div class="body-container">

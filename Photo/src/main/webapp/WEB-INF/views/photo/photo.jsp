@@ -87,22 +87,17 @@
 	href="${pageContext.request.contextPath}/resources/css/photo.css">
 <%-- <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/photoStory.css"> --%>
-	
+
 <script type="text/javascript">
     var contextPath = "${pageContext.request.contextPath}";
 </script>	
-	
-	
 <!-- 스크립트 링크 -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/photo.js"></script>
-
-</head>
-<body style="background-color: #1c1c1c;">
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
-
-
+</head>
+<body style="background-color: #1c1c1c;">>
 <!-- 사진 리스트 영역 (아래로 이동됨) -->
  <section class="gallery-container">
     <h1>PHOTO GALLERY</h1>
