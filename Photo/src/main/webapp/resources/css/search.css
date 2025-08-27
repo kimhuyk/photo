@@ -79,12 +79,29 @@ body {
     box-shadow: 0 2px 8px rgba(0,0,0,0.7);
     border-color: #555;
 }
+.clear-btn {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 4px;
+    margin-left: 8px;
+    display: none;
+}
+.search-box {
+    display: flex;
+    align-items: center;
+}
 
 .search-icon {
+    margin-left: auto;
     color: #666;
-    font-size: 18px;
-    margin-right: 12px;
+    cursor: pointer;
 }
+.clear-btn:hover {
+    color: #999;
+}
+
 
 .search-input {
     flex: 1;
@@ -98,20 +115,6 @@ body {
 
 .search-input::placeholder {
     color: #666;
-}
-
-.clear-btn {
-    background: none;
-    border: none;
-    color: #666;
-    cursor: pointer;
-    padding: 4px;
-    margin-left: 8px;
-    display: none;
-}
-
-.clear-btn:hover {
-    color: #999;
 }
 
 /* 필터 탭 */

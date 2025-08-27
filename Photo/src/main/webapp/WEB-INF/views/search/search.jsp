@@ -16,14 +16,14 @@
         <div class="search-header">
             <!-- 검색창 -->
             <div class="search-box">
-                <i class="fas fa-search search-icon"></i>
                 <input type="text" id="searchInput" class="search-input" 
                        placeholder="검색어를 입력하세요" autocomplete="off">
                 <button id="clearBtn" class="clear-btn">
                     <i class="fas fa-times"></i>
                 </button>
+                <i class="fas fa-search search-icon"></i>
             </div>
-            
+
             <!-- 필터 탭 -->
             <div class="search-tabs">
                 <div class="tab-item active" data-filter="all">전체</div>
@@ -48,7 +48,6 @@
                 </div>
                 
                 <!-- 이미지 결과 예시 (나중에 제거) -->
-                <!--
                 <div class="image-results">
                     <div class="image-item">
                         <img src="https://picsum.photos/300/200?random=1" alt="예시 이미지 1">
@@ -72,10 +71,9 @@
                         </div>
                     </div>
                 </div>
-                -->
                 
                 <!-- 텍스트 결과 예시 (나중에 제거) -->
-                <!--
+
                 <div class="result-item">
                     <a href="#" class="result-title">예시 검색 결과 제목</a>
                     <div class="result-url">https://example.com</div>
@@ -86,9 +84,15 @@
                     <div class="result-url">https://example2.com</div>
                     <div class="result-description">두 번째 예시 검색 결과입니다. 실제 데이터로 교체됩니다.</div>
                 </div>
-                -->
+
             </div>
         </div>
     </div>
+    
+    
+    
+<script>
+
+</script>
 </body>
 </html>
