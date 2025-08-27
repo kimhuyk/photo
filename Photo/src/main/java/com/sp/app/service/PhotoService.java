@@ -8,7 +8,7 @@ import com.sp.app.domain.Photo;
 public interface PhotoService {
 	// 메인 사진리스트 두개가 세트 
 	List<Photo> listPhoto(Map<String, Object>map);
-	List<Photo> listPhoto(long fileNum);
+//	List<Photo> listPhoto(long fileNum);  사진,올린사람 디버깅용
 	List<Photo> loadPhoto(long fileNum);	
 	//찾기 
 	public Photo findById(long userSeq);
