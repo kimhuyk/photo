@@ -5,12 +5,12 @@
 	<!-- notice list, 검색기능 -->
 	<select id="listNotice" parameterType="map" resultType="com.sp.app.domain.Notice">
 		SELECT
-			notice_seq AS noticeSeq,
-			user_seq AS userSeq,
-			user_name AS userName,
-			notice_title AS noticeTitle,
-			TO_CHAR(notice_reg_date, 'yyyy-MM-dd') AS noticeRegdate,
-			notice_contents AS noticeContents
+			notice_seq AS noticeSeq
+			, user_seq AS userSeq
+			, user_name AS userName
+			, notice_title AS noticeTitle
+			, TO_CHAR(notice_reg_date, 'yyyy-MM-dd') AS noticeRegdate
+			, notice_contents AS noticeContents
 		FROM notice
 		WHERE 1=1
 		<if test="schType != null and schType != '' and kwd != null and kwd != ''">
@@ -69,12 +69,12 @@
 	<!-- article 페이지열기 -->
 	<select id="find" parameterType="long" resultType="com.sp.app.domain.Notice">
 		SELECT
-			n.notice_seq AS noticeSeq,
-			n.user_seq AS userSeq,
-			u.user_name AS userName,
-			n.notice_title AS noticeTitle,
-			TO_CHAR(n.notice_reg_date, 'yyyy-MM-dd') AS noticeRegdate,
-			n.notice_contents AS noticeContents
+			n.notice_seq AS noticeSeq
+			, n.user_seq AS userSeq
+			, u.user_name AS userName
+			, n.notice_title AS noticeTitle
+			, TO_CHAR(n.notice_reg_date, 'yyyy-MM-dd') AS noticeRegdate
+			, n.notice_contents AS noticeContents
 		FROM notice n
 		LEFT JOIN user1 u ON n.user_seq = u.user_seq
 		WHERE n.notice_seq = #{noticeSeq}
@@ -115,19 +115,20 @@
 	
 	<insert id="insertNotice" parameterType="com.sp.app.domain.Notice">
 		INSERT INTO notice(
-			notice_seq, 
-			user_seq,  
-			user_name, 
-			notice_title, 
-			notice_reg_date, 
-			notice_contents )
+				notice_seq
+				, user_seq
+				, user_name
+				, notice_title
+				, notice_reg_date
+				, notice_contents
+							  )
 		VALUES (
-			#{noticeSeq},
-			#{userSeq},
-			#{userName, jdbcType=VARCHAR},
-			#{noticeTitle, jdbcType=VARCHAR},
-			SYSDATE,
-			#{noticeContents, jdbcType=VARCHAR})
+				#{noticeSeq}
+				, #{userSeq}
+				, #{userName, jdbcType=VARCHAR}
+				, #{noticeTitle, jdbcType=VARCHAR}
+				, SYSDATE
+				, #{noticeContents, jdbcType=VARCHAR})
 	</insert>
 	
 	<select id="notice_seq" resultType="long">
@@ -142,11 +143,11 @@
 	
 	<select id="findbyNotice" parameterType="long" resultType="com.sp.app.domain.Notice">
 		SELECT
-			n.notice_seq AS noticeSeq,
-			n.user_seq AS userSeq,
-			u.user_name AS userName,
-			n.notice_title AS noticeTitle,
-			n.notice_contents AS noticeContents
+			n.notice_seq AS noticeSeq
+			, n.user_seq AS userSeq
+			, u.user_name AS userName
+			, n.notice_title AS noticeTitle
+			, n.notice_contents AS noticeContents
 		FROM notice n
 		LEFT JOIN user1 u ON n.user_seq = u.user_seq
 		WHERE n.notice_seq = #{noticeSeq}
@@ -155,8 +156,8 @@
 	<update id="updateNotice" parameterType="com.sp.app.domain.Notice">
     	UPDATE notice
     	SET
-    	    notice_title = #{noticeTitle, jdbcType=VARCHAR},
-    	    notice_contents = #{noticeContents, jdbcType=VARCHAR}
+    	    notice_title = #{noticeTitle, jdbcType=VARCHAR}
+    	    , notice_contents = #{noticeContents, jdbcType=VARCHAR}
     	WHERE notice_seq = #{noticeSeq}
 	</update>
 	
