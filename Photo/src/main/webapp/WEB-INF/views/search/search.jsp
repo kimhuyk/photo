@@ -19,12 +19,12 @@
                 <input type="text" id="searchInput" class="search-input" 
                        placeholder="검색어를 입력하세요" autocomplete="off">
                 <button id="clearBtn" class="clear-btn">
-                    <i class="fas fa-times"></i>
                 </button>
-                <i class="fas fa-search search-icon"></i>
+                <i class="fas fa-search search-icon"></i> <!-- 동적으로 값 담아야됌 -->
             </div>
 
             <!-- 필터 탭 -->
+        	
             <div class="search-tabs">
                 <div class="tab-item active" data-filter="all">전체</div>
                 <div class="tab-item" data-filter="image">이미지</div>
@@ -53,21 +53,21 @@
                         <img src="https://picsum.photos/300/200?random=1" alt="예시 이미지 1">
                         <div class="image-info">
                             <div class="image-title">예시 이미지 제목 1</div>
-                            <div class="image-source">example.com</div>
+                            <div class="image-source">google.com</div>
                         </div>
                     </div>
                     <div class="image-item">
                         <img src="https://picsum.photos/300/200?random=2" alt="예시 이미지 2">
                         <div class="image-info">
                             <div class="image-title">예시 이미지 제목 2</div>
-                            <div class="image-source">example.com</div>
+                            <div class="image-source">google.com</div>
                         </div>
                     </div>
                     <div class="image-item">
                         <img src="https://picsum.photos/300/200?random=3" alt="예시 이미지 3">
                         <div class="image-info">
                             <div class="image-title">예시 이미지 제목 3</div>
-                            <div class="image-source">example.com</div>
+                            <div class="image-source">google.com</div>
                         </div>
                     </div>
                 </div>
@@ -76,12 +76,12 @@
 
                 <div class="result-item">
                     <a href="#" class="result-title">예시 검색 결과 제목</a>
-                    <div class="result-url">https://example.com</div>
+                    <div class="result-url">https://google.com</div>
                     <div class="result-description">이것은 예시 검색 결과의 설명입니다. 실제 검색 결과가 여기에 표시됩니다.</div>
                 </div>
                 <div class="result-item">
                     <a href="#" class="result-title">또 다른 검색 결과</a>
-                    <div class="result-url">https://example2.com</div>
+                    <div class="result-url">https://google.com</div>
                     <div class="result-description">두 번째 예시 검색 결과입니다. 실제 데이터로 교체됩니다.</div>
                 </div>
 
@@ -92,6 +92,61 @@
     
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
+// 검색 탭, 변경
+$(document).ready(function() {
+    
+    //localStorage에서 마지막 켯던 탭을 활성화(새로고침해도 그대로)
+    let activeTab = localStorage.getItem('activeSearchTab');
+    
+    // 선태된 탭이 없으면 전체로 표시
+    if (!activeTab) {
+        activeTab = 'all';
+    }
+    
+    // 초기 페이지 로드 시, 모든 탭에서 active 클래스를 제거하고
+    $('.tab-item').removeClass('active');
+    $(`.tab-item[data-filter="${activeTab}"]`).addClass('active');
+
+    // 탭 클릭 이벤트 핸들러
+    $('.tab-item').on('click', function() {
+        const filter = $(this).data('filter');
+        localStorage.setItem('activeSearchTab', filter);
+        
+        // 모든 탭에서 active 클래스를 제거
+        $('.tab-item').removeClass('active');
+        // 클릭된 탭에만 active 클래스를 추가
+        $(this).addClass('active');
+        
+        // 필터링 기능 (검색 결과 표시/숨기기)
+        $('.initial-state, .image-results, .result-item').hide();
+        
+        if (filter === 'all') {
+            $('.image-results, .result-item').show();
+        } else if (filter === 'image') {
+            $('.image-results').show();
+        } else if (filter === 'notice') {
+            $('.result-item').show();
+        }
+    });
+    
+    // 검색창 입력 및 초기화 버튼 로직
+    $('#searchInput').on('input', function() {
+        if ($(this).val().length > 0) {
+            $('#clearBtn').show();
+        } else {
+            $('#clearBtn').hide();
+        }
+    });
+
+    $('#clearBtn').on('click', function() {
+        $('#searchInput').val('');
+        $(this).hide();
+    });
+});
+///////////////////////////////////////////////////////////////////
+
+
+
 
 </script>
 </body>

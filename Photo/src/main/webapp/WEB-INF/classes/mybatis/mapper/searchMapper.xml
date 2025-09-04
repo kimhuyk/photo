@@ -26,6 +26,37 @@
 		    </if>
 		ORDER BY userSeq DESC
 	</select>
+	
+	
+	<select id="searchAll" resultType="com.sp.app.domain.Search">
+	    SELECT
+	        'notice' AS category,
+	        notice_seq AS noticeSeq,
+	        notice_title AS noticeTitle,
+	        notice_contents AS noticeContents,
+	        TO_CHAR(notice_reg_date, 'YYYY-MM-DD') AS noticeRegDate,
+	        user_name AS userName,
+	        'N/A' AS originalFileName,
+	        'N/A' AS filePath
+	    FROM NOTICE
+	    WHERE
+	        (NOTICE_TITLE LIKE '%' || #{keyword} || '%' 
+	         OR NOTICE_CONTENTS LIKE '%' || #{keyword} || '%')
+	    UNION ALL
+	    SELECT
+	        'image' AS category,
+	        file_num AS fileNum,
+	        originalfilename AS title,
+	        '' AS contents,
+	        TO_CHAR(reg_date, 'YYYY-MM-DD') AS regDate,
+	        '' AS userName,
+	        originalfilename AS originalFileName,
+	        file_path AS filePath
+	    FROM PHOTO_FILE
+	    WHERE
+	        (ORIGINALFILENAME LIKE '%' || #{keyword} || '%')
+	    <!-- ORDER BY regDate DESC -->
+	</select> 
 
 
 </mapper>

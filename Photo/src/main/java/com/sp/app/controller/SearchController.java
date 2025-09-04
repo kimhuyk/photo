@@ -10,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sp.app.domain.Search;
 import com.sp.app.domain.User;
 import com.sp.app.service.SearchService;
 
@@ -53,5 +55,29 @@ public class SearchController {
 
 		return "/search/search"; 
 	}
+	
+	
+	@RequestMapping (value = "/results")
+	@ResponseBody
+	public List<Search> searchAll(@RequestParam(name = "keyword", defaultValue = "") String keyword) {
+		List<Search> results = null;
+		try {
+			 // 1. MyBatis 쿼리에 전달할 Map 객체 생성
+            Map<String, Object> map = new HashMap<>();
+            
+            // 2. Map에 사용자가 입력한 검색어(keyword)를 담는다.
+            map.put("keyword", keyword);
+            
+            // 3. 서비스의 searchAll 메서드에 Map을 전
+			results = service.searchAll(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return results;
+	}
+	
+	
+	
 
 }

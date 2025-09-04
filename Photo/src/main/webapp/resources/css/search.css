@@ -139,8 +139,9 @@ body {
 }
 
 .tab-item.active {
-    color: #1da1f2;
-    border-bottom-color: #1da1f2;
+    color: #fff !important;
+    border-bottom: 2px solid #fff !important;
+    font-weight: bold
 }
 
 /* 검색 결과 영역 */
