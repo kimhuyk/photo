@@ -156,7 +156,7 @@ body {
 }
 
 .results-header h3 {
-    color: #999;
+    color: #white;
     font-size: 14px;
     font-weight: normal;
     margin: 0;
@@ -238,7 +238,7 @@ body {
 
 .image-source {
     font-size: 12px;
-    color: #999;
+    color: #white;
 }
 
 /* 초기 상태 */

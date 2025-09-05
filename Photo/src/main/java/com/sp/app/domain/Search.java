@@ -8,10 +8,11 @@ import lombok.ToString;
 @Data
 public class Search {
 	private String category;
-    private long noticeSeq;
-    private String noticeTitle;
-    private String noticeContents;
-    private String noticeRegDate; // 날짜를 문자열로 받으므로 String 타입
+    private long seq;               // noticeSeq -> seq
+    private long userSeq;           // 쿼리에서 선택했으므로 추가
+    private String title;           // noticeTitle -> title
+    private String contents;        // noticeContents -> contents
+    private String regDate;         // noticeRegDate -> regDate
     private String userName;
     private String originalFileName;
     private String filePath;
@@ -22,29 +23,35 @@ public class Search {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public long getNoticeSeq() {
-		return noticeSeq;
+	public long getSeq() {
+		return seq;
 	}
-	public void setNoticeSeq(long noticeSeq) {
-		this.noticeSeq = noticeSeq;
+	public void setSeq(long seq) {
+		this.seq = seq;
 	}
-	public String getNoticeTitle() {
-		return noticeTitle;
+	public long getUserSeq() {
+		return userSeq;
 	}
-	public void setNoticeTitle(String noticeTitle) {
-		this.noticeTitle = noticeTitle;
+	public void setUserSeq(long userSeq) {
+		this.userSeq = userSeq;
 	}
-	public String getNoticeContents() {
-		return noticeContents;
+	public String getTitle() {
+		return title;
 	}
-	public void setNoticeContents(String noticeContents) {
-		this.noticeContents = noticeContents;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	public String getNoticeRegDate() {
-		return noticeRegDate;
+	public String getContents() {
+		return contents;
 	}
-	public void setNoticeRegDate(String noticeRegDate) {
-		this.noticeRegDate = noticeRegDate;
+	public void setContents(String contents) {
+		this.contents = contents;
+	}
+	public String getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
 	}
 	public String getUserName() {
 		return userName;
@@ -64,7 +71,4 @@ public class Search {
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
-    
-    
-    
 }
