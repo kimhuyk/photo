@@ -1,11 +1,10 @@
 package com.sp.app.domain;
 
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 @NoArgsConstructor
 @ToString
-@Data
+//@Data
 public class Search {
 	private String category;
     private long seq;               // noticeSeq -> seq

@@ -37,7 +37,7 @@
 	        , n.notice_contents AS contents
 	        , TO_CHAR(notice_reg_date, 'YYYY-MM-DD') AS regDate
 	        , u.user_name AS userName
-	        , 'N/A' AS originalfileName
+	        , 'N/A' AS originalFileName
 	        , 'N/A' AS filePath
 	    FROM NOTICE n
 	    JOIN USER1 u ON n.user_seq = u.user_seq
@@ -50,10 +50,10 @@
 	        , f.file_num AS seq
 	        , f.user_seq AS userSeq
 	        , f.originalfilename AS title
-	        , '' AS contents
+	        , 'N/A' AS contents
 	        , TO_CHAR(f.reg_date, 'YYYY-MM-DD') AS regDate
 	        , u.user_name AS userName
-	        , f.originalfilename AS originalfileName
+	        , f.originalfilename AS originalFileName
 	        , f.file_path AS filePath
 	    FROM PHOTO_FILE f
 	    JOIN USER1 u ON f.user_seq = u.user_seq

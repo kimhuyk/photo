@@ -1,10 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>검색</title>
+<title>검색 테스트</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/search.css">
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
@@ -14,9 +13,8 @@
         <div class="search-header">
             <div class="search-box">
                 <input type="text" id="searchInput" class="search-input"
-                        placeholder="검색어를 입력하세요" autocomplete="off">
-                <button id="clearBtn" class="clear-btn">
-                </button>
+                       placeholder="검색어를 입력하세요" autocomplete="off">
+                <button id="clearBtn" class="clear-btn"></button>
                 <i class="fas fa-search search-icon" id="searchIcon"></i>
             </div>
             <div class="search-tabs">
@@ -42,7 +40,6 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
 $(document).ready(function() {
-    // 검색 결과를 화면에 렌더링하는 함수
     function renderResults(results, filter) {
         const resultsContainer = $('#searchResults');
         resultsContainer.empty();
@@ -62,10 +59,10 @@ $(document).ready(function() {
                 imageFound = true;
                 const imageItem = `
                     <div class="image-item">
-                        <img src="${item.filePath}" alt="${item.originalFileName}" onerror="this.onerror=null; this.src='https://placehold.co/300x200/cccccc/333333?text=Doyou+seeThis?';">
+                        <img src="${item.filePath}" alt="${item.originalFileName}" onerror="this.onerror=null; this.src='https://placehold.co/300x200/cccccc/333333?text=Image+Not+Found';">
                         <div class="image-info">
-                            <div class="image-title">${item.title}</div>
-                            <div class="image-source">업로더: ${item.userName}</div>
+                            <div class="image-title">\${item.title}</div>
+                            <div class="image-source">업로더: \${item.userName}</div>
                         </div>
                     </div>
                 `;
@@ -74,9 +71,9 @@ $(document).ready(function() {
                 noticeFound = true;
                 const noticeItem = `
                     <div class="result-item">
-                        <a href="/notice/${item.seq}" class="result-title">${item.title}</a>
-                        <div class="result-url">공지사항 | 작성자: ${item.userName}</div>
-                        <div class="result-description">${item.contents}</div>
+                        <a href="/notice/\${item.seq}" class="result-title">\${item.title}</a>
+                        <div class="result-url">공지사항 | 작성자: \${item.userName}</div>
+                        <div class="result-description">\${item.contents}</div>
                     </div>
                 `;
                 textResultsContainer.append(noticeItem);
@@ -100,6 +97,7 @@ $(document).ready(function() {
         }
     }
 
+    // --- 검색 실행 함수 ---
     function performSearch() {
         const keyword = $('#searchInput').val();
 
@@ -109,7 +107,7 @@ $(document).ready(function() {
             return;
         }
 
-        $('#resultsHeader').text(`'${keyword}'에 대한 검색 결과`);
+        $('#resultsHeader').text(`'\${keyword}'에 대한 검색 결과`);
 
         $.ajax({
             url: '${pageContext.request.contextPath}/search/results',
@@ -143,7 +141,7 @@ $(document).ready(function() {
     });
 
     $('#searchIcon').on('click', performSearch);
-
+    
     let activeTab = localStorage.getItem('activeSearchTab');
     if (!activeTab) {
         activeTab = 'all';
