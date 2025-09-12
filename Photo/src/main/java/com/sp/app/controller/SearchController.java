@@ -28,7 +28,9 @@ public class SearchController {
 	public String searchList(@RequestParam(required = false) String userId,
 			@RequestParam(required = false) String userName,
 			@RequestParam(required = false) String regDate,
-			@RequestParam(required = false) String originalfileName, Model model) {
+			@RequestParam(required = false) String originalfileName,
+			@RequestParam(required = false) String keyword,
+			 Model model) {
 
 		Map<String, Object> map = new HashMap<>();
 
@@ -44,6 +46,10 @@ public class SearchController {
 		if (originalfileName != null && !originalfileName.isEmpty()) {
 			map.put("originalfileName", originalfileName);
 		}
+		// keyword가 존재하면 모델에 추가하여 JSP로 전달
+	    if (keyword != null && !keyword.isEmpty()) {
+	        model.addAttribute("keyword", keyword);
+	    }
 
 		List<User> list = service.searchList(map);
 
@@ -52,7 +58,7 @@ public class SearchController {
 		model.addAttribute("userName", userName);
 		model.addAttribute("regDate", regDate);
 		model.addAttribute("originalfileName", originalfileName);
-
+		
 		return "/search/search"; 
 	}
 	
@@ -62,13 +68,10 @@ public class SearchController {
 	public List<Search> searchAll(@RequestParam(name = "keyword", defaultValue = "") String keyword) {
 		List<Search> results = null;
 		try {
-			 // 1. MyBatis 쿼리에 전달할 Map 객체 생성
             Map<String, Object> map = new HashMap<>();
             
-            // 2. Map에 사용자가 입력한 검색어(keyword)를 담는다.
             map.put("keyword", keyword);
             
-            // 3. 서비스의 searchAll 메서드에 Map을 전
 			results = service.searchAll(map);
 		} catch (Exception e) {
 			e.printStackTrace();

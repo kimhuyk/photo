@@ -5,6 +5,7 @@
 <head>
 <title>검색 테스트</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/search.css">
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 </head>
@@ -57,9 +58,11 @@ $(document).ready(function() {
         results.forEach(item => {
             if (item.category === 'image') {
                 imageFound = true;
+
                 const imageItem = `
                     <div class="image-item">
-                        <img src="${item.filePath}" alt="${item.originalFileName}" onerror="this.onerror=null; this.src='https://placehold.co/300x200/cccccc/333333?text=Image+Not+Found';">
+                        <img src="${item.filePath}" alt="${item.originalFileName}" 
+                        	onerror="this.onerror=null; this.src='https://placehold.co/300x200/cccccc/333333?text=Image+Not+Found';">
                         <div class="image-info">
                             <div class="image-title">\${item.title}</div>
                             <div class="image-source">업로더: \${item.userName}</div>
@@ -68,10 +71,12 @@ $(document).ready(function() {
                 `;
                 imageResultsContainer.append(imageItem);
             } else if (item.category === 'notice') {
-                noticeFound = true;
+            	//const noticeArticleUrl = '${pageContext.request.contextPath}/notice/article?page=1&noticeSeq=' + item.seq;
+
+            	noticeFound = true;
                 const noticeItem = `
                     <div class="result-item">
-                        <a href="/notice/\${item.seq}" class="result-title">\${item.title}</a>
+                        <a href="${pageContext.request.contextPath}/notice/article?page=${page}&noticeSeq=\${item.seq}" class="result-title">\${item.title}</a>
                         <div class="result-url">공지사항 | 작성자: \${item.userName}</div>
                         <div class="result-description">\${item.contents}</div>
                     </div>
@@ -96,9 +101,9 @@ $(document).ready(function() {
             resultsContainer.html('<div class="initial-state"><i class="fas fa-search"></i><p>공지사항 검색 결과가 없습니다.</p></div>');
         }
     }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////
     // --- 검색 실행 함수 ---
-    function performSearch() {
+    function searchForm() {
         const keyword = $('#searchInput').val();
 
         if (keyword.trim() === '') {
@@ -131,16 +136,16 @@ $(document).ready(function() {
     const urlKeyword = urlParams.get('keyword');
     if (urlKeyword) {
         $('#searchInput').val(decodeURIComponent(urlKeyword));
-        performSearch();
+        searchForm();
     }
 
     $('#searchInput').on('keypress', function(e) {
         if (e.which === 13) {
-            performSearch();
+        	searchForm();
         }
     });
 
-    $('#searchIcon').on('click', performSearch);
+    $('#searchIcon').on('click', searchForm);
     
     let activeTab = localStorage.getItem('activeSearchTab');
     if (!activeTab) {

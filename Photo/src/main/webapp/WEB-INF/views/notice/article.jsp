@@ -62,7 +62,7 @@
 function deleteNotice(noticeSeq) {
     if (confirm("공지사항을 삭제하시겠습니까?")) {
         // 현재 페이지의 컨텍스트 패스를 가져와서 삭제 URL을 만듦
-        const url = '${pageContext.request.contextPath}/notice/deleteNotice?noticeSeq=' + noticeSeq + '&page=' + ${page};
+        const url = '${pageContext.request.contextPath}/notice/deleteNotice?noticeSeq=' + noticeSeq + '&page=' + '${page}';
         
         // 페이지 이동 방식으로 삭제 요청
         location.href = url;
