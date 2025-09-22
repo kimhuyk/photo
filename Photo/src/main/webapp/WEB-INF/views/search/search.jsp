@@ -40,6 +40,10 @@
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
+	var searchData = ${searchMainJson};	//home에서 검색했을시 파라미터를 같이 넘겨야 검색했을대 바로 결과 값 출력
+    var searchKeyword = '${keyword}';	// 원래 하던방식은 검색해서 페이지 이동 후 탭을바꿔야 값 출력해서 수정
+</script>
+<script>
 $(document).ready(function() {
     function renderResults(results, filter) {
         const resultsContainer = $('#searchResults');
@@ -58,11 +62,14 @@ $(document).ready(function() {
         results.forEach(item => {
             if (item.category === 'image') {
                 imageFound = true;
-
+                const path = item.filePath.replace(/\\/g, '/'); 
+                const fileName = path.substring(path.lastIndexOf('/') + 1);     
+                const imageUrl = `${pageContext.request.contextPath}/uploads/photo/${item.saveFileName}`;
+                
                 const imageItem = `
                     <div class="image-item">
-                        <img src="${item.filePath}" alt="${item.originalFileName}" 
-                        	onerror="this.onerror=null; this.src='https://placehold.co/300x200/cccccc/333333?text=Image+Not+Found';">
+                		<img src="${imageUrl}"
+                			alt="${item.originalFileName}" onerror="this.onerror=null; this.src='https://placehold.co/300x200/cccccc/333333?text=Image+Not+Found';">
                         <div class="image-info">
                             <div class="image-title">\${item.title}</div>
                             <div class="image-source">업로더: \${item.userName}</div>
@@ -71,8 +78,6 @@ $(document).ready(function() {
                 `;
                 imageResultsContainer.append(imageItem);
             } else if (item.category === 'notice') {
-            	//const noticeArticleUrl = '${pageContext.request.contextPath}/notice/article?page=1&noticeSeq=' + item.seq;
-
             	noticeFound = true;
                 const noticeItem = `
                     <div class="result-item">
@@ -111,7 +116,7 @@ $(document).ready(function() {
             $('#searchResults').html('<div class="initial-state"><i class="fas fa-search"></i><p>검색어를 입력하여 결과를 찾아보세요</p></div>');
             return;
         }
-
+	
         $('#resultsHeader').text(`'\${keyword}'에 대한 검색 결과`);
 
         $.ajax({
@@ -131,13 +136,21 @@ $(document).ready(function() {
         });
     }
 
-    // URL에서 검색어 읽어와서 바로 검색하기
-    const urlParams = new URLSearchParams(window.location.search);
-    const urlKeyword = urlParams.get('keyword');
-    if (urlKeyword) {
-        $('#searchInput').val(decodeURIComponent(urlKeyword));
-        searchForm();
-    }
+	    // URL에서 검색어 읽어와서 바로 검색하기
+	    if (searchKeyword) {
+	    $('#searchInput').val(searchKeyword);
+	    
+	    $('#resultsHeader').text(`'${searchKeyword}'에 대한 검색 결과`);
+	    
+	    $('#searchResults').data('results', searchData);
+	    
+	    const activeFilter = $('.tab-item.active').data('filter');
+	    renderResults(searchData, activeFilter);
+	    
+	    if ($('#searchInput').val().length > 0) {
+	        $('#clearBtn').show();
+	    }
+	}
 
     $('#searchInput').on('keypress', function(e) {
         if (e.which === 13) {

@@ -100,10 +100,10 @@ function deletePhoto() {
 						currentRow = $('<div>').addClass('photo-grid');
 						$('#insertPhotoContainer').append(currentRow);
 					}
-					//////////////////////////////////////////////////////
+
 					let imgPath = '/app/uploads/photo/' + photo.savefileName; // 주소 이상해서 위에다선
 					console.log("리스트에서 불러오는 이미지 경로:", imgPath); // 확인용
-					//////////////////////////////////////////////////////
+
 					// figure 엘리먼트 생성 및 속성 설정
 					const figure = $('<figure>').addClass('photo-item')
 						.attr(

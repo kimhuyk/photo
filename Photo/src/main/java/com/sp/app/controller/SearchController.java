@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sp.app.domain.Search;
 import com.sp.app.domain.User;
 import com.sp.app.service.SearchService;
@@ -22,45 +23,33 @@ public class SearchController {
 
 	@Autowired
 	private SearchService service;
+	
+	@Autowired
+	private ObjectMapper objectMapper;
 
 	// 검색
 	@GetMapping("list")
-	public String searchList(@RequestParam(required = false) String userId,
-			@RequestParam(required = false) String userName,
-			@RequestParam(required = false) String regDate,
-			@RequestParam(required = false) String originalfileName,
-			@RequestParam(required = false) String keyword,
-			 Model model) {
+	public String searchList(@RequestParam(required = false) String keyword,
+			Model model) throws Exception { // Exception 처리 추가
 
-		Map<String, Object> map = new HashMap<>();
+		// keyword가 존재하면 초기 검색 결과를 가져와 모델에 추가
+		if (keyword != null && !keyword.isEmpty()) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("keyword", keyword);
+			
+			List<Search> searchMain = service.searchAll(map);
+			
+			// 결과를 JSON 문자열로 변환하여 모델에 추가
+			model.addAttribute("searchMainJson", objectMapper.writeValueAsString(searchMain));
+			model.addAttribute("keyword", keyword);
+		} else {
+            // 키워드가 없을 때 빈 JSON 배열을 전달
+            model.addAttribute("searchMainJson", "[]");
+        }
 
-		if (userId != null && !userId.isEmpty()) {
-			map.put("userId", userId);
-		}
-		if (userName != null && !userName.isEmpty()) {
-			map.put("userName", userName);
-		}
-		if (regDate != null && !regDate.isEmpty()) {
-			map.put("regDate", regDate);
-		}
-		if (originalfileName != null && !originalfileName.isEmpty()) {
-			map.put("originalfileName", originalfileName);
-		}
-		// keyword가 존재하면 모델에 추가하여 JSP로 전달
-	    if (keyword != null && !keyword.isEmpty()) {
-	        model.addAttribute("keyword", keyword);
-	    }
-
-		List<User> list = service.searchList(map);
-
-		model.addAttribute("list", list);
-		model.addAttribute("userId", userId);
-		model.addAttribute("userName", userName);
-		model.addAttribute("regDate", regDate);
-		model.addAttribute("originalfileName", originalfileName);
-		
-		return "/search/search"; 
+		return "/search/search";
 	}
+
 	
 	
 	@RequestMapping (value = "/results")
