@@ -13,6 +13,7 @@ public class Search {
     private String contents;        // noticeContents -> contents
     private String regDate;         // noticeRegDate -> regDate
     private String userName;
+    private String saveFileName;
     private String originalFileName;
     private String filePath;
     
@@ -69,5 +70,11 @@ public class Search {
 	}
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
+	}
+	public String getSaveFileName() {
+		return saveFileName;
+	}
+	public void setSaveFileName(String saveFileName) {
+		this.saveFileName = saveFileName;
 	}
 }

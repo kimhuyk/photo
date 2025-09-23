@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sp.app.domain.Search;
-import com.sp.app.domain.User;
 import com.sp.app.service.SearchService;
 
 @Controller
@@ -30,7 +29,7 @@ public class SearchController {
 	// 검색
 	@GetMapping("list")
 	public String searchList(@RequestParam(required = false) String keyword,
-			Model model) throws Exception { // Exception 처리 추가
+			Model model) throws Exception { 
 
 		// keyword가 존재하면 초기 검색 결과를 가져와 모델에 추가
 		if (keyword != null && !keyword.isEmpty()) {

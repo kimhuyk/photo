@@ -64,18 +64,19 @@ $(document).ready(function() {
                 imageFound = true;
                 const path = item.filePath.replace(/\\/g, '/'); 
                 const fileName = path.substring(path.lastIndexOf('/') + 1);     
-                const imageUrl = `${pageContext.request.contextPath}/uploads/photo/${item.saveFileName}`;
-                
-                const imageItem = `
-                    <div class="image-item">
-                		<img src="${imageUrl}"
-                			alt="${item.originalFileName}" onerror="this.onerror=null; this.src='https://placehold.co/300x200/cccccc/333333?text=Image+Not+Found';">
-                        <div class="image-info">
-                            <div class="image-title">\${item.title}</div>
-                            <div class="image-source">업로더: \${item.userName}</div>
-                        </div>
-                    </div>
-                `;
+                const imageUrl = '${pageContext.request.contextPath}/uploads/photo/' + item.saveFileName;
+ 
+                const imageItem = 
+                	'<div class="image-item">' +
+                    '<img src="' + imageUrl + '" alt="' + item.originalFileName + '" ' +
+                         'onload="console.log(\'Image loaded successfully: ' + imageUrl + '\')" ' +
+                         'onerror="console.log(\'Image failed to load: ' + imageUrl + '\'); this.onerror=null; this.src=\'https://placehold.co/300x200/cccccc/333333?text=Image+Not+Found\';">' +
+                    '<div class="image-info">' +
+                        '<div class="image-title">' + item.title + '</div>' +
+                        '<div class="image-source">업로더: ' + item.userName + '</div>' +
+                    '</div>' +
+                '</div>';
+
                 imageResultsContainer.append(imageItem);
             } else if (item.category === 'notice') {
             	noticeFound = true;

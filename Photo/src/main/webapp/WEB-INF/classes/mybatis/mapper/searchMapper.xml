@@ -36,6 +36,7 @@
 	        , n.notice_contents AS contents
 	        , TO_CHAR(notice_reg_date, 'YYYY-MM-DD') AS regDate
 	        , u.user_name AS userName
+	        , u.user_seq AS userSeq
 	        , 'N/A' AS originalFileName
 	        , 'N/A' AS filePath
 	        , 'N/A' AS saveFileName
@@ -52,6 +53,7 @@
 	        , 'N/A' AS contents
 	        , TO_CHAR(pf.reg_date, 'YYYY-MM-DD') AS regDate
 	        , u.user_name AS userName
+	        , u.user_seq AS userSeq
 	        , pf.originalfilename AS originalFileName
 	        , pf.file_path AS filePath
 	        , pf.savefilename AS saveFileName
