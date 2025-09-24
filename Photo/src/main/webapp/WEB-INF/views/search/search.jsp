@@ -42,6 +42,7 @@
 <script>
 	var searchData = ${searchMainJson};	//home에서 검색했을시 파라미터를 같이 넘겨야 검색했을대 바로 결과 값 출력
     var searchKeyword = '${keyword}';	// 원래 하던방식은 검색해서 페이지 이동 후 탭을바꿔야 값 출력해서 수정
+    var contextPath = '${pageContext.request.contextPath}';
 </script>
 <script>
 $(document).ready(function() {
@@ -67,26 +68,24 @@ $(document).ready(function() {
                 const imageUrl = '${pageContext.request.contextPath}/uploads/photo/' + item.saveFileName;
  
                 const imageItem = 
-                	'<div class="image-item">' +
-                    '<img src="' + imageUrl + '" alt="' + item.originalFileName + '" ' +
-                         'onload="console.log(\'Image loaded successfully: ' + imageUrl + '\')" ' +
-                         'onerror="console.log(\'Image failed to load: ' + imageUrl + '\'); this.onerror=null; this.src=\'https://placehold.co/300x200/cccccc/333333?text=Image+Not+Found\';">' +
-                    '<div class="image-info">' +
-                        '<div class="image-title">' + item.title + '</div>' +
-                        '<div class="image-source">업로더: ' + item.userName + '</div>' +
-                    '</div>' +
-                '</div>';
+	                '<div class="image-item">' +
+	                    '<img src="' + imageUrl + '" alt="' + item.originalFileName + '" ' +
+	                         'this.onerror=null; this.src=\'https://placehold.co/300x200/cccccc/333333?text=Image+Not+Found\';">' +
+	                    '<div class="image-info">' +
+	                        '<div class="image-title">' + item.title + '</div>' +
+	                        '<div class="image-source">업로더: ' + item.userName + '</div>' +
+	                    '</div>' +
+	                '</div>';
 
                 imageResultsContainer.append(imageItem);
             } else if (item.category === 'notice') {
             	noticeFound = true;
-                const noticeItem = `
-                    <div class="result-item">
-                        <a href="${pageContext.request.contextPath}/notice/article?page=${page}&noticeSeq=\${item.seq}" class="result-title">\${item.title}</a>
-                        <div class="result-url">공지사항 | 작성자: \${item.userName}</div>
-                        <div class="result-description">\${item.contents}</div>
-                    </div>
-                `;
+                const noticeItem =
+                	'<div class="result-item">' +
+	                    '<a href="' + contextPath + '/notice/article?page=1&noticeSeq=' + item.seq + '" class="result-title">' + item.title + '</a>' +
+	                    '<div class="result-url">공지사항 | 작성자: ' + item.userName + '</div>' +
+	                    '<div class="result-description">' + item.contents + '</div>' +
+	                '</div>';
                 textResultsContainer.append(noticeItem);
             }
         });
@@ -118,7 +117,7 @@ $(document).ready(function() {
             return;
         }
 	
-        $('#resultsHeader').text(`'\${keyword}'에 대한 검색 결과`);
+        $('#resultsHeader').text("'" + keyword + "'에 대한 검색 결과");
 
         $.ajax({
             url: '${pageContext.request.contextPath}/search/results',
@@ -140,9 +139,7 @@ $(document).ready(function() {
 	    // URL에서 검색어 읽어와서 바로 검색하기
 	    if (searchKeyword) {
 	    $('#searchInput').val(searchKeyword);
-	    
-	    $('#resultsHeader').text(`'${searchKeyword}'에 대한 검색 결과`);
-	    
+	    $('#resultsHeader').text("'" + searchKeyword + "'에 대한 검색 결과");
 	    $('#searchResults').data('results', searchData);
 	    
 	    const activeFilter = $('.tab-item.active').data('filter');
@@ -166,7 +163,7 @@ $(document).ready(function() {
         activeTab = 'all';
     }
     $('.tab-item').removeClass('active');
-    $(`.tab-item[data-filter="${activeTab}"]`).addClass('active');
+    $('.tab-item[data-filter="' + activeTab + '"]').addClass('active');
 
     $('.tab-item').on('click', function() {
         const filter = $(this).data('filter');

@@ -124,7 +124,7 @@ public class NoticeController {
 	// 공지사항 글 보기 
 	@GetMapping("article")
 	public String article(@RequestParam long noticeSeq,
-			@RequestParam String page,
+			@RequestParam(defaultValue = "1") String page,
 			@RequestParam(defaultValue = "all") String schType,
 			@RequestParam(defaultValue = "") String kwd,
 			Model model) throws Exception {
