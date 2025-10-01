@@ -1,0 +1,44 @@
+# 📌 STS (Eclipse) 관련 파일 무시
+.classpath
+.project
+.settings/
+
+# 📌 common 폴더 안의 모든 .java 파일 무시 (유틸 클래스 포함)
+common/
+
+# 📌 빌드 파일 무시 (컴파일된 파일, 배포 폴더)
+target/
+bin/
+out/
+
+# 📌 환경설정 파일 무시 (비밀번호, API 키 포함 가능)
+*.log
+*.env
+*.properties
+*.xml~
+
+# 📌 MyBatis & Spring 관련 캐시 파일 무시
+mybatis-config.xml~
+*.iml
+
+# 📌 OS 관련 파일 무시
+.DS_Store
+Thumbs.db
+
+# 📌 Git 충돌 해결 파일 무시
+*.orig
+
+# 📌 웹 설정 파일 무시
+/web.xml
+/WEB-INF/spring/
+/WEB-INF/classes/mybatis/
+
+# 📌 [추가] Spring/MyBatis 실제 설정 파일 무시
+mybatis-config.xml
+mybatis-context.xml
+application*.yml
+application*.properties
+
+# 📌 [추가] Maven 설정 파일 무시
+# pom.xml
+

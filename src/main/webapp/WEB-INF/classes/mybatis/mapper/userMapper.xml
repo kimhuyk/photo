@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sp.app.mapper.UserMapper">
+	<select id="UserSeq" resultType="long">
+		SELECT user1_seq.NEXTVAL
+		FROM dual
+	</select>
+	
+	<insert id="insertUser1" parameterType="com.sp.app.domain.User">
+		INSERT INTO user1 (
+					user_seq
+					, user_id
+					, user_name
+					, user_pwd
+					, reg_date
+					      )
+			VALUES (
+					#{userSeq}
+					, #{userId}
+					, #{userName}
+					, #{userPwd}
+					, SYSDATE 
+				    )
+	</insert>
+
+	<insert id="insertUser2" parameterType="com.sp.app.domain.User">
+		INSERT INTO
+			 user_history (
+			 			   user_seq
+			 			   , birth
+			 			   , email
+			 			   , tel
+			 			   )
+				VALUES (
+						#{userSeq}
+						,TO_DATE(#{birth}, 'YYYY-MM-DD')
+						, #{email}
+						, #{tel}
+						)
+	</insert>
+	
+	<update id="insertUser12" parameterType="com.sp.app.domain.User">
+		INSERT ALL
+        INTO user1 (
+        			user_seq
+        			, user_id
+        			, user_name
+        			, user_pwd
+        			, reg_date
+        			)
+            VALUES (
+            		#{userSeq}
+            		, #{userId}
+            		, #{userName}
+            		, #{userPwd}
+            		, SYSDATE
+            		)
+        INTO user_history (
+        			user_seq
+        			, birth
+        			, email
+        			, tel
+        				  )
+            VALUES (
+            		#{userSeq}
+            		, TO_DATE(#{birth}, 'YYYY-MM-DD')
+            		, #{email}
+            		, #{tel}
+            		)
+    	SELECT * FROM DUAL
+	</update>
+	
+	<select id="findById" parameterType="String" resultType="com.sp.app.domain.User">
+		SELECT  u.user_seq AS userSeq
+				, u.user_id AS userId
+		 		, u.user_name AS userName
+		 		, u.user_pwd AS userPwd
+				, u.reg_date AS regDate
+				, uh.user_seq AS userSeq
+				, TO_CHAR(uh.birth, 'YYYY-MM-DD') AS birth
+				, uh.email
+				, uh.tel
+		FROM user1 u
+		LEFT JOIN user_history uh ON uh.user_seq = u.user_seq
+		WHERE u.user_id = #{userId}
+	</select>
+	
+	<update id="updateUser1" parameterType="com.sp.app.domain.User">
+		UPDATE user1 
+		   SET user_name = #{userName}
+		   	   , user_pwd = #{userPwd}
+		WHERE  user_id = #{userId}
+	</update>
+	
+	<update id="updateUser2" parameterType="com.sp.app.domain.User">
+	    UPDATE user_history
+	       SET birth = TO_DATE(#{birth}, 'YYYY-MM-DD')
+	       	   , email = #{email}
+	       	   , tel = #{tel}
+	    WHERE user_seq = #{userSeq}
+    </update>
+    
+    <delete id="deleteUser" parameterType="map">
+    	DELETE FROM user1 WHERE user_seq = #{userSeq}
+	</delete> 
+	
+	
+</mapper>

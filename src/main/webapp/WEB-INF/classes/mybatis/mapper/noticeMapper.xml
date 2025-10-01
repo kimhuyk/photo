@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sp.app.mapper.NoticeMapper">
+	<!-- notice list, 검색기능 -->
+	<select id="listNotice" parameterType="map" resultType="com.sp.app.domain.Notice">
+		SELECT
+			notice_seq AS noticeSeq
+			, user_seq AS userSeq
+			, user_name AS userName
+			, notice_title AS noticeTitle
+			, TO_CHAR(notice_reg_date, 'yyyy-MM-dd') AS noticeRegdate
+			, notice_contents AS noticeContents
+		FROM notice
+		WHERE 1=1
+		<if test="schType != null and schType != '' and kwd != null and kwd != ''">
+	        <choose>
+	            <when test="schType == 'noticeTitle'">
+	                AND notice_title LIKE '%' || #{kwd} || '%'
+	            </when>
+	            <when test="schType == 'noticeContents'">
+	                AND notice_contents LIKE '%' || #{kwd} || '%'
+	            </when>
+	            <when test="schType == 'userName'">
+	                AND user_name LIKE '%' || #{kwd} || '%'
+	            </when>
+	            <otherwise>
+	                AND (notice_title LIKE '%' || #{kwd} || '%'
+	                    OR notice_contents LIKE '%' || #{kwd} || '%'
+	                    OR user_name LIKE '%' || #{kwd} || '%')
+	            </otherwise>
+	        </choose>
+	    </if>
+		ORDER BY noticeSeq DESC
+		OFFSET #{offset} ROWS FETCH FIRST #{size} ROWS ONLY
+	</select>
+	
+	<select id="dataCount" parameterType="map" resultType="Integer">
+		SELECT NVL(COUNT(*), 0)
+		FROM notice
+		<where>
+			<if test="kwd != null and kwd != '' ">
+				<include refid="where-list"/>
+			</if>
+		</where> 
+	</select>
+	
+	<select id="noticeSeq" resultType="long">
+		SELECT notice_SEQ.NEXTVAL
+		FROM dual
+	</select>
+	
+	<sql id="where-list">
+		<if test="schType == 'notice_title'">
+			INSTR(noticeTitle, #{kwd}) &gt; 0
+		</if>
+		<if test="schType == 'notice_contents'">
+			INSTR(noticeContents, #{kwd}) &gt; 0
+		</if>
+		<if test="schType == 'user_name'">
+			INSTR(userName, #{kwd}) &gt; 0
+		</if>
+		<if test="schType=='notice_reg_date'">
+			( TO_CHAR(noticeRegdate, 'YYYY-MM-DD') = #{kwd}
+				OR TO_CHAR(noticeRegdate, 'YYYYMMDD') = #{kwd} )
+		</if>
+	</sql>
+	
+	<!-- article 페이지열기 -->
+	<select id="find" parameterType="long" resultType="com.sp.app.domain.Notice">
+		SELECT
+			n.notice_seq AS noticeSeq
+			, n.user_seq AS userSeq
+			, u.user_name AS userName
+			, n.notice_title AS noticeTitle
+			, TO_CHAR(n.notice_reg_date, 'yyyy-MM-dd') AS noticeRegdate
+			, n.notice_contents AS noticeContents
+		FROM notice n
+		LEFT JOIN user1 u ON n.user_seq = u.user_seq
+		WHERE n.notice_seq = #{noticeSeq}
+	</select>
+	
+	<select id="findByPrev" parameterType="map" resultType="com.sp.app.domain.Notice">
+		SELECT 
+			notice_seq AS noticeSeq,
+			notice_title AS noticeTitle
+		FROM notice n
+		JOIN user1 u ON n.user_seq = u.user_seq
+		<where>
+			<if test="kwd != null and kwd != '' ">
+				AND <include refid="where-list"/>
+			</if>
+			AND (notice_seq &gt; #{noticeSeq})
+		</where> 
+		ORDER BY n.notice_seq ASC, n.notice_reg_date DESC
+		FETCH FIRST 1 ROWS ONLY
+	</select>
+
+	
+	 <select id="findByNext" parameterType="map" resultType="com.sp.app.domain.Notice">
+		SELECT 
+			notice_seq AS noticeSeq,
+			notice_title AS noticeTitle
+		FROM notice n
+		JOIN user1 u ON n.user_seq = u.user_seq
+		<where>
+			<if test="kwd != null and kwd != '' ">
+				AND <include refid="where-list"/>
+			</if>
+			AND (notice_seq &lt; #{noticeSeq})
+		</where> 
+		ORDER BY n.notice_seq DESC, n.notice_reg_date DESC
+		FETCH FIRST 1 ROWS ONLY
+	 </select>
+	
+	<insert id="insertNotice" parameterType="com.sp.app.domain.Notice">
+		INSERT INTO notice(
+				notice_seq
+				, user_seq
+				, user_name
+				, notice_title
+				, notice_reg_date
+				, notice_contents
+							  )
+		VALUES (
+				#{noticeSeq}
+				, #{userSeq}
+				, #{userName, jdbcType=VARCHAR}
+				, #{noticeTitle, jdbcType=VARCHAR}
+				, SYSDATE
+				, #{noticeContents, jdbcType=VARCHAR})
+	</insert>
+	
+	<select id="notice_seq" resultType="long">
+		SELECT notice_SEQ.NEXTVAL
+		FROM dual
+	</select>
+	
+	<delete id="deleteNotice" parameterType="long">
+		DELETE FROM notice
+		WHERE notice_seq = #{noticeSeq}
+	</delete>
+	
+	<select id="findbyNotice" parameterType="long" resultType="com.sp.app.domain.Notice">
+		SELECT
+			n.notice_seq AS noticeSeq
+			, n.user_seq AS userSeq
+			, u.user_name AS userName
+			, n.notice_title AS noticeTitle
+			, n.notice_contents AS noticeContents
+		FROM notice n
+		LEFT JOIN user1 u ON n.user_seq = u.user_seq
+		WHERE n.notice_seq = #{noticeSeq}
+	</select>
+	
+	<update id="updateNotice" parameterType="com.sp.app.domain.Notice">
+    	UPDATE notice
+    	SET
+    	    notice_title = #{noticeTitle, jdbcType=VARCHAR}
+    	    , notice_contents = #{noticeContents, jdbcType=VARCHAR}
+    	WHERE notice_seq = #{noticeSeq}
+	</update>
+	
+	
+</mapper>

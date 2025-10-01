@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sp.app.mapper.DeliveryMapper">
+	<select id="listDelivery" parameterType="map" resultType="com.sp.app.domain.Delivery">
+		SELECT
+			de_num AS deNum
+			, user_seq AS userSEQ
+			, de_name AS deName
+			, receiver_name AS receiverName
+			, address
+			, address_zip AS addressZip
+			, detail_address AS detailAddress
+			, phone1
+			, phone2
+			, dlvrpl
+		FROM Delivery
+		WHERE 1=1
+		<if test="userSeq != null">
+		AND user_seq = #{userSeq}
+		</if>
+		ORDER BY deNum DESC 
+	</select>
+
+	<insert id="insertDelivery" parameterType="com.sp.app.domain.Delivery">
+		INSERT INTO 
+			DELIVERY (
+				de_num
+				, user_seq
+				, de_name
+				, receiver_name
+				, address
+				, address_zip
+				, detail_address
+				, phone1
+				, phone2
+				, dlvrpl
+						)
+		VALUES (
+			DELIVERY_SEQ.NEXTVAL
+			, #{userSeq, jdbcType=VARCHAR}
+			, #{deName, jdbcType=VARCHAR}
+			, #{receiverName, jdbcType=VARCHAR}
+			, #{address, jdbcType=VARCHAR}
+			, #{addressZip, jdbcType=VARCHAR}
+			, #{detailAddress, jdbcType=VARCHAR}
+			, #{phone1, jdbcType=VARCHAR}
+			, #{phone2, jdbcType=VARCHAR}
+			, #{dlvrpl, jdbcType=VARCHAR}	
+			)
+	</insert>
+	
+	<update id="defaultDelivery" parameterType="long">
+		UPDATE DELIVERY
+		   SET dlvrpl = 'N'
+		 WHERE user_seq = #{userSeq} AND dlvrpl = 'Y'
+	</update>
+	
+	<update id="updateDelivery" parameterType="com.sp.app.domain.Delivery">
+		UPDATE DELIVERY
+		   SET de_name = #{deName}
+		   		, receiver_name = #{receiverName}
+		   		, address = #{address}
+		   		, address_zip = #{addressZip}
+		   		, detail_address = #{detailAddress}
+		   		, phone1 = #{phone1}
+		   		, phone2 = #{phone2}
+		   		, dlvrpl = #{dlvrpl}
+		 WHERE de_num = #{deNum} AND user_seq = #{userSeq}
+	</update>
+	
+	<delete id="deleteDelivery" parameterType="long">
+		DELETE FROM DELIVERY WHERE de_num = #{deNum}
+	</delete>
+	
+	<select id="findByAddress" parameterType="long" resultType="com.sp.app.domain.Delivery">
+		SELECT
+			de_num AS deNum
+			, user_seq AS userSEQ
+			, de_name AS deName
+			, receiver_name AS receiverName
+			, address
+			, address_zip AS addressZip
+			, detail_address AS detailAddress
+			, phone1
+			, phone2
+			, dlvrpl
+		FROM  DELIVERY
+		WHERE de_num = #{deNum}
+	</select>
+	
+	
+	
+</mapper>

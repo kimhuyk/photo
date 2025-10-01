@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sp.app.mapper.PhotoMapper">
+	<!-- 사진 넣은애 불러오기 -->
+<!--	<select id="listPhoto" parameterType="map" resultType="com.sp.app.domain.Photo">
+		SELECT u.user_seq AS userSeq
+			   , u.user_id AS userId
+			   , u.user_name AS userName
+			   , pf.reg_date AS regDate
+			   , pf.file_num AS fileNum
+			   , pf.originalfilename AS originalfileName
+		FROM   photo_file pf
+		JOIN   user1 u ON pf.user_seq = u.user_seq
+		ORDER by pf.reg_date desc
+	</select> -->
+
+	<!-- 다운로드?되는 그런 ㅇㅇ... -->
+	<select id="findByPhoto" parameterType="Long" resultType="com.sp.app.domain.Photo">
+		 SELECT	file_num AS fileNum
+		 		, savefilename AS saveFileName
+		 		, originalfilename AS originalFileName
+                , file_path AS filePath
+        FROM	photo_file
+        WHERE	file_num = #{fileNum}
+	</select>
+	<!-- 이전글 -->
+	<select id="findByPrev" parameterType="map" resultType="com.sp.app.domain.Photo">
+	    SELECT file_num AS fileNum
+	    		, savefilename
+	    		, originalfilename
+	    		, file_path
+	    		, reg_date
+	    FROM 	photo_file
+	    WHERE 	file_num &lt; #{fileNum}
+	    ORDER 	BY file_num DESC                                                             
+	    FETCH FIRST 1 ROWS ONLY
+	</select>
+	<!-- 다음글 -->
+	<select id="findByNext" parameterType="map" resultType="com.sp.app.domain.Photo">
+	    SELECT file_num AS fileNum
+	    		, savefilename
+	    		, originalfilename
+	    		, file_path
+	    		, reg_date
+	    FROM  photo_file
+	    WHERE file_num &gt; #{fileNum}
+	    ORDER BY file_num ASC                                                             
+	    FETCH FIRST 1 ROWS ONLY
+	</select>
+	
+	<!-- 사진 + 업로더 정보 불러오기 -->
+	<select id="loadPhoto" resultType="com.sp.app.domain.Photo">
+	    SELECT  pf.file_num AS fileNum
+	    		, pf.savefilename AS saveFileName
+	            , pf.originalfilename AS originalFileName
+	            , pf.file_path AS filePath
+	            , pf.user_seq AS userSeq
+	            , pf.user_name AS userName
+	            , pf.reg_date AS regDate
+	            , u.user_id AS userId
+	    FROM photo_file pf
+	    JOIN user1 u ON pf.user_seq = u.user_seq
+	    ORDER BY pf.reg_date DESC
+	</select>
+	<!-- 사진 삭제 -->
+	<delete id="deletePhoto" parameterType="Long">
+		DELETE FROM photo_file WHERE file_num = #{fileNum}
+	</delete>
+
+</mapper>

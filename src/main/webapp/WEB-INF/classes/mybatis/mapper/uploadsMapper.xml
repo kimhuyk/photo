@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sp.app.mapper.UploadsMapper">
+	<insert id="insertPhoto" parameterType="com.sp.app.domain.Photo">
+		INSERT INTO photo_file 
+			(
+				file_num
+				, user_seq
+				, user_name
+				, savefilename
+				, originalfilename
+				, file_path
+				, reg_date
+			)
+		VALUES 
+			(
+				#{fileNum}
+				, #{userSeq}
+				, #{userName}
+				, #{savefileName}
+				, #{originalfileName}
+				, #{filePath}
+				, SYSDATE
+			)
+	</insert>
+	
+	<select id="photofileSeq" resultType="long">
+	    SELECT photo_file_seq.nextval
+	    FROM dual
+	</select>
+
+</mapper>
