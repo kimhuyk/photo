@@ -20,7 +20,13 @@ public class MypageController {
 	@RequestMapping("privacy")
 	public String privacy() throws Exception {
 		
-		return "/mypage/privacy";
+		return "/mypage/privacy/privacy";
+	}
+	
+	@RequestMapping("security")
+	public String security() throws Exception {
+		
+		return "/mypage/security/security";
 	}
 	
 }

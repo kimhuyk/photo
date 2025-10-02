@@ -54,11 +54,11 @@
 
             <!-- 네비게이션 메뉴 -->
             <nav class="sidebar-nav">
-                <a href="#" class="nav-item active">
+                <a href="${pageContext.request.contextPath}/mypage" class="nav-item active">
                     <span class="nav-icon">◆</span>
                     내프로필
                 </a>
-                <a href="#" class="nav-item">
+                <a href="${pageContext.request.contextPath}/mypage/security" class="nav-item">
                     <span class="nav-icon">◆</span>
                     보안설정
                 </a>
@@ -92,7 +92,7 @@
 
             <!-- 하단 링크 -->
             <div class="bottom-links">
-                <a href="#" class="bottom-link">로그아웃</a>
+                <a href="${pageContext.request.contextPath}/login/logout" class="bottom-link">로그아웃</a>
                 <span class="separator">|</span>
                 <a href="#" class="bottom-link">고객센터</a>
                 <span class="separator">|</span>
