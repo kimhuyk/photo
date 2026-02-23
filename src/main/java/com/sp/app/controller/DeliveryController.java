@@ -40,7 +40,7 @@ public class DeliveryController {
 		// Delivery dto = service.listDelivery(map).get(0); // < 이건 아마도 기본배송지에 쓰면될듯
 		// 배송지 리스트
 		// model.addAttribute("dto" , list);
-		
+
 		return "/delivery/list";
 	}
 	// datatable json으로 받기
@@ -66,8 +66,9 @@ public class DeliveryController {
 	
 	// 등록 페이지 가져오는 메소드, 명칭은 insert지만 update랑 같은 메소드
 	@RequestMapping(value = "insert")
-    public String insertDeliveryForm() {
-		
+    public String insertDeliveryForm(Model model) {
+        model.addAttribute("mode", "insert");
+        model.addAttribute("dto", new Delivery()); // 새로운 객체 생성(등록,수정분리안되서 추가)
 		return "/delivery/insert"; // JSP 파일 경로
 	}
 	
@@ -101,7 +102,7 @@ public class DeliveryController {
 	public String updateDeliveryForm(@RequestParam int deNum, Model model) {
 		try {
 			Delivery dto = service.findByAddress(deNum);
-			
+
 			model.addAttribute("dto", dto);
 			model.addAttribute("mode", "update");
 		} catch (Exception e) {

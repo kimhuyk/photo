@@ -51,6 +51,7 @@ public class DeliveryServiceImpl implements DeliveryService{
 	}
 
 	@Override
+    @Transactional(rollbackFor = Exception.class)
 	public void updateDelivery(Delivery dto) throws SQLException {
 		try {
 			if("Y".equals(dto.getDlvrpl())) {
@@ -59,6 +60,7 @@ public class DeliveryServiceImpl implements DeliveryService{
 			mapper.updateDelivery(dto);
 		} catch (Exception e) {
 			e.printStackTrace();
+            throw e;
 		}
 		
 	}

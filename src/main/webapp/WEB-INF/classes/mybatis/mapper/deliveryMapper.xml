@@ -34,7 +34,7 @@
 				, detail_address
 				, phone1
 				, phone2
-				, dlvrpl
+				, dlvrpl    <!-- 기본 배송지 Y/N -->
 						)
 		VALUES (
 			DELIVERY_SEQ.NEXTVAL
