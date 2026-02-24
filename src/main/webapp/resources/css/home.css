@@ -267,3 +267,269 @@ body {
 		}
 	}
 }
+
+/* ==========================
+   Home (Kaboompics 스타일)
+   ========================== */
+.home-wrap {
+	background-color: #0d0d0d;
+	min-height: 100vh;
+	color: #e0e0e0;
+}
+
+.home-hero {
+	text-align: center;
+	padding: 48px 20px 56px;
+	position: relative;
+	background-image: url('../images/main/ring.jpg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+/* Hero 영역 반투명 어두운 오버레이 */
+.home-hero::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.45); /* 반투명 어둡게 */
+	z-index: 0;
+}
+
+.home-hero > * {
+	position: relative;
+	z-index: 1;
+}
+
+.home-hero h1 {
+	font-size: clamp(28px, 5vw, 42px);
+	font-weight: 600;
+	color: #fff;
+	margin: 0 0 12px;
+	letter-spacing: -0.02em;
+    text-align: center;
+}
+
+.home-hero .hero-sub {
+	font-size: 15px;
+	color: white;
+	margin-bottom: 32px;
+}
+
+.home-search-wrap {
+	max-width: 560px;
+	margin: 0 auto 40px;
+	position: relative;
+}
+
+.home-search-wrap .search-group {
+	display: flex;
+	align-items: center;
+	background: #1a1a1a;
+	border: 1px solid #333;
+	border-radius: 28px;
+	padding: 4px 8px 4px 20px;
+	transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.home-search-wrap .search-group:focus-within {
+	border-color: #444;
+	box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.06);
+}
+
+.home-search-wrap .search-input {
+	flex: 1;
+	height: 44px;
+	padding: 0 12px;
+	font-size: 16px;
+	color: #fff;
+	background: transparent;
+	border: none;
+	outline: none;
+}
+
+.home-search-wrap .search-input::placeholder {
+	color: #666;
+}
+
+.home-search-wrap .search-icon {
+	width: 44px;
+	height: 44px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #2a2a2a;
+	border: none;
+	border-radius: 50%;
+	color: #aaa;
+	font-size: 18px;
+	cursor: pointer;
+	transition: background 0.2s, color 0.2s;
+}
+
+.home-search-wrap .search-icon:hover {
+	background: #333;
+	color: #fff;
+}
+
+.home-trending {
+	text-align: center;
+	margin-bottom: 12px;
+}
+
+.home-trending .trend-label {
+	font-size: 12px;
+	color: white;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	margin-bottom: 14px;
+}
+
+.home-tags {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 8px;
+	padding: 0 16px 32px;
+    color: #c7aeae;
+}
+
+.home-tags a {
+	display: inline-block;
+	padding: 8px 16px;
+	background: #1a1a1a;
+	border: 1px solid #2a2a2a;
+	border-radius: 20px;
+	color: #b0b0b0;
+	text-decoration: none;
+	font-size: 14px;
+	transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.home-tags a:hover {
+	background: #252525;
+	color: #fff;
+	border-color: #404040;
+}
+
+/* Kaboompics 스타일: Masonry 3열 (일자 주루륵 아님, 다양한 높이) */
+.home-wrap .home-grid {
+	max-width: 1400px;
+	margin: 0 auto;
+	padding: 0 24px 56px;
+	column-count: 3;
+	column-gap: 24px;
+}
+
+.home-wrap .home-card {
+	display: block;
+	width: 100%;
+	position: relative;
+	border-radius: 8px;
+	overflow: hidden;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	break-inside: avoid;
+	margin-bottom: 24px;
+	box-sizing: border-box;
+}
+
+/* Masonry: 다양한 비율로 비대칭 배치 */
+.home-wrap .home-card.size-wide { aspect-ratio: 4/3; }
+.home-wrap .home-card.size-tall { aspect-ratio: 3/4; }
+.home-wrap .home-card.size-square { aspect-ratio: 1/1; }
+.home-wrap .home-card.size-xtall { aspect-ratio: 2/3; }
+.home-wrap .home-card.size-xwide { aspect-ratio: 16/9; }
+
+.home-wrap .home-card a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	color: #fff;
+}
+
+.home-wrap .home-card-overlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, transparent 50%);
+	opacity: 0;
+	transition: opacity 0.25s;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	padding: 16px;
+}
+
+.home-wrap .home-card:hover .home-card-overlay {
+	opacity: 1;
+}
+
+.home-wrap .home-card-title {
+	font-size: 15px;
+	font-weight: 500;
+	text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+	margin: 0;
+}
+
+.home-wrap .home-card-meta {
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.8);
+	margin-top: 4px;
+}
+
+/* 홈 카드 배경 이미지 (CSS 상대 경로 사용) */
+.home-wrap .home-card.thumb-car {
+	background-image: url('../images/main/car.jpg');
+}
+
+.home-wrap .home-card.thumb-clothes {
+	background-image: url('../images/main/clothes.jpg');
+}
+
+.home-wrap .home-card.thumb-build {
+	background-image: url('../images/main/build.jpg');
+}
+
+.home-wrap .home-card.thumb-tennis {
+	background-image: url('../images/main/tennis.jpg');
+}
+
+.home-wrap .home-card.thumb-sky {
+	background-image: url('../images/main/sky.jpg');
+}
+
+.home-wrap .home-card.thumb-chair {
+	background-image: url('../images/main/chair.jpg');
+}
+
+@media (max-width: 992px) {
+	.home-wrap .home-grid {
+		column-count: 2;
+		column-gap: 16px;
+		padding: 0 16px 40px;
+	}
+	.home-wrap .home-card { margin-bottom: 16px; }
+}
+
+@media (max-width: 768px) {
+	.home-hero {
+		padding: 32px 16px 40px;
+	}
+
+	.home-wrap .home-grid {
+		column-count: 2;
+		column-gap: 12px;
+		padding: 0 12px 32px;
+	}
+	.home-wrap .home-card { margin-bottom: 12px; }
+}
+
+@media (max-width: 480px) {
+	.home-wrap .home-grid {
+		column-count: 1;
+		column-gap: 16px;
+	}
+	.home-wrap .home-card { margin-bottom: 16px; }
+}
