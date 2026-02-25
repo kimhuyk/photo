@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -48,6 +47,9 @@
             </div>
         </div>
     </section>
+    <div class="turm-trending">
+        asdasdasdasdasd
+    </div>
     <form id="downloadForm" action="download" method="GET">
         <input type="hidden" name="fileNum" id="fileNum">
     </form>
@@ -61,7 +63,7 @@
 <div id="photoModal" class="modalpicture" style="display: none;">
     <div class="modalpicture-content">
         <span class="closepicture" onclick="closepictureModal()">&times;</span>
-        <img id="modalImage" src="" alt="">
+        <img id="modalImage" src="" alt="" loading="lazy">
         <p id="modalCaption" style="margin-top: 15px; font-size: 17px;"></p>
         <p id="userName"></p>
         <div id="userInfo" data-user-seq="${sessionScope.loginUser.userSeq}"></div>
