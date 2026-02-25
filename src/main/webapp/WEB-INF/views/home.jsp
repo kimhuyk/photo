@@ -61,7 +61,7 @@
 <div id="photoModal" class="modalpicture" style="display: none;">
     <div class="modalpicture-content">
         <span class="closepicture" onclick="closepictureModal()">&times;</span>
-        <img id="modalImage" src="" alt="">-
+        <img id="modalImage" src="" alt="">
         <p id="modalCaption" style="margin-top: 15px; font-size: 17px;"></p>
         <p id="userName"></p>
         <div id="userInfo" data-user-seq="${sessionScope.loginUser.userSeq}"></div>
