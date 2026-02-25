@@ -479,31 +479,6 @@ body {
 	margin-top: 4px;
 }
 
-/* 홈 카드 배경 이미지 (CSS 상대 경로 사용) */
-.home-wrap .home-card.thumb-car {
-	background-image: url('../images/main/car.jpg');
-}
-
-.home-wrap .home-card.thumb-clothes {
-	background-image: url('../images/main/clothes.jpg');
-}
-
-.home-wrap .home-card.thumb-build {
-	background-image: url('../images/main/build.jpg');
-}
-
-.home-wrap .home-card.thumb-tennis {
-	background-image: url('../images/main/tennis.jpg');
-}
-
-.home-wrap .home-card.thumb-sky {
-	background-image: url('../images/main/sky.jpg');
-}
-
-.home-wrap .home-card.thumb-chair {
-	background-image: url('../images/main/chair.jpg');
-}
-
 @media (max-width: 992px) {
 	.home-wrap .home-grid {
 		column-count: 2;

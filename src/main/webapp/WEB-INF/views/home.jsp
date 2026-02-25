@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/home.css?v=masonry">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/homesearch.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/photo.css">
+    <%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/photo.css"> --%>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script type="text/javascript">
         var contextPath = "${pageContext.request.contextPath}";
@@ -51,177 +51,9 @@
     <form id="downloadForm" action="download" method="GET">
         <input type="hidden" name="fileNum" id="fileNum">
     </form>
-    <!-- Photo Grid (Kaboompics Masonry: 3열, 다양한 높이) -->
+
     <div class="home-grid">
-        <!-- 1~4: 자동차 / 도로 -->
-        <div class="home-card thumb-car size-wide">
-            <a href="#" onclick="event.preventDefault(); openpictureModal(1, '${pageContext.request.contextPath}/resources/images/main/backgroundflower.jpg', 'City car at night', '관리자');">
-                <div class="home-card-overlay">
-                    <p class="home-card-title">City car at night</p>
-                    <span class="home-card-meta">자동차 · 도시</span>
-                </div>
-            </a>
-        </div>
-        <div class="home-card thumb-car size-tall">
-            <a href="#" onclick="event.preventDefault(); openpictureModal(2, '${pageContext.request.contextPath}/resources/images/main/flowertable.jpg', 'Highway road trip', '관리자');">
-                <div class="home-card-overlay">
-                    <p class="home-card-title">Highway road trip</p>
-                    <span class="home-card-meta">여행 · 드라이브</span>
-                </div>
-            </a>
-        </div>
-        <div class="home-card thumb-car size-square">
-            <a href="#" onclick="event.preventDefault(); openpictureModal(3, '${pageContext.request.contextPath}/resources/images/main/hand.jpg', 'Vintage car close-up', '관리자');">
-                <div class="home-card-overlay">
-                    <p class="home-card-title">Vintage car close-up</p>
-                    <span class="home-card-meta">빈티지 · 디테일</span>
-                </div>
-            </a>
-        </div>
-        <div class="home-card thumb-car size-xtall">
-            <a href="#" onclick="event.preventDefault(); openpictureModal(4, '${pageContext.request.contextPath}/resources/images/main/redcake.jpg', 'Sunset on the road', '관리자');">
-                <div class="home-card-overlay">
-                    <p class="home-card-title">Sunset on the road</p>
-                    <span class="home-card-meta">노을 · 풍경</span>
-                </div>
-            </a>
-        </div>
-
-        <!-- 5~8: 패션 / 의류 -->
-        <div class="home-card thumb-clothes size-xwide">
-            <a href="#" onclick="event.preventDefault(); openpictureModal(5, '${pageContext.request.contextPath}/resources/images/main/vage.jpg', 'Minimal fashion flatlay', '관리자');">
-                <div class="home-card-overlay">
-                    <p class="home-card-title">Minimal fashion flatlay</p>
-                    <span class="home-card-meta">패션 · 미니멀</span>
-                </div>
-            </a>
-        </div>
-        <div class="home-card thumb-clothes size-wide">
-            <a href="#" onclick="event.preventDefault(); openpictureModal(6, '${pageContext.request.contextPath}/resources/images/main/ring.jpg', 'Casual outfit on chair', '관리자');">
-                <div class="home-card-overlay">
-                    <p class="home-card-title">Casual outfit on chair</p>
-                    <span class="home-card-meta">데일리룩 · 캐주얼</span>
-                </div>
-            </a>
-        </div>
-        <div class="home-card thumb-clothes size-tall">
-            <a href="#" onclick="event.preventDefault(); openpictureModal(7, '${pageContext.request.contextPath}/resources/images/main/clothes.jpg', 'Cozy winter clothes', '관리자');">
-                <div class="home-card-overlay">
-                    <p class="home-card-title">Cozy winter clothes</p>
-                    <span class="home-card-meta">겨울 · 니트</span>
-                </div>
-            </a>
-        </div>
-        <div class="home-card thumb-clothes size-square">
-            <a href="#" onclick="event.preventDefault(); openpictureModal(8, '${pageContext.request.contextPath}/resources/images/main/clothes.jpg', 'Streetwear collection', '관리자');">
-                <div class="home-card-overlay">
-                    <p class="home-card-title">Streetwear collection</p>
-                    <span class="home-card-meta">스트릿 · 스타일</span>
-                </div>
-            </a>
-        </div>
-
-        <!-- 9~12: 건축 / 도시 -->
-        <div class="home-card thumb-build size-xtall">
-            <a href="#" onclick="event.preventDefault(); openpictureModal(9, '${pageContext.request.contextPath}/resources/images/main/build.jpg', 'Modern city skyline', '관리자');">
-                <div class="home-card-overlay">
-                    <p class="home-card-title">Modern city skyline</p>
-                    <span class="home-card-meta">도시 · 빌딩</span>
-                </div>
-            </a>
-        </div>
-        <div class="home-card thumb-build size-xwide">
-            <a href="#" onclick="event.preventDefault(); openpictureModal(10, '${pageContext.request.contextPath}/resources/images/main/build.jpg', 'Architecture close-up', '관리자');">
-                <div class="home-card-overlay">
-                    <p class="home-card-title">Architecture close-up</p>
-                    <span class="home-card-meta">건축 · 패턴</span>
-                </div>
-            </a>
-        </div>
-        <div class="home-card thumb-build size-wide">
-            <a href="#" onclick="event.preventDefault(); openpictureModal(11, '${pageContext.request.contextPath}/resources/images/main/build.jpg', 'Glass office building', '관리자');">
-                <div class="home-card-overlay">
-                    <p class="home-card-title">Glass office building</p>
-                    <span class="home-card-meta">오피스 · 비즈니스</span>
-                </div>
-            </a>
-        </div>
-        <div class="home-card thumb-build size-tall">
-            <a href="#" onclick="event.preventDefault(); openpictureModal(12, '${pageContext.request.contextPath}/resources/images/main/build.jpg', 'City night lights', '관리자');">
-                <div class="home-card-overlay">
-                    <p class="home-card-title">City night lights</p>
-                    <span class="home-card-meta">야경 · 라이트</span>
-                </div>
-            </a>
-        </div>
-
-        <!-- 13~16: 스포츠 / 라이프 -->
-        <div class="home-card thumb-tennis size-square">
-            <a href="#" onclick="event.preventDefault(); openpictureModal(13, '${pageContext.request.contextPath}/resources/images/main/tennis.jpg', 'Tennis court lines', '관리자');">
-                <div class="home-card-overlay">
-                    <p class="home-card-title">Tennis court lines</p>
-                    <span class="home-card-meta">스포츠 · 코트</span>
-                </div>
-            </a>
-        </div>
-        <div class="home-card thumb-tennis size-xtall">
-            <a href="#" onclick="event.preventDefault(); openpictureModal(14, '${pageContext.request.contextPath}/resources/images/main/tennis.jpg', 'Outdoor tennis match', '관리자');">
-                <div class="home-card-overlay">
-                    <p class="home-card-title">Outdoor tennis match</p>
-                    <span class="home-card-meta">경기 · 액션</span>
-                </div>
-            </a>
-        </div>
-        <div class="home-card thumb-tennis size-xwide">
-            <a href="#" onclick="event.preventDefault(); openpictureModal(15, '${pageContext.request.contextPath}/resources/images/main/tennis.jpg', 'Sports lifestyle', '관리자');">
-                <div class="home-card-overlay">
-                    <p class="home-card-title">Sports lifestyle</p>
-                    <span class="home-card-meta">라이프스타일 · 운동</span>
-                </div>
-            </a>
-        </div>
-        <div class="home-card thumb-tennis size-wide">
-            <a href="#" onclick="event.preventDefault(); openpictureModal(16, '${pageContext.request.contextPath}/resources/images/main/tennis.jpg', 'Tennis net detail', '관리자');">
-                <div class="home-card-overlay">
-                    <p class="home-card-title">Tennis net detail</p>
-                    <span class="home-card-meta">디테일 · 패턴</span>
-                </div>
-            </a>
-        </div>
-
-        <!-- 17~20: 하늘 / 풍경 / 의자 -->
-        <div class="home-card thumb-sky size-tall">
-            <a href="#" onclick="event.preventDefault(); openpictureModal(17, '${pageContext.request.contextPath}/resources/images/main/sky.jpg', 'Golden sunset sky', '관리자');">
-                <div class="home-card-overlay">
-                    <p class="home-card-title">Golden sunset sky</p>
-                    <span class="home-card-meta">노을 · 하늘</span>
-                </div>
-            </a>
-        </div>
-        <div class="home-card thumb-sky size-square">
-            <a href="#" onclick="event.preventDefault(); openpictureModal(18, '${pageContext.request.contextPath}/resources/images/main/sky.jpg', 'Cloudy afternoon', '관리자');">
-                <div class="home-card-overlay">
-                    <p class="home-card-title">Cloudy afternoon</p>
-                    <span class="home-card-meta">구름 · 풍경</span>
-                </div>
-            </a>
-        </div>
-        <div class="home-card thumb-chair size-xtall">
-            <a href="#" onclick="event.preventDefault(); openpictureModal(19, '${pageContext.request.contextPath}/resources/images/main/chair.jpg', 'Cozy chair corner', '관리자');">
-                <div class="home-card-overlay">
-                    <p class="home-card-title">Cozy chair corner</p>
-                    <span class="home-card-meta">인테리어 · 의자</span>
-                </div>
-            </a>
-        </div>
-        <div class="home-card thumb-chair size-xwide">
-            <a href="#" onclick="event.preventDefault(); openpictureModal(20, '${pageContext.request.contextPath}/resources/images/main/chair.jpg', 'Reading time', '관리자');">
-                <div class="home-card-overlay">
-                    <p class="home-card-title">Reading time</p>
-                    <span class="home-card-meta">라이프스타일 · 휴식</span>
-                </div>
-            </a>
-        </div>
+        <!-- home.js -->
     </div>
 </div>
 
@@ -229,7 +61,7 @@
 <div id="photoModal" class="modalpicture" style="display: none;">
     <div class="modalpicture-content">
         <span class="closepicture" onclick="closepictureModal()">&times;</span>
-        <img id="modalImage" src="" alt="Selected Photo">
+        <img id="modalImage" src="" alt="">-
         <p id="modalCaption" style="margin-top: 15px; font-size: 17px;"></p>
         <p id="userName"></p>
         <div id="userInfo" data-user-seq="${sessionScope.loginUser.userSeq}"></div>
