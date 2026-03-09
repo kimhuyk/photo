@@ -412,6 +412,28 @@ body {
 	border-color: #404040;
 }
 
+.turm-trending {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 16px 32px;
+    color: white;
+    text-align: center;
+    background-color: #f3dba9;
+}
+
+.middle-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 16px 32px;
+    color: #0c0c0c;
+    text-align: center;
+    background-color: black;
+}
+
 /* Kaboompics 스타일: Masonry 3열 (일자 주루륵 아님, 다양한 높이) */
 .home-wrap .home-grid {
 	max-width: 1400px;
