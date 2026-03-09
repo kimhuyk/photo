@@ -69,7 +69,7 @@
         width: auto;             /* 가로를 무조건 채우지 말고 */
         max-width: 100%;         /* 부모 넓이를 넘지 않는 선에서 */
         height: auto;
-        max-height: 65vh;        /* ⭐ 화면 높이의 65%까지만 커지게 제한 (가장 중요) */
+        max-height: 65vh;        /* 화면 높이의 65%까지만 커지게 제한 (가장 중요) */
         margin: 0 auto;
         border-radius: 10px;
         display: block;

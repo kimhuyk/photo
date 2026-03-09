@@ -15,22 +15,21 @@
 
 /* 모달 내부 */
 .modalpicture-content {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	background-color: black;
-	color: white;
-	padding: 30px;
-	width: 90%;
-	max-width: 1200px;
-	border-radius: 10px;
-	text-align: center;
-	box-shadow: 
-		0px -4px 10px rgba(255, 255, 255, 0.3), /* 위쪽에 밝은 그림자 추가 */
-		0px 4px 10px rgba(255, 255, 255, 0.3); /* 기존 아래쪽 그림자 유지 */
-	overflow-y: auto;
-	max-height: 90vh;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    color: white;
+    padding: 30px;
+    width: auto;             /* 넓이를 고정하지 않고 내용물에 맞춤 */
+    min-width: 300px;        /* 최소 넓이 */
+    max-width: 90%;          /* 최대 가로폭 */
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+    overflow: hidden;        /* 내부 스크롤 방지 (이미지 크기를 줄였으므로) */
+    max-height: 95vh;        /* 모달 전체가 화면을 넘지 않게 */
 }
 
 .closepicture {
@@ -60,11 +59,14 @@
 }
 
 #modalImage {
-	width: 100%;
-	max-width: 800px;
-	height: auto;
-	margin: 0 auto;
-	border-radius: 10px;
+    width: auto;             /* 가로를 무조건 채우지 말고 */
+    max-width: 100%;         /* 부모 넓이를 넘지 않는 선에서 */
+    height: auto;
+    max-height: 65vh;        /* ⭐ 화면 높이의 65%까지만 커지게 제한 (가장 중요) */
+    margin: 0 auto;
+    border-radius: 10px;
+    display: block;
+    object-fit: contain;     /* 사진이 잘리지 않고 박스 안에 쏙 들어가게 함 */
 }
 
 /* 초기화 */

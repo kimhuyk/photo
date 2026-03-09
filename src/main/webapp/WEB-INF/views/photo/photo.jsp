@@ -85,8 +85,6 @@
 	href="${pageContext.request.contextPath}/resources/css/login.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/photo.css">
-<%-- <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/photoStory.css"> --%>
 
 <script type="text/javascript">
     var contextPath = "${pageContext.request.contextPath}";
@@ -109,16 +107,16 @@
 
     <!-- 첫 번째 행 -->
     <div class="photo-grid">
-        <figure class="photo-item" onclick="openpictureModal(1, 'resources/images/main/car.jpg', 'Car Pictures', '김혁')">
-            <img src="resources/images/main/car.jpg" alt="Car Pictures">
+        <figure class="photo-item" onclick="openpictureModal(1, 'resources/images/main/flowertable.jpg', 'Car Pictures', '김혁')">
+            <img src="resources/images/main/flowertable.jpg" alt="Car Pictures">
             <figcaption class="caption">Car Pictures</figcaption>
         </figure>
-        <figure class="photo-item" onclick="openpictureModal(2, 'resources/images/main/clothes.jpg', 'Clothes Pictures', '김혁')">
-            <img src="resources/images/main/clothes.jpg" alt="Clothes Pictures">
+        <figure class="photo-item" onclick="openpictureModal(2, 'resources/images/main/hand.jpg', 'Clothes Pictures', '김혁')">
+            <img src="resources/images/main/hand.jpg" alt="Clothes Pictures">
             <figcaption class="caption">Clothes Pictures</figcaption>
         </figure>
-        <figure class="photo-item" onclick="openpictureModal(3, 'resources/images/main/build.jpg', 'Build Pictures', '김혁')">
-            <img src="resources/images/main/build.jpg" alt="Build Pictures">
+        <figure class="photo-item" onclick="openpictureModal(3, 'resources/images/main/redcake.jpg', 'Build Pictures', '김혁')">
+            <img src="resources/images/main/redcake.jpg" alt="Build Pictures">
             <figcaption class="caption">Build Pictures</figcaption>
         </figure>
     </div>
@@ -170,7 +168,7 @@
     <div class="modalpicture-content">
         <span class="closepicture" onclick="closepictureModal()">&times;</span>
         <!-- 사진 영역 -->
-        <img id="modalImage" src="" alt="Selected Photo">
+        <img id="modalImage" src="" alt="Selected Photo" loading="lazy">
         <p id="modalCaption" style="margin-top: 15px; font-size: 17px;"></p>
         <p id="userName"></p>
         <!-- 로그인한 유저의 userSeq 값을 data 속성에 저장 -->

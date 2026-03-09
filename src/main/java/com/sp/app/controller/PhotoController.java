@@ -96,7 +96,7 @@ public class PhotoController {
 	    try {
 	        if (fileNum == null) {
 	            // fileNum이 null인 경우 기본 처리
-	            System.out.println("fileNum 널이에용,,,,");
+	            // System.out.println("fileNum 널이에용,,,,");
 	            fileNum = 1L;  // 기본값으로 처리 (예: 1L)
 	        }
 	        
