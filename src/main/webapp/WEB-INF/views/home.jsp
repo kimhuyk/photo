@@ -4,6 +4,85 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
 <head>
+
+<style>
+    /* 사진 모달 */
+    .modalpicture {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        pointer-events: auto;
+        overflow-y: auto;
+    }
+
+    /* 모달 내부 */
+    .modalpicture-content {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: black;
+        color: white;
+        padding: 30px;
+        width: auto;             /* 넓이를 고정하지 않고 내용물에 맞춤 */
+        min-width: 300px;        /* 최소 넓이 */
+        max-width: 90%;          /* 최대 가로폭 */
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+        overflow: hidden;        /* 내부 스크롤 방지 (이미지 크기를 줄였으므로) */
+        max-height: 95vh;        /* 모달 전체가 화면을 넘지 않게 */
+    }
+
+    .closepicture {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 25px;
+        cursor: pointer;
+    }
+
+    /* 다운로드 버튼 */
+    .modalpicture-content button {
+        width: 100%;
+        padding: 12px;
+        background-color: white;
+        color: black;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 24px;
+        margin-top: 20px;
+    }
+
+    .modalpicture-content button:hover {
+        background-color: gray;
+    }
+
+    #modalImage {
+        width: auto;             /* 가로를 무조건 채우지 말고 */
+        max-width: 100%;         /* 부모 넓이를 넘지 않는 선에서 */
+        height: auto;
+        max-height: 65vh;        /* ⭐ 화면 높이의 65%까지만 커지게 제한 (가장 중요) */
+        margin: 0 auto;
+        border-radius: 10px;
+        display: block;
+        object-fit: contain;     /* 사진이 잘리지 않고 박스 안에 쏙 들어가게 함 */
+    }
+
+    /* 초기화 */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+</style>
     <title>Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/home.css?v=masonry">
