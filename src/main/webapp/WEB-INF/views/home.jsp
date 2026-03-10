@@ -139,7 +139,7 @@
             <c:forEach var="dto" items="${list}">
                 <div class="grid-item" style="cursor:pointer;"
                      onclick="openpictureModal('${dto.fileNum}', '${pageContext.request.contextPath}/uploads/photo/${dto.saveFileName}', '${dto.originalFileName}', '${dto.userName}')">
-                    <img src="${pageContext.request.contextPath}/uploads/photo/${dto.saveFileName}" alt="${dto.originalFileName}">
+                    <img loading="lazy" src="${pageContext.request.contextPath}/uploads/photo/${dto.saveFileName}" alt="${dto.originalFileName}">
                 </div>
             </c:forEach>
         </c:if>

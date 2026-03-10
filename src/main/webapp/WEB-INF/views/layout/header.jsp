@@ -109,6 +109,7 @@
 	background-color: gray;
 }
 </style>
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 <header class="header-top">
     <!-- 왼쪽 로고 -->
     <div class="logo">

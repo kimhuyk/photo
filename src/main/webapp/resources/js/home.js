@@ -61,11 +61,8 @@ $(function() {
     $.ajax({
         url: '/app/photo/loadPhoto.do',
         type: 'GET',
-        // data : { fileNum : 1 },
-        // contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
         dataType: "json",
         success: function(data) {
-            console.log("뭐가나오는거냐?", data);
             if (!data || data.length === 0) {
                 $grid.html("<p style='text-align:center; padding:50px;'>등록된 사진이 없습니다.</p>");
                 return;
