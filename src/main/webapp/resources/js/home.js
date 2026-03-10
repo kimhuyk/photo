@@ -57,7 +57,7 @@ $(function() {
 
     const base = (typeof contextPath !== "undefined") ? contextPath : "";
 
-    // 1. AJAX를 이용해 PhotoController에서 데이터 가져오기
+    // AJAX를 이용해 PhotoController에서 데이터 가져오기
     $.ajax({
         url: '/app/photo/loadPhoto.do',
         type: 'GET',
