@@ -84,52 +84,52 @@ function deletePhoto() {
 // 가로로 3개씩 채우면서 가로로 3개가 차면 다음줄로 자동 줄생성되서 3 3 3 만들수있게 하는 스크립트
 	//loadPhoto 함수를 전역에서 정의
 	function loadPhoto() {
-		$.ajax({
-			url : '/app/photo/loadPhoto.do',
-			type : 'GET',
-			data : { fileNum : 1 }, // 이거 안하면 컨트롤러에 null이라고 나오는데 이유는 모르겠음 뭐지? 예상으론 1장씩 등업 이런느낌인것같다
-			contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
-			dataType : 'json',
-			success : function(results) {
-				$('#insertPhotoContainer').empty(); // 기존 데이터 초기화
-				let currentRow;
+        let url = (typeof contextPath !== "undefined") ? contextPath : "/app";
 
-				results.forEach(function(photo, index) {
-					if (index % 3 === 0) {
-						// 새로운 행 시작
-						currentRow = $('<div>').addClass('photo-grid');
-						$('#insertPhotoContainer').append(currentRow);
-					}
+        $.ajax({
+            url: url + '/photo/loadPhoto.do',
+            type: 'GET',
+            data: { fileNum: 1 },
+            dataType: 'json',
+            success: function(results) {
+                $('#insertPhotoContainer').empty();
 
-					let imgPath = '/app/uploads/photo/' + photo.savefileName; // 주소 이상해서 위에다선
-					console.log("리스트에서 불러오는 이미지 경로:", imgPath); // 확인용
+                // 변수를 루프 밖에서 미리 선언합니다.
+                let $currentRow;
 
-					// figure 엘리먼트 생성 및 속성 설정
-					const figure = $('<figure>').addClass('photo-item')
-						.attr(
-							'onclick',
-							'event.preventDefault(); openpictureModal('
-									+ photo.fileNum + ',"'
-									+ photo.filePath.replace(/\\/g, '/') + '/'
-									+ photo.savefileName + '","'
-									+ photo.originalfileName + '","'
-									+ photo.userName + '")') // 경로에서 역슬래시를 슬래시로 변경 안바꾸면 알지?
-					.append(
-							$('<img>').attr({
-								src : imgPath, // 서버 경로수정했는데 위에 let imgpath으로 값줌
-								alt : photo.originalfileName
-							}),
-							$('<figcaption>').addClass('caption').text(
-									photo.originalfileName));
+                results.forEach(function(photo, index) {
+                    // 3개마다 새로운 행(Grid)을 생성합니다.
+                    if (index % 3 === 0) {
+                        $currentRow = $('<div>').addClass('photo-grid');
+                        $('#insertPhotoContainer').append($currentRow);
+                    }
 
-					currentRow.append(figure);
-				});
-			},
-			error : function(xhr, status, error) {
-				console.error("Error loading photos:", error);
-			}
-		});
-	}
+                    // 이미지 경로 설정 (콘솔에 찍힌 정상 경로 사용)
+                    let imgPath = url + '/uploads/photo/' + photo.savefileName;
+
+                    // figure 엘리먼트 생성 및 속성 설정
+                    const figure = $('<figure>').addClass('photo-item')
+                        .attr('onclick'
+                            , `event.preventDefault(); openpictureModal(
+                                '${photo.fileNum}'
+                                , '${imgPath}'
+                                , '${photo.originalfileName}'
+                                , '${photo.userName}')`)
+                        .append(
+                            $('<img>').attr({
+                                src: imgPath,
+                                alt: photo.originalfileName
+                            }),
+                            $('<figcaption>').addClass('caption').text(photo.originalfileName)
+                        );
+                    $currentRow.append(figure);
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error("Error loading photos:", error);
+            }
+        });
+    }
 	//$(document).ready() 안에서 함수 정의
 	$(document).ready(function() {
 

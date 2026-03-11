@@ -108,15 +108,15 @@
     <!-- 첫 번째 행 -->
     <div class="photo-grid">
         <figure class="photo-item" onclick="openpictureModal(1, 'resources/images/main/flowertable.jpg', 'Car Pictures', '김혁')">
-            <img src="resources/images/main/flowertable.jpg" alt="Car Pictures">
+            <img loading="lazy" src="resources/images/main/flowertable.jpg" alt="Car Pictures">
             <figcaption class="caption">Car Pictures</figcaption>
         </figure>
         <figure class="photo-item" onclick="openpictureModal(2, 'resources/images/main/hand.jpg', 'Clothes Pictures', '김혁')">
-            <img src="resources/images/main/hand.jpg" alt="Clothes Pictures">
+            <img loading="lazy" src="resources/images/main/hand.jpg" alt="Clothes Pictures">
             <figcaption class="caption">Clothes Pictures</figcaption>
         </figure>
         <figure class="photo-item" onclick="openpictureModal(3, 'resources/images/main/redcake.jpg', 'Build Pictures', '김혁')">
-            <img src="resources/images/main/redcake.jpg" alt="Build Pictures">
+            <img loading="lazy" src="resources/images/main/redcake.jpg" alt="Build Pictures">
             <figcaption class="caption">Build Pictures</figcaption>
         </figure>
     </div>
@@ -124,40 +124,42 @@
     <!-- 두 번째 행 -->
     <div class="photo-grid">
         <figure class="photo-item" onclick="openpictureModal(4, 'resources/images/main/tennis.jpg', 'Tennis Pictures', '김혁')">
-            <img src="resources/images/main/tennis.jpg" alt="Tennis Pictures">
+            <img loading="lazy" src="resources/images/main/tennis.jpg" alt="Tennis Pictures">
             <figcaption class="caption">Tennis Pictures</figcaption>
         </figure>
         <figure class="photo-item" onclick="openpictureModal(5, 'resources/images/main/chair.jpg', 'Chair Pictures', '김혁')">
-            <img src="resources/images/main/chair.jpg" alt="Chair Pictures">
+            <img loading="lazy" src="resources/images/main/chair.jpg" alt="Chair Pictures">
             <figcaption class="caption">Chair Pictures</figcaption>
         </figure>
         <figure class="photo-item" onclick="openpictureModal(6, 'resources/images/main/sky.jpg', 'Sky Pictures', '김혁')">
-            <img src="resources/images/main/sky.jpg" alt="Sky Pictures">
+            <img loading="lazy" src="resources/images/main/sky.jpg" alt="Sky Pictures">
             <figcaption class="caption">Sky Pictures</figcaption>
         </figure>
         
 	
     </div>
          <h2>PHOTO DREAM</h2>
-		<div id="insertPhotoContainer"></div>
+		<div id="insertPhotoContainer">
+            <img loading="lazy" alt="" src="">
+        </div>
 	
 	<br><br><br><br>
 	<!-- 세 번째 행 -->
-		<div id="insertPhotoContainer"></div>
-    <div class="slideshow">
-    	<button class="prev" onclick="changeSlide(-1)">&#10094;</button>
-    	<c:forEach var="image" items="${imageList}" varStatus="status">
-			<div class="slide">
-				<img src="${pageContext.request.contextPath}/resources/images/uploads/${image}" alt="사진 ${status.index}">
-			</div>
-		</c:forEach>
-    	<button class="next" onclick="changeSlide(1)">&#10095;</button>
-    </div>
+<%--		<div id="insertPhotoContainer"></div>--%>
+<%--    <div class="slideshow">--%>
+<%--    	<button class="prev" onclick="changeSlide(-1)">&#10094;</button>--%>
+<%--    	<c:forEach var="image" items="${imageList}" varStatus="status">--%>
+<%--			<div class="slide">--%>
+<%--				<img src="${pageContext.request.contextPath}/resources/images/uploads/${image}" alt="사진 ${status.index}">--%>
+<%--			</div>--%>
+<%--		</c:forEach>--%>
+<%--    	<button class="next" onclick="changeSlide(1)">&#10095;</button>--%>
+<%--    </div>--%>
 
     <!-- 썸네일 갤러리 -->
     <div id="galleryView" class="grid-view">
     	<c:forEach var="image" items="${imageList}">
-		<img src="${pageContext.request.contextPath}/resources/images/uploads/${image}" alt="${image}"onclick="showSlide(${imageList.indexOf(image)})">
+		    <img src="${pageContext.request.contextPath}/resources/images/uploads/${image}" alt="${image}"onclick="showSlide(${imageList.indexOf(image)})">
     	</c:forEach>
     </div>	
 
