@@ -21,7 +21,7 @@ button {
 	href="${pageContext.request.contextPath}/resources/css/home.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/noticeList.css">
-	
+
 <!-- 스크립트 링크 -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home.js"></script>
@@ -57,22 +57,56 @@ button {
 	        </c:choose>
 	    </ul>
 	<!-- < > 누를떄마다 다음줄 11로 갈수있게 스크립트 작성 해야됌 -->
-		<div class="page-navigation">
+		<%-- <div class="page-navigation">
 		    <!-- 이전 버튼 -->
 		    <a href="${listUrl}?page=${page-1}" class="prev-page">&lt;&lt;</a>
-		
+
 		    <!-- 페이지 번호 -->
 		    <div class="page-numbers">
 		        ${dataCount == 0 ? "등록된 공지사항이 없습니다." : paging}
 		    </div>
-		
+
 		    <!-- 다음 버튼 -->
 		    <a href="${listUrl}?page=${page+1}" class="next-page">&gt;&gt;</a>
 			 <c:if test="${sessionScope.loginUser.userSeq == 1}">
 				<button class="button" type="button" style="float: right;"
 					onclick="location.href='${pageContext.request.contextPath}/notice/write';">글쓰기</button>
 			</c:if>
-		</div>
+		</div> --%>
+        <div class="page-navigation">
+            <c:choose>
+                <c:when test="${dataCount == 0}">
+                    <div class="page-numbers">등록된 공지사항이 없습니다.</div>
+                </c:when>
+                <c:otherwise>
+                    <c:if test="${startPage > 1}">
+                        <a href="${listUrl}${empty param.kwd ? '?' : '&'}page=${startPage - 1}" class="prev-page">&lt;&lt;</a>
+                    </c:if>
+
+                    <div class="page-numbers">
+                        <c:forEach var="i" begin="${startPage}" end="${endPage}">
+                            <c:choose>
+                                <c:when test="${i == page}">
+                                    <span class="current-page" style="font-weight:bold; color:red;">${i}</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="${listUrl}${empty param.kwd ? '?' : '&'}page=${i}">${i}</a>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                    </div>
+
+                    <c:if test="${endPage < total_page}">
+                        <a href="${listUrl}${empty param.kwd ? '?' : '&'}page=${endPage + 1}" class="next-page">&gt;&gt;</a>
+                    </c:if>
+                </c:otherwise>
+            </c:choose>
+
+            <c:if test="${sessionScope.loginUser.userSeq == 1}">
+                <button class="button" type="button" style="float: right;"
+                        onclick="location.href='${pageContext.request.contextPath}/notice/write';">글쓰기</button>
+            </c:if>
+        </div>
 	</div>
 
 <script>
@@ -83,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // 이전 버튼 클릭 시
     document.querySelector(".prev-page").addEventListener("click", function (event) {
         if (currentPage <= 1) {
-            event.preventDefault(); 
+            event.preventDefault();
             alert("첫 페이지입니다.");
         }
     });
@@ -91,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // 다음 버튼 클릭 시
     document.querySelector(".next-page").addEventListener("click", function (event) {
         if (currentPage >= maxPage) {
-            event.preventDefault(); 
+            event.preventDefault();
             alert("마지막 페이지입니다.");
         }
     });

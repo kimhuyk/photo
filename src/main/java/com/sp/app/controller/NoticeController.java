@@ -32,50 +32,50 @@ public class NoticeController {
 	@Autowired
 	private NoticeService service;
 	// 공지사항 리스트
-	@RequestMapping("list")
-	public String listNotice(@RequestParam(value = "page", defaultValue = "1") int current_page,
-			@RequestParam(defaultValue = "all") String schType,
-			@RequestParam(defaultValue = "") String kwd,
-			HttpServletRequest req,
-			Model model) throws Exception {
-		
-		String cp = req.getContextPath();
-		// 페이지당 몇개 표출할지
-		int size = 5;
-		int total_page;
-		int dataCount;
-		
-		if (req.getMethod().equalsIgnoreCase("GET")) { // GET 방식인 경우
-			kwd = URLDecoder.decode(kwd, "utf-8");
-		}
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("schType", schType);
-		map.put("kwd", kwd);
-		
-		dataCount = service.dataCount(map);
-		total_page = myUtil.pageCount(dataCount, size);
-		
-		// total_page가 0인 경우에는 1로 설정
-	    if (total_page == 0) {
-	        total_page = 1;
-	    }
-		
-		// 다른 사람이 자료를 삭제하여 전체 페이지수가 변화 된 경우
-		if (total_page < current_page) {
-			current_page = total_page;
-		}	
-		
-		// 리스트에 출력할 데이터를 가져오기
-		int offset = (current_page - 1) * size;
-		if (offset < 0) offset = 0;
-		map.put("offset", offset);
-		map.put("size", size);
-				
-		// 글 리스트
-		List<Notice> list = service.listNotice(map);
-		
-		 // 📌 디버깅 코드 추가 (리스트 데이터 확인)
+//	@RequestMapping("list")
+//	public String listNotice(@RequestParam(value = "page", defaultValue = "1") int current_page,
+//			@RequestParam(defaultValue = "all") String schType,
+//			@RequestParam(defaultValue = "") String kwd,
+//			HttpServletRequest req,
+//			Model model) throws Exception {
+//
+//		String cp = req.getContextPath();
+//		// 페이지당 몇개 표출할지
+//		int size = 1;
+//		int total_page;
+//		int dataCount;
+//
+//		if (req.getMethod().equalsIgnoreCase("GET")) { // GET 방식인 경우
+//			kwd = URLDecoder.decode(kwd, "utf-8");
+//		}
+//
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("schType", schType);
+//		map.put("kwd", kwd);
+//
+//		dataCount = service.dataCount(map);
+//		total_page = myUtil.pageCount(dataCount, size);
+//
+//		// total_page가 0인 경우에는 1로 설정
+//	    if (total_page == 0) {
+//	        total_page = 1;
+//	    }
+//
+//		// 다른 사람이 자료를 삭제하여 전체 페이지수가 변화 된 경우
+//		if (total_page < current_page) {
+//			current_page = total_page;
+//		}
+//
+//		// 리스트에 출력할 데이터를 가져오기
+//		int offset = (current_page - 1) * size;
+//		if (offset < 0) offset = 0;
+//		map.put("offset", offset);
+//		map.put("size", size);
+//
+//		// 글 리스트
+//		List<Notice> list = service.listNotice(map);
+//
+//		 // 📌 디버깅 코드 추가 (리스트 데이터 확인)
 //	    System.out.println("===== 공지사항 리스트 확인 =====");
 //	    if (list == null || list.isEmpty()) {
 //	        System.out.println("공지사항 데이터가 없습니다.");
@@ -87,40 +87,107 @@ public class NoticeController {
 //	        }
 //	    }
 //	    System.out.println("================================");
-//	    
+//
 //	    System.out.println("======= map 값 확인 =======");
 //	    System.out.println("offset: " + map.get("offset"));
 //	    System.out.println("size: " + map.get("size"));
 //	    System.out.println("===========================");
-	    
-	    
-		String query = "";
-		String listUrl = cp + "/notice/list";
-		String articleUrl = cp + "/notice/article?page=" + current_page;
-		if (kwd.length() != 0) {
-			query = "schType=" + schType + "&kwd=" + URLEncoder.encode(kwd, "utf-8");
-		}
-		
-		if (query.length() != 0) {
+//
+//
+//		String query = "";
+//		String listUrl = cp + "/notice/list";
+//		String articleUrl = cp + "/notice/article?page=" + current_page;
+//		if (kwd.length() != 0) {
+//			query = "schType=" + schType + "&kwd=" + URLEncoder.encode(kwd, "utf-8");
+//		}
+//
+//		if (query.length() != 0) {
+//			listUrl += "?" + query;
+//			articleUrl = cp + "/notice/article?page=" + current_page + "&" + query;
+//		}
+//
+//		String paging = myUtil.paging(current_page, total_page, listUrl);
+//
+//		model.addAttribute("list", list);
+//		model.addAttribute("page", current_page);
+//		model.addAttribute("dataCount", dataCount);
+//		model.addAttribute("size", size);
+//		model.addAttribute("total_page", total_page);
+//		model.addAttribute("articleUrl", articleUrl);
+//		model.addAttribute("paging", paging);
+//
+//		model.addAttribute("schType", schType);
+//		model.addAttribute("kwd", kwd);
+//
+//		return "notice/list";
+//	}
+    @RequestMapping("list")
+    public String listNotice(@RequestParam(value = "page", defaultValue = "1") int current_page,
+                             @RequestParam(defaultValue = "all") String schType,
+                             @RequestParam(defaultValue = "") String kwd,
+                             HttpServletRequest req,
+                             Model model) throws Exception {
+
+        String cp = req.getContextPath();
+
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        // size 수정
+        int size = 3;
+        int dataCount = service.dataCount(map);
+        int total_page = myUtil.pageCount(dataCount, size);
+
+        if (total_page == 0) total_page = 1;
+        if (total_page < current_page) current_page = total_page;
+
+        int offset = (current_page - 1) * size;
+        if (offset < 0) offset = 0;
+
+        map.put("schType", schType);
+        map.put("kwd", kwd);
+        map.put("offset", offset);
+        map.put("size", size);
+
+        List<Notice> list = service.listNotice(map);
+
+        // 페이징 블록 계산 추가
+        int blockSize = 5; // 하단에 보여줄 페이지 번호 개  10개로 변경
+
+        // 현재 속한 블록의 시작 페이지와 끝 페이지 계산 로직
+        int startPage = ((current_page - 1) / blockSize) * blockSize + 1;
+        int endPage = startPage + blockSize - 1;
+        if (endPage > total_page) {
+            endPage = total_page;
+        }
+
+        // 검색어 유지 URL 만들기 (기존 로직 유지)
+        String query = "";
+        if (kwd.length() != 0) {
+            query = "schType=" + schType + "&kwd=" + URLEncoder.encode(kwd, "utf-8");
+        }
+
+        String listUrl = cp + "/notice/list";
+        String articleUrl = cp + "/notice/article?page=" + current_page;
+
+        if (query.length() != 0) {
 			listUrl += "?" + query;
-			articleUrl = cp + "/notice/article?page=" + current_page + "&" + query;
+			articleUrl += "&" + query;
 		}
-		
-		String paging = myUtil.paging(current_page, total_page, listUrl);
-		
-		model.addAttribute("list", list);
-		model.addAttribute("page", current_page);
-		model.addAttribute("dataCount", dataCount);
-		model.addAttribute("size", size);
-		model.addAttribute("total_page", total_page);
-		model.addAttribute("articleUrl", articleUrl);
-		model.addAttribute("paging", paging);
 
-		model.addAttribute("schType", schType);
-		model.addAttribute("kwd", kwd);
+        model.addAttribute("list", list);
+        model.addAttribute("page", current_page);
+        model.addAttribute("dataCount", dataCount);
+        model.addAttribute("articleUrl", articleUrl);
+        model.addAttribute("total_page", total_page);
 
-		return "notice/list";
-	}
+        // JSP로 계산된 블록 변수들 넘기기
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        model.addAttribute("blockSize", blockSize);
+        model.addAttribute("listUrl", listUrl);
+
+        return "notice/list";
+    }
 	// 공지사항 글 보기 
 	@GetMapping("article")
 	public String article(@RequestParam long noticeSeq,
@@ -128,9 +195,11 @@ public class NoticeController {
 			@RequestParam(defaultValue = "all") String schType,
 			@RequestParam(defaultValue = "") String kwd,
 			Model model) throws Exception {
-		
-		kwd = URLDecoder.decode(kwd, "utf-8");
-		
+
+        if(kwd != null && !kwd.isEmpty()) {
+            kwd = URLDecoder.decode(kwd, "utf-8");
+        }
+
 		String query = "page=" + page;
 		if (kwd.length() != 0) {
 			query += "&schType=" + schType + "&kwd=" + URLEncoder.encode(kwd, "UTF-8");
@@ -145,8 +214,8 @@ public class NoticeController {
 		map.put("schType", schType);
 		map.put("kwd", kwd);
 		map.put("noticeSeq", noticeSeq);
-		
-		Notice prevDto = service.findByPrev(map);
+
+        Notice prevDto = service.findByPrev(map);
 		Notice nextDto = service.findByNext(map);
 		
 		// 파일 리스트 넣을거면 여기
@@ -156,7 +225,6 @@ public class NoticeController {
 		model.addAttribute("nextDto", nextDto);
 		model.addAttribute("page", page);
 		model.addAttribute("query", query);
-
 		return "notice/article";
 	}
 	
