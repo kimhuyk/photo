@@ -38,30 +38,6 @@ function deletePhoto() {
     }
 }
 
-
-//////////////////////////////////////
-
-	// 모달창 이미지랑 열수잇게하는거 이름 넣고싶으면 이름컬럼도 넣어야댐
-	function openpictureModal(fileNum, imgSrc, caption, userName) {
-		console.log("이미지 경로:", imgSrc); // 확인용
-
-		if (!imgSrc || imgSrc.trim() === '') {
-			alert("사진이 없습니다.");
-			return;
-		}
-
-		document.getElementById("modalImage").src = imgSrc;
-		document.getElementById("modalCaption").innerText = caption;
-		document.getElementById("fileNum").value = fileNum; // 폼의 hidden input 업데이트
-    	document.getElementById("userName").innerText = "등록자: " + userName; // 작성자 이름 추가
-		// 모달 
-		document.getElementById("photoModal").style.display = "block"; // 모달 표시
-	}
-	// 모달닫기
-	function closepictureModal() {
-		document.getElementById("photoModal").style.display = "none"; // 모달 숨기기
-	}
-//////////////////////////////////////
 	// 다운로드
 	function downloadPhoto() {
 		const fileNum = document.getElementById("fileNum").value;
@@ -71,17 +47,10 @@ function deletePhoto() {
 		}
 		window.location.href = contextPath + "/photo/download?fileNum=" + fileNum;
 	}
-//////////////////////////////////////
-	// 모달창 밖에 클릭하면 모달창이 꺼지는 스크립트
-	window.onclick = function(event) {
-		if (event.target == document.getElementById('photoModal')) {
-			closepictureModal();
-		}
-	}
 	
-//////////////////////////////////////
-// upload로 사진 등록하게 되면 /app/photo 사이트 photo dream 밑으로 불러오는
-// 가로로 3개씩 채우면서 가로로 3개가 차면 다음줄로 자동 줄생성되서 3 3 3 만들수있게 하는 스크립트
+    //////////////////////////////////////
+    // upload로 사진 등록하게 되면 /app/photo 사이트 photo dream 밑으로 불러오는
+    // 가로로 3개씩 채우면서 가로로 3개가 차면 다음줄로 자동 줄생성되서 3 3 3 만들수있게 하는 스크립트
 	//loadPhoto 함수를 전역에서 정의
 	function loadPhoto() {
         let url = (typeof contextPath !== "undefined") ? contextPath : "/app";

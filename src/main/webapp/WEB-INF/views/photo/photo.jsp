@@ -93,7 +93,9 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/photo.js"></script>
-<jsp:include page="/WEB-INF/views/layout/header.jsp" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/modal.js"></script>
+
+    <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 </head>
 <body style="background-color: #1c1c1c;">>
 <!-- 사진 리스트 영역 (아래로 이동됨) -->

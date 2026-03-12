@@ -83,18 +83,20 @@
         box-sizing: border-box;
     }
 </style>
-    <title>Home</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/home.css?v=masonry">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/homesearch.css">
-    <%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/photo.css"> --%>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script type="text/javascript">
-        var contextPath = "${pageContext.request.contextPath}";
-    </script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/photo.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home.js"></script>
-    <jsp:include page="/WEB-INF/views/layout/header.jsp" />
+<title>Home</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/home.css?v=masonry">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/homesearch.css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script type="text/javascript">
+    var contextPath = "${pageContext.request.contextPath}";
+</script>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/photo.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/modal.js"></script>
+<jsp:include page="/WEB-INF/views/layout/header.jsp" />
 </head>
 <body style="background-color: #121212;">
 <div class="home-wrap">
