@@ -38,16 +38,6 @@ function deletePhoto() {
     }
 }
 
-	// 다운로드
-	function downloadPhoto() {
-		const fileNum = document.getElementById("fileNum").value;
-		if (!fileNum || fileNum.trim() === '') {
-			alert("다운로드할 수 있는 사진이 없습니다.");
-			return;
-		}
-		window.location.href = contextPath + "/photo/download?fileNum=" + fileNum;
-	}
-	
     //////////////////////////////////////
     // upload로 사진 등록하게 되면 /app/photo 사이트 photo dream 밑으로 불러오는
     // 가로로 3개씩 채우면서 가로로 3개가 차면 다음줄로 자동 줄생성되서 3 3 3 만들수있게 하는 스크립트

@@ -23,3 +23,13 @@
             closepictureModal();
         }
     }
+
+    // 다운로드
+    function downloadPhoto() {
+        const fileNum = document.getElementById("fileNum").value;
+        if (!fileNum || fileNum.trim() === '') {
+            alert("다운로드할 수 있는 사진이 없습니다.");
+            return;
+        }
+        window.location.href = contextPath + "/photo/download?fileNum=" + fileNum;
+    }
