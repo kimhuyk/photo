@@ -22,7 +22,7 @@ display: none;
 	href="${pageContext.request.contextPath}/resources/css/home.css">
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user.js?v=2.0"></script>
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 </head>
 <body>	
@@ -31,7 +31,7 @@ display: none;
         <form id="userForm" name="userForm" method="POST" action="${pageContext.request.contextPath}/user/user">
             <div class="user-group">
                 <label for="userId">아이디</label>
-                <input type="text" id="userId" name="userId" placeholder="아이디 입력" onchange="checkId()" value="${dto.userId}" ${mode=="update" ? "readonly" : ""}>
+                <input type="text" id="userIdCheck" name="userId" placeholder="아이디 입력" onchange="checkId()" value="${dto.userId}" ${mode=="update" ? "readonly" : ""}>
                 <span class="userId_ok" style="display:none;">사용 가능한 아이디입니다.</span>
 				<span class="userId_already" style="display:none; color: red;">누군가 이 아이디를 사용하고 있어요.</span>                
             </div>

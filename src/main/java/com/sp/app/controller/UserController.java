@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sp.app.common.BCryptUtil;
 import com.sp.app.domain.SessionInfo;
 import com.sp.app.domain.User;
 import com.sp.app.service.UserService;
@@ -32,7 +31,7 @@ public class UserController {
 	/*
 	 * @Autowired private BCryptUtil bcryptutil;
 	 */
-	
+
 	@RequestMapping("")
 	public String userForm(Model model) {
 		model.addAttribute("user", "user");
@@ -46,8 +45,8 @@ public class UserController {
 				Model model) {
 			try {
 				// 회원가입 전 비밀번호 암호화
-	            String encodedPassword = BCryptUtil.encrypt(dto.getUserPwd());
-	            dto.setUserPwd(encodedPassword); // 암호화된 비밀번호를 DTO에 다시 설정
+//	            String encodedPassword = BCryptUtil.encrypt(dto.getUserPwd());
+//	            dto.setUserPwd(encodedPassword); // 암호화된 비밀번호를 DTO에 다시 설정
 				
 				service.insertUser(dto);
 			} catch (DuplicateKeyException e) {
@@ -138,12 +137,12 @@ public class UserController {
 				return "redirect:/";
 			} 
 
-			if(! BCryptUtil.matches(userPwd, dto.getUserPwd())) {
-				model.addAttribute("mode", mode);
-				model.addAttribute("message", "패스워드가 일치하지 않습니다.");
-				
-				return "/user/pwd";
-			}
+//			if(userPwd, dto.getUserPwd()) {
+//				model.addAttribute("mode", mode);
+//				model.addAttribute("message", "패스워드가 일치하지 않습니다.");
+//
+//				return "/user/pwd";
+//			}
 			model.addAttribute("dto", dto);
 			model.addAttribute("mode", "update");
 			
@@ -162,8 +161,8 @@ public class UserController {
 				dto.setUserSeq(info.getUserSeq());
 				
 				if (dto.getUserPwd() != null && !dto.getUserPwd().isEmpty()) {
-		            String encodedPassword = BCryptUtil.encrypt(dto.getUserPwd());
-		            dto.setUserPwd(encodedPassword); // 암호화된 비밀번호를 DTO에 다시 설정
+//		            String encodedPassword = BCryptUtil.encrypt(dto.getUserPwd());
+//		            dto.setUserPwd(encodedPassword); // 암호화된 비밀번호를 DTO에 다시 설정
 		        }
 				
 				service.updateUser(dto);

@@ -1,17 +1,18 @@
 // ID 중복 검사
 function checkId() {
-    var userId = $('#userId').val();  // #userId 요소에서 값 가져오기
+    let userId = $('#userIdCheck').val();  // #userId 요소에서 값 가져오기
+    let url = (typeof contextPath !== "undefined") ? contextPath : "/app";
 
     // 아이디 길이가 4글자 이상일 때만 검사
-    if (userId.length < 2) {
-        $('.userId_ok').css("display", "none");
-        $('.userId_already').css("display", "none");
+    if (!userId || userId.length < 2) {
+        $('.userId_ok').hide();
+        $('.userId_already').hide();
         return;  // 길이가 4자 미만이면 검사하지 않음
     }
 
     // AJAX 요청을 통해 아이디 중복 검사
     $.ajax({
-        url: '/app/user/user_idCheck',  // 컨트롤러에서 url 직접받기
+        url: url + '/user/user_idCheck',  // 컨트롤러에서 url 직접받기
         type: 'post',  // POST 방식으로 전송
         data: { userId: userId },  
         success: function(response) {
@@ -21,8 +22,7 @@ function checkId() {
             } else {  // 이미 존재할때
                 $('.userId_already').css("display", "inline-block");
                 $('.userId_ok').css("display", "none");
-                alert("아이디를 다시 입력해주세요");
-                //$('#userId').val('');  // 아이디 입력란 초기화
+               // $('#userIdCheck').val('');  // 아이디 입력란 초기화
             }
         },
         error: function() {
@@ -33,7 +33,7 @@ function checkId() {
 
 // input에 값이 입력될 때마다 실시간으로 checkId() 함수 호출
 $(document).ready(function() {
-    $('#userId').on('input', function() {
+    $('#userIdCheck').on('input', function() {
         checkId();
     });
 });
