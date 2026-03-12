@@ -69,7 +69,7 @@ $(document).ready(function() {
  
                 const imageItem = 
 	                '<div class="image-item">' +
-	                    '<img src="' + imageUrl + '" alt="' + item.originalFileName + '" ' +
+	                    '<img loading="lazy" src="' + imageUrl + '" alt="' + item.originalFileName + '" ' +
 	                         'this.onerror=null; this.src=\'https://placehold.co/300x200/cccccc/333333?text=Image+Not+Found\';">' +
 	                    '<div class="image-info">' +
 	                        '<div class="image-title">' + item.title + '</div>' +
