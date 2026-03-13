@@ -57,7 +57,6 @@ $(function() {
 
     const base = (typeof contextPath !== "undefined") ? contextPath : "";
 
-    // AJAX를 이용해 PhotoController에서 데이터 가져오기
     $.ajax({
         url: '/app/photo/loadPhoto.do',
         type: 'GET',
@@ -78,14 +77,14 @@ $(function() {
                 // 사이즈 패턴 결정
                 let sizeClass = sizePatterns[index % sizePatterns.length];
 
-                let imgPath = base + "/uploads/photo/" + photo.savefileName;
+                let imgPath = base + "/uploads/photo/" + photo.saveFileName;
 
                 // 카드 요소 생성
                 html += `
                     <div class="home-card ${sizeClass}" style="background-image: url('${imgPath}');">
-                      <a href="javascript:void(0);" onclick="openpictureModal('${photo.fileNum}', '${imgPath}', '${photo.originalfileName}', '${photo.userName}')">
+                      <a href="javascript:void(0);" onclick="openpictureModal('${photo.fileNum}', '${imgPath}', '${photo.originalFileName}', '${photo.userName}')">
                         <div class="home-card-overlay">
-                          <p class="home-card-title">${photo.originalfileName}</p>
+                          <p class="home-card-title">${photo.originalFileName}</p>
                           <span class="home-card-meta">${photo.userName} · ${(photo.regDate ? photo.regDate.substring(0, 10) : "")}</span>
                         </div>
                       </a>

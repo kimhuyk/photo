@@ -64,7 +64,7 @@ function deletePhoto() {
                     }
 
                     // 이미지 경로 설정 (콘솔에 찍힌 정상 경로 사용)
-                    let imgPath = url + '/uploads/photo/' + photo.savefileName;
+                    let imgPath = url + '/uploads/photo/' + photo.saveFileName;
 
                     // figure 엘리먼트 생성 및 속성 설정
                     const figure = $('<figure>').addClass('photo-item')
@@ -72,14 +72,14 @@ function deletePhoto() {
                             , `event.preventDefault(); openpictureModal(
                                 '${photo.fileNum}'
                                 , '${imgPath}'
-                                , '${photo.originalfileName}'
+                                , '${photo.originalFileName}'
                                 , '${photo.userName}')`)
                         .append(
                             $('<img>').attr({
                                 src: imgPath,
-                                alt: photo.originalfileName
+                                alt: photo.originalFileName
                             }),
-                            $('<figcaption>').addClass('caption').text(photo.originalfileName)
+                            $('<figcaption>').addClass('caption').text(photo.originalFileName)
                         );
                     $currentRow.append(figure);
                 });

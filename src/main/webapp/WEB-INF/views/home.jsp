@@ -137,14 +137,7 @@
         <div id="home-filter" class="middle-container" style="background-color: black;"> </div>
     </section>
     <div class="home-grid">
-        <c:if test="${not empty list}">
-            <c:forEach var="dto" items="${list}">
-                <div class="grid-item" style="cursor:pointer;"
-                     onclick="openpictureModal('${dto.fileNum}', '${pageContext.request.contextPath}/uploads/photo/${dto.saveFileName}', '${dto.originalFileName}', '${dto.userName}')">
-                    <img loading="lazy" src="${pageContext.request.contextPath}/uploads/photo/${dto.saveFileName}" alt="${dto.originalFileName}">
-                </div>
-            </c:forEach>
-        </c:if>
+
     </div>
 </div>
 
@@ -165,21 +158,5 @@
     </div>
 </div>
 
-<script>
-    function homePhotos(list) {
-        let html = "";
-        list.forEach(item => {
-            const imgUrl = `${contextPath}/uploads/photo/${item.saveFileName}`;
-
-            html += `
-            <div class="photo-item" onclick="openpictureModal(...)">
-                <img src="${imgUrl}">
-                <div class="caption">${item.title}</div>
-            </div>
-        `;
-        });
-        $('.home-grid').html(html);
-    }
-</script>
 </body>
 </html>
