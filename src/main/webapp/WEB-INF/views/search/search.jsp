@@ -5,8 +5,10 @@
 <head>
 <title>검색 테스트</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/search.css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/modal.js"></script>
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 </head>
 <body>
@@ -37,12 +39,26 @@
             </div>
         </div>
     </div>
+    <div id="photoModal" class="modalpicture" style="display: none;">
+        <div class="modalpicture-content">
+            <span class="closepicture" onclick="closepictureModal()">&times;</span>
+            <img id="modalImage" src="" alt="" loading="lazy">
+            <p id="modalCaption" style="margin-top: 15px; font-size: 17px;"></p>
+            <p id="userName"></p>
+            <div id="userInfo" data-user-seq="${sessionScope.loginUser.userSeq}"></div>
+            <c:choose>
+                <c:when test="${sessionScope.loginUser.userSeq == 1}">
+                    <button id="deleteButton" onclick="deletePhoto()" class="btn btn-danger">삭제</button>
+                </c:when>
+            </c:choose>
+            <button onclick="downloadPhoto()" class="btn btn-primary">Download</button>
+        </div>
+    </div>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-	var searchData = ${searchMainJson};	//home에서 검색했을시 파라미터를 같이 넘겨야 검색했을대 바로 결과 값 출력
-    var searchKeyword = '${keyword}';	// 원래 하던방식은 검색해서 페이지 이동 후 탭을바꿔야 값 출력해서 수정
-    var contextPath = '${pageContext.request.contextPath}';
+	let searchData = ${searchMainJson};	//home에서 검색했을시 파라미터를 같이 넘겨야 검색했을대 바로 결과 값 출력
+    let searchKeyword = '${keyword}';	// 원래 하던방식은 검색해서 페이지 이동 후 탭을바꿔야 값 출력해서 수정
+    let contextPath = '${pageContext.request.contextPath}';
 </script>
 <script>
 $(document).ready(function() {
@@ -106,7 +122,7 @@ $(document).ready(function() {
             resultsContainer.html('<div class="initial-state"><i class="fas fa-search"></i><p>공지사항 검색 결과가 없습니다.</p></div>');
         }
     }
-////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     // --- 검색 실행 함수 ---
     function searchForm() {
         const keyword = $('#searchInput').val();

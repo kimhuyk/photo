@@ -69,15 +69,15 @@ public class PhotoController {
 	    System.out.println("dto: " + dto); // DTO가 제대로 조회되는지 확인
 
 	    if (dto != null) {
-	        File file = new File(pathname, dto.getSavefileName());
+	        File file = new File(pathname, dto.getSaveFileName());
 	        System.out.println("파일 존재 여부: " + file.exists()); // 파일이 존재하는지 확인
 
-	        boolean b = fileManager.doFileDownload(dto.getSavefileName(),
-	                dto.getOriginalfileName(), pathname, resp);
+	        boolean b = fileManager.doFileDownload(dto.getSaveFileName(),
+	                dto.getOriginalFileName(), pathname, resp);
 	        if (b) {
 	            return null;
 	        } else {
-	            System.err.println("파일 다운로드 실패: " + dto.getSavefileName());
+	            System.err.println("파일 다운로드 실패: " + dto.getSaveFileName());
 	        }
 	    } else {
 	        System.err.println("해당 fileNum(" + fileNum + ")에 대한 파일 정보 없음");
