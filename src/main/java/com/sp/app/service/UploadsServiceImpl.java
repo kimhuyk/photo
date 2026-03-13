@@ -24,8 +24,8 @@ public class UploadsServiceImpl implements UploadsService{
 			
 			String saveFilename = fileManager.doFileUpload(dto.getSelectFile(), pathname);
 			if (saveFilename != null) {
-				dto.setSavefileName(saveFilename);
-				dto.setOriginalfileName(dto.getSelectFile().getOriginalFilename());
+				dto.setSaveFileName(saveFilename);
+				dto.setOriginalFileName(dto.getSelectFile().getOriginalFilename());
 				dto.setFilePath(pathname);
 				
 				mapper.insertPhoto(dto);

@@ -5,6 +5,7 @@ import java.io.File;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.sp.app.common.FileManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,8 +23,8 @@ public class UploadsController {
 	@Autowired
 	private UploadsService service;
 	
-//	@Autowired
-//	private FileManager fileManager;
+	@Autowired
+	private FileManager fileManager;
 	
 	@RequestMapping("")
 	public String list(HttpServletRequest req,
@@ -60,7 +61,7 @@ public class UploadsController {
 		try {
 			service.insertPhoto(dto, pathname);
 			model.addAttribute("message", "성공적으로 등록되었습니다.");
-			String fileUrl = "/uploads/photo/" + dto.getSavefileName(); //클라이언트에서 접근할 수 있는 URL
+			String fileUrl = "/uploads/photo/" + dto.getSaveFileName(); //클라이언트에서 접근할 수 있는 URL
 			model.addAttribute("fileUrl", fileUrl); // 이 URL을 클라이언트로 전달	//굳이 있어야되나 싶음
 			
 			return "redirect:/photo";
