@@ -1,5 +1,5 @@
 body {
-	background-color: #121212;
+	background-color: #1c1c1c;
 	color: white;
 	font-family: Arial, sans-serif;
 }
@@ -10,6 +10,7 @@ body {
 	background: #2c2c2c;
 	padding: 20px;
 	border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
 }
 
 .notice-title {

@@ -23,7 +23,7 @@
 }
 
 .justify-content-md-center {
-    background-color: var(--container-color);
+    background-color: #1c1c1c;
     padding: 2rem;
     border-radius: 0.8rem;
     box-shadow: 0 8px 32px hsla(230, 75%, 15%, .2);

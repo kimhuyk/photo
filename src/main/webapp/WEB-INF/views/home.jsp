@@ -98,7 +98,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/modal.js"></script>
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 </head>
-<body style="background-color: #121212;">
+<body style="background-color: #1c1c1c;">
 <div class="home-wrap">
     <!-- Hero -->
     <section class="home-hero">

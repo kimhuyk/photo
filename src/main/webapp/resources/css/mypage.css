@@ -1,7 +1,7 @@
 /* 공통 스타일 */
 body {
     font-family: Arial, sans-serif;
-    background-color: #121212;
+    background-color: #1c1c1c;
     color: #fff;
 }
 
@@ -21,9 +21,10 @@ h2, h3, h4 {
     max-width: 1200px;  /* 750px에서 1200px로 증가 */
     margin: 0 auto;
     padding: 30px;
-    background-color: #1c1c1c;
+    background-color: #121212;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+
 }
 
 /* 통합 레이아웃 */

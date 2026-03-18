@@ -82,12 +82,12 @@ $(function() {
                 // 카드 요소 생성
                 html += `
                     <div class="home-card ${sizeClass}" style="background-image: url('${imgPath}');">
-                      <a href="javascript:void(0);" onclick="openpictureModal('${photo.fileNum}', '${imgPath}', '${photo.originalFileName}', '${photo.userName}')">
-                        <div class="home-card-overlay">
-                          <p class="home-card-title">${photo.originalFileName}</p>
-                          <span class="home-card-meta">${photo.userName} · ${(photo.regDate ? photo.regDate.substring(0, 10) : "")}</span>
-                        </div>
-                      </a>
+                        <a href="javascript:void(0);" onclick="openpictureModal('${photo.fileNum}', '${imgPath}', '${photo.originalFileName}', '${photo.userName}')">
+                            <div class="home-card-overlay">
+                                <p class="home-card-title">${photo.originalFileName}</p>
+                                <span class="home-card-meta">${photo.userName} · ${(photo.regDate ? photo.regDate.substring(0, 10) : "")}</span>
+                            </div>
+                        </a>
                     </div>`;
             });
 

@@ -6,7 +6,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #121212;
+    background-color: #1c1c1c;
     color: #fff;
 }
 
@@ -29,7 +29,7 @@ h2, h3, h4 {
     padding: 30px;
     background-color: #1c1c1c;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
 }
 
 .main-title {
