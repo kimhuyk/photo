@@ -68,16 +68,6 @@ public class PhotoServiceImpl implements PhotoService{
 		return list;
 	}
 
-//	@Override
-//	public List<Photo> listPhoto(long fileNum) {
-//		try {
-//			return mapper.listPhoto(fileNum);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return Collections.emptyList(); 
-//		}
-//	}
-
 	@Override
 	public List<Photo> loadPhoto(long fileNum) {
 		try {
