@@ -78,7 +78,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home.js"></script>
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 </head>
-<body style="background-color: #1c1c1c;">
+<body>
 	<!--  여기부터 story jsp 화면단 만들기 -->
 	<div class="notice-container">
 	    <div class="notice-title">📢 스토리만들기</div>
