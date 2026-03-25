@@ -15,12 +15,12 @@ import lombok.ToString;
 @Data
 public class Photo {
 	private long fileNum;
+  private long userSeq;
 	private String saveFileName;
 	private String originalFileName;
 	private String filePath;
 	private String regDate;
 	private MultipartFile selectFile;
-	private long userSeq;
 	private String userName;
 
     public long getFileNum() {

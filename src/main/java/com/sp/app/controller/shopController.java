@@ -6,13 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping(value="shop")
 public class shopController {
-
-
-
+    //@Autowired
+    //private shopService service
 
     //마이페이지 연동 메소드
-    @RequestMapping("shoplist")
-    public String shop() throws Exception {
+    @RequestMapping("shopList")
+    public String shopList() throws Exception {
 
         return "/shop/shop";
     }
