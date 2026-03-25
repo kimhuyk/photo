@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sp.app.mapper.">
+    <select id="shopItem" resultType="com.sp.app.domain.Item" parameterType="map">
+        SELECT
+
+            I.ITEM_SEQ
+            , I.FILE_NUM
+            , I.ITEM_NAME
+            , I.ITEM_PRICE
+            , I.ITEM_STOCK
+            , I.ITEM_DESC
+            , I.REG_DATE
+            , I.CATEGORY
+            , P.ORIGINALFILENAME
+            , P.SAVEFILENAME
+        FROM SHOP_ITEM I
+        LEFT JOIN
+             PHOTO_FILE P ON I.FILE_NUM = P.FILE_NUM
+        WHERE 1=1
+        ORDER BY SI.REG_DATE;
+    </select>
+
+
+</mapper>
