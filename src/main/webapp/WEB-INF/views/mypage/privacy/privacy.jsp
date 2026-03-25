@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/privacy.css">
 </head>
-<body style="background-color: #121212;">
+<body style="background-color: #1c1c1c;">
     <!-- 헤더 -->
     <header class="header-top">
         <!-- 왼쪽 로고 -->

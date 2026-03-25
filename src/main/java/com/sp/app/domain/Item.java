@@ -8,8 +8,8 @@ import org.springframework.web.multipart.MultipartFile;
 @ToString
 public class Item {
     private long itemSeq;            // 상품 번호
-    private Integer itemPrice;           // 상품 가격
-    private Integer itemStock;           // 재고 수량
+    private Integer itemPrice;       // 상품 가격
+    private Integer itemStock;       // 재고 수량
     private int status;              // 상태(임시저장(0) , 등록(1) 구분)
     private String itemDesc;         // 상품 상세 설명
     private String regDate;          // 상품 등록일

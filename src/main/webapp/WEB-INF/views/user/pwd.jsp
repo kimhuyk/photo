@@ -77,7 +77,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/home.css">
 <%-- <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/photoStory.css"> --%>
+	href="${pageContext.request.contextPath}/resources/css/shopItem.css"> --%>
 	
 <script type="text/javascript">
     var contextPath = "${pageContext.request.contextPath}";

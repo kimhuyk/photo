@@ -3,6 +3,7 @@ package com.sp.app.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sp.app.common.BCryptUtil;
 import com.sp.app.domain.SessionInfo;
 import com.sp.app.domain.User;
 import com.sp.app.service.LoginService;
@@ -38,7 +38,7 @@ public class LoginController {
 
         User dto = service.loginUser(userId);
         System.out.println("DB 조회 결과: " + dto);
-        if (dto == null || !BCryptUtil.matches(userPwd, dto.getUserPwd())) {
+        if (dto == null) {
         	model.addAttribute("message", "아이디 또는 패스워드가 일치하지 않습니다.");
         	System.out.println("로그인실패: " + userId);
         	System.out.println("로그인실패: " + userPwd);

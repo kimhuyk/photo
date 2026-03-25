@@ -18,7 +18,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user.js"></script>
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 </head>
-<body style="background-color: #121212;">	
+<body style="background-color: #1c1c1c;">
 	<!-- 배송지 등록 form -->
 	<div class="features-1">
 		<div class="body-container">
