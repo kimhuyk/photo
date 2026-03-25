@@ -22,9 +22,9 @@ public class UploadsServiceImpl implements UploadsService{
 			
 			dto.setFileNum(fileNum);
 			
-			String saveFilename = fileManager.doFileUpload(dto.getSelectFile(), pathname);
-			if (saveFilename != null) {
-				dto.setSaveFileName(saveFilename);
+			String saveFileName = fileManager.doFileUpload(dto.getSelectFile(), pathname);
+			if (saveFileName != null) {
+				dto.setSaveFileName(saveFileName);
 				dto.setOriginalFileName(dto.getSelectFile().getOriginalFilename());
 				dto.setFilePath(pathname);
 				

@@ -18,14 +18,14 @@
 				#{fileNum}
 				, #{userSeq}
 				, #{userName}
-				, #{savefileName}
-				, #{originalfileName}
+				, #{saveFileName}
+				, #{originalFileName}
 				, #{filePath}
 				, SYSDATE
 			)
 	</insert>
-	
-	<select id="photofileSeq" resultType="long">
+
+    <select id="photofileSeq" resultType="long">
 	    SELECT photo_file_seq.nextval
 	    FROM dual
 	</select>

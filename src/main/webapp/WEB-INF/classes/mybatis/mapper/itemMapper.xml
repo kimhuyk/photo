@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sp.app.mapper.ItemMapper">
+
+    <insert id="insertShop" parameterType="com.sp.app.domain.Item">
+        INSERT INTO SHOP_ITEM
+            (
+              item_seq          -- 상품 고유 번호
+            , item_name         -- 상품명
+            , item_price        -- 가격
+            , item_stock        -- 재고 수량
+            , item_desc         -- 상품 설명
+            , category          -- 카테고리
+            , status            -- 상태값 (임시저장, 등록)
+            , savefilename
+            , originalfilename  -- 사진등록이름
+            , file_path         -- 사진저장위치
+            , reg_date          -- 등록일
+            )
+        VALUES
+            (
+              shop_item_seq.NEXTVAL
+            , #{itemName}
+            , #{itemPrice}
+            , #{itemStock}
+            , #{itemDesc}
+            , #{category}
+            , #{status}
+            , #{saveFileName}
+            , #{originalFileName}
+            , #{filePath}
+            , SYSDATE
+            )
+    </insert>
+
+    <select id="shopItemSeq" resultType="long">
+        SELECT shop_item_seq.nextval
+        FROM dual
+    </select>
+
+</mapper>

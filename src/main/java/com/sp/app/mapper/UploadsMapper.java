@@ -9,6 +9,6 @@ import com.sp.app.domain.Photo;
 @Mapper
 public interface UploadsMapper {
 	public void insertPhoto(Photo dto) throws SQLException;
-
+  public void insertShopItem(Photo dto) throws SQLException;
 	public long photofileSeq();
 }
