@@ -1,8 +1,9 @@
-package com.sp.app.service;
+package com.sp.app.service.serviceImpl;
 
 import java.util.List;
 import java.util.Map;
 
+import com.sp.app.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,7 @@ import com.sp.app.domain.Search;
 import com.sp.app.domain.User;
 import com.sp.app.mapper.SearchMapper;
 @Service
-public class SearchServiceImpl implements SearchService{
+public class SearchServiceImpl implements SearchService {
 	@Autowired
 	private SearchMapper mapper;
 	

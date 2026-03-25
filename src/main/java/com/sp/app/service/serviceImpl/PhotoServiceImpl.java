@@ -1,9 +1,10 @@
-package com.sp.app.service;
+package com.sp.app.service.serviceImpl;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import com.sp.app.service.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import com.sp.app.domain.Photo;
 import com.sp.app.mapper.PhotoMapper;
 
 @Service
-public class PhotoServiceImpl implements PhotoService{
+public class PhotoServiceImpl implements PhotoService {
 	@Autowired
 	private PhotoMapper mapper;
 

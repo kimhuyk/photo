@@ -1,5 +1,6 @@
-package com.sp.app.service;
+package com.sp.app.service.serviceImpl;
 
+import com.sp.app.service.UploadsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,7 +8,7 @@ import com.sp.app.common.FileManager;
 import com.sp.app.domain.Photo;
 import com.sp.app.mapper.UploadsMapper;
 @Service
-public class UploadsServiceImpl implements UploadsService{
+public class UploadsServiceImpl implements UploadsService {
 	@Autowired
 	private UploadsMapper mapper;	
 	

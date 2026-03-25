@@ -1,9 +1,10 @@
-package com.sp.app.service;
+package com.sp.app.service.serviceImpl;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import com.sp.app.service.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import com.sp.app.domain.Notice;
 import com.sp.app.mapper.NoticeMapper;
 
 @Service
-public class NoticeServiceImpl implements NoticeService{
+public class NoticeServiceImpl implements NoticeService {
 	@Autowired
 	private NoticeMapper mapper;
 	@Override

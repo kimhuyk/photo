@@ -1,9 +1,9 @@
-package com.sp.app.service;
+package com.sp.app.service.serviceImpl;
 
 import com.sp.app.common.FileManager;
 import com.sp.app.domain.Item;
 import com.sp.app.mapper.ItemMapper;
-import com.sp.app.mapper.UploadsMapper;
+import com.sp.app.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

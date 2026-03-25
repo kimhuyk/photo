@@ -1,9 +1,10 @@
-package com.sp.app.service;
+package com.sp.app.service.serviceImpl;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import com.sp.app.service.DeliveryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +15,7 @@ import com.sp.app.mapper.DeliveryMapper;
 
 
 @Service
-public class DeliveryServiceImpl implements DeliveryService{
+public class DeliveryServiceImpl implements DeliveryService {
 	@Autowired
 	private DeliveryMapper mapper;
 	

@@ -1,10 +1,11 @@
-package com.sp.app.service;
+package com.sp.app.service.serviceImpl;
 
 import java.sql.SQLException;
 import java.util.Map;
 
 import javax.transaction.Transactional;
 
+import com.sp.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ import com.sp.app.mapper.UserMapper;
 
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserMapper mapper;
 	
