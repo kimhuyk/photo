@@ -1,0 +1,304 @@
+*, *::before, *::after {
+    box-sizing: border-box; margin: 0; padding: 0;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #121212;
+    color: #1a1a1a;
+}
+
+.shop-section-label {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 48px 32px 0;
+}
+
+.shop-section-label p {
+    font-size: 15px;
+    font-weight: 400;
+    color: #aaa;
+    letter-spacing: 0.2px;
+}
+
+.shop-toolbar {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 20px 32px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.filter-tabs {
+    display: flex; gap: 6px; flex-wrap: wrap;
+}
+
+.filter-tab {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 2px;
+    color: rgba(255,255,255,0.4);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.filter-tab:hover {
+    border-color: rgba(255,255,255,0.35); color: rgba(255,255,255,0.7);
+}
+
+.filter-tab.active {
+    background: rgba(255,255,255,0.9);
+    border-color: rgba(255,255,255,0.9);
+    color: #121212;
+}
+
+.sort-select {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 2px;
+    color: rgba(255,255,255,0.45);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    padding: 7px 32px 7px 12px;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='rgba(255,255,255,0.3)'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+.sort-select option {
+    background: #1e1e1e; color: #e8e8e8;
+}
+
+.shop-container {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 32px 80px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    list-style: none;
+}
+
+.product-card {
+    background: #fff;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+}
+.product-card.hidden {
+    display: none;
+}
+
+.card-cover {
+    position: relative;
+    width: 100%;
+    /* aspect-ratio로 비율 고정, 사진마다 달라도 됨 */
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+}
+
+.card-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.55s ease;
+}
+.product-card:hover .card-cover img {
+    transform: scale(1.05);
+}
+
+/* 어두운 그라디언트 오버레이 */
+.card-cover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.28) 0%,
+            rgba(0,0,0,0.05) 40%,
+            rgba(0,0,0,0.45) 100%
+    );
+    pointer-events: none;
+}
+
+/* 커버 위 텍스트 레이어 */
+.card-cover-text {
+    position: absolute;
+    inset: 0;
+    padding: 16px 18px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.cover-collection {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+}
+
+.cover-bottom {
+    display: flex; flex-direction: column; gap: 10px;
+}
+
+.cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 1.7vw, 24px);
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+.cover-tags {
+    display: flex; flex-wrap: wrap; gap: 5px;
+}
+
+.cover-tag {
+    background: rgba(0,0,0,0.32);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 2px;
+    color: rgba(255,255,255,0.72);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.4px;
+    padding: 3px 8px;
+}
+
+/* 카드 하단 정보 */
+.card-bottom {
+    padding: 13px 15px 15px;
+    background: #fff;
+}
+
+.card-bottom-title {
+    font-size: 11.5px;
+    color: #222;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 2px;
+}
+
+.card-bottom-price {
+    font-size: 11.5px;
+    color: #777;
+    margin-bottom: 11px;
+}
+
+.card-bottom-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-detail {
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: #999;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s;
+}
+.btn-detail:hover {
+    color: #222;
+}
+
+.btn-cart {
+    margin-left: auto;
+    background: transparent;
+    border: 1px solid #d0d0d0;
+    border-radius: 2px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: #222;
+    padding: 6px 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.btn-cart:hover {
+    background: #222; border-color: #222; color: #fff;
+}
+
+.empty-state {
+    display: none;
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 0;
+    color: rgba(255,255,255,0.2);
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+/* See all 버튼 */
+.see-all-wrap {
+    display: flex;
+    justify-content: flex-end;
+    max-width: 1360px;
+    margin: 28px auto 0;
+    padding: 0 32px 48px;
+}
+.btn-see-all {
+    background: #ffffff;
+    border: none;
+    border-radius: 999px;
+    color: #1a1a1a;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    padding: 11px 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.3px;
+    transition: background 0.2s, color 0.2s;
+}
+.btn-see-all:hover {
+    background: #e0e0e0;
+}
+
+.btn-see-all i {
+    font-size: 11px;
+}
+
+/* ── 반응형 ── */
+@media (max-width: 1100px) {
+    .product-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px)  {
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+    .shop-container, .shop-toolbar, .shop-section-label, .see-all-wrap {
+        padding-left: 16px; padding-right: 16px; }
+}
+@media (max-width: 420px)  { .product-grid { grid-template-columns: 1fr; }
+
+}
