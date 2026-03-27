@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/home.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/iteminsert.css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home.js"></script>
@@ -19,28 +20,28 @@
 <jsp:include page="/WEB-INF/views/layout/header.jsp" />
 
 <!-- 페이지 헤더 -->
-<div class="page-header">
-    <div class="page-header-left">
-        <h1>상품 등록</h1>
-        <p>사진과 정보를 입력하고 판매를 시작하세요</p>
+    <div class="page-header">
+        <div class="page-header-left">
+            <h1>상품 등록</h1>
+            <p>사진과 정보를 입력하고 판매를 시작하세요</p>
+        </div>
+        <div class="step-indicator">
+            <div class="step active">
+                <div class="step-num">1</div>
+                <span>사진 &amp; 정보</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <span>가격 설정</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <span>검토 &amp; 등록</span>
+            </div>
+        </div>
     </div>
-    <div class="step-indicator">
-        <div class="step active">
-            <div class="step-num">1</div>
-            <span>사진 &amp; 정보</span>
-        </div>
-        <div class="step-line"></div>
-        <div class="step">
-            <div class="step-num">2</div>
-            <span>가격 설정</span>
-        </div>
-        <div class="step-line"></div>
-        <div class="step">
-            <div class="step-num">3</div>
-            <span>검토 &amp; 등록</span>
-        </div>
-    </div>
-</div>
 
 <!-- 폼 -->
 <form class="register-form" id="registerForm" name="registerForm" method="POST" action="${pageContext.request.contextPath}/admin/insertShop"
@@ -240,7 +241,9 @@
         });
 
         /* 드래그&드롭 */
-        mainZone.addEventListener('dragover', e => { e.preventDefault(); mainZone.classList.add('dragover'); });
+        mainZone.addEventListener('dragover', e => {
+            e.preventDefault(); mainZone.classList.add('dragover');
+        });
         mainZone.addEventListener('dragleave', () => mainZone.classList.remove('dragover'));
         mainZone.addEventListener('drop', e => {
             e.preventDefault();

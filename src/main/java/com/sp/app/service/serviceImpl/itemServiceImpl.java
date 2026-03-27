@@ -7,6 +7,10 @@ import com.sp.app.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class itemServiceImpl implements ItemService {
     @Autowired
@@ -31,20 +35,32 @@ public class itemServiceImpl implements ItemService {
 
             // 파일 업로드
             String saveFileName = fileManager.doFileUpload(dto.getSelectFile(), pathname);
-            if (saveFileName != null)  {
+            if (saveFileName != null) {
                 dto.setSaveFileName(saveFileName);
                 dto.setOriginalFileName(dto.getSelectFile().getOriginalFilename());
                 dto.setFilePath(pathname);
 
                 // SHOP_ITEM만 insert (PHOTO_FILE 건드리지 않음)
                 mapper.insertShop(dto);
-        } else {
-            throw new Exception("파일 업로드 실패. 파일 이름이 null입니다.");
-        }
+            } else {
+                throw new Exception("파일 업로드 실패. 파일 이름이 null입니다.");
+            }
 
         } catch (Exception e) {
             System.out.println("상품 등록 오류: " + e.getMessage());
         }
 
+    }
+
+    @Override
+    public List<Item> shopList(Map<String, Object> map) {
+        List<Item> list = null;
+        try {
+            list = mapper.shopList(map);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+        return list;
     }
 }

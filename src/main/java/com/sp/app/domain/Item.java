@@ -18,6 +18,7 @@ public class Item {
     private String saveFileName;     // 실제 저장된 사진 파일명
     private String originalFileName; // 사용자가 올린 원본 파일명
     private String filePath;         // 사진저장위치
+    //private String tags;
 
     private MultipartFile selectFile;
 

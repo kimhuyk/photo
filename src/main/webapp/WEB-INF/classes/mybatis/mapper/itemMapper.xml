@@ -39,4 +39,23 @@
         FROM dual
     </select>
 
+    <!-- Shop 부분 -->
+    <select id="shopList" resultType="com.sp.app.domain.Item" parameterType="map">
+        SELECT
+            I.ITEM_SEQ AS itemSeq
+             , I.ITEM_NAME AS itemName
+             , I.ITEM_PRICE AS itemPrice
+             , I.ITEM_STOCK AS itemStock
+             , I.ITEM_DESC AS itemDesc
+             , I.REG_DATE AS regDate
+             , I.CATEGORY AS category
+             , I.ORIGINALFILENAME AS originalFileName
+             , I.SAVEFILENAME AS saveFileName
+             , I.file_path AS filePath
+        FROM SHOP_ITEM I
+        WHERE 1=1
+        ORDER BY I.REG_DATE DESC
+    </select>
+
+
 </mapper>
