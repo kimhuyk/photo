@@ -122,7 +122,7 @@
                     '<div class="card-bottom-price">₩' + price + ' (VAT 별도)</div>' +
                     '<div class="card-bottom-actions">' +
                         '<button class="btn-detail" onclick="goDetail(' + item.itemSeq + ')">See details</button>' +
-                        '<button class="btn-cart">Add to cart</button>' +
+                        '<button class="btn-cart" onclick="addToCart(event, ' + item.itemSeq + ', \'' + item.itemName.replace(/'/g,"&#39;") + '\', ' + item.itemPrice + ', \'' + (item.category||'') + '\', \'' + encodeURIComponent(item.saveFileName||'') + '\')">Add to cart</button>' +
                     '</div>' +
                 '</div>';
 
@@ -137,6 +137,26 @@
     /* 상세 페이지 이동 */
     function goDetail(itemSeq) {
         location.href = contextPath + '/shop/shopdetail?itemSeq=' + itemSeq;
+    }
+
+    /* 카트 추가 */
+    function addToCart(e, itemSeq, itemName, itemPrice, category, saveFileName) {
+        e.stopPropagation();
+        var cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+        var exists = cartItems.some(function(i) { return i.itemSeq === itemSeq; });
+        if (exists) {
+            alert('이미 담긴 상품입니다.');
+            return;
+        }
+        cartItems.push({
+            itemSeq   : itemSeq,
+            itemName  : itemName,
+            itemPrice : itemPrice,
+            category  : category,
+            imgUrl    : contextPath + '/shop/image?saveFileName=' + saveFileName
+        });
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        alert(itemName + '\n장바구니에 담았습니다.');
     }
 
     /* 필터 & 정렬 */

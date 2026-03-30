@@ -21,6 +21,7 @@ public class Item {
     //private String tags;
 
     private MultipartFile selectFile;
+    private String subFileNames;            // 추가 사진 저장명 (콤마 구분)
 
     // 추가 정보
     private long userSeq;
@@ -136,5 +137,13 @@ public class Item {
 
     public void setSelectFile(MultipartFile selectFile) {
         this.selectFile = selectFile;
+    }
+
+    public String getSubFileNames() {
+        return subFileNames;
+    }
+
+    public void setSubFileNames(String subFileNames) {
+        this.subFileNames = subFileNames;
     }
 }

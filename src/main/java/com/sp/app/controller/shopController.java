@@ -58,7 +58,6 @@ public class shopController {
     public void shopImage(@RequestParam String saveFileName,
                           HttpServletResponse resp) {
         try {
-            // DB filePath 없이 itemSeq로 조회해서 filePath 가져오기
             Map<String, Object> map = new HashMap<>();
             List<Item> list = service.shopList(map);
             String filePath = null;
@@ -67,6 +66,16 @@ public class shopController {
                     filePath = item.getFilePath();
                     break;
                 }
+                // 추가 사진도 같은 경로에 저장되므로 filePath 재활용
+                if (item.getSubFileNames() != null) {
+                    for (String sub : item.getSubFileNames().split(",")) {
+                        if (saveFileName.equals(sub.trim())) {
+                            filePath = item.getFilePath();
+                            break;
+                        }
+                    }
+                }
+                if (filePath != null) break;
             }
             if (filePath == null) {
                 resp.sendError(HttpServletResponse.SC_NOT_FOUND);

@@ -1,7 +1,6 @@
 package com.sp.app.adminController;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -19,6 +18,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -40,7 +41,8 @@ public class ItemInsertController {
 	// 공지사항 리스트
 	@PostMapping("insertShop")
 	public String insertShop(@ModelAttribute Item dto,
-                           HttpServletRequest req, HttpSession session, Model model, RedirectAttributes redirectAttributes) throws Exception {
+	                         @RequestParam(value = "subImages", required = false) List<MultipartFile> subImages,
+	                         HttpServletRequest req, HttpSession session, Model model, RedirectAttributes redirectAttributes) throws Exception {
 
       SessionInfo info = (SessionInfo) session.getAttribute("loginUser");
       if (info == null) {
@@ -49,6 +51,8 @@ public class ItemInsertController {
       }
       dto.setUserSeq(info.getUserSeq());
       dto.setUserName(info.getUserName());
+
+      // subImages는 @RequestParam으로 직접 받아서 service에 바로 전달
 
       // SHOP페이지
       String root = session.getServletContext().getRealPath("/");
@@ -60,7 +64,7 @@ public class ItemInsertController {
       }
 
       try {
-          service.insertShop(dto, pathname);
+          service.insertShop(dto, subImages, pathname);
           model.addAttribute("Message", "등록 되었습니다.");
           return "redirect:/shop/shoplist";
 

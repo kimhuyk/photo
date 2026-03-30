@@ -16,6 +16,7 @@
             , savefilename
             , originalfilename  -- 사진등록이름
             , file_path         -- 사진저장위치
+            , sub_images
             , reg_date          -- 등록일
             )
         VALUES
@@ -30,6 +31,7 @@
             , #{saveFileName}
             , #{originalFileName}
             , #{filePath}
+            , #{subFileNames}
             , SYSDATE
             )
     </insert>
@@ -51,7 +53,8 @@
              , I.CATEGORY AS category
              , I.ORIGINALFILENAME AS originalFileName
              , I.SAVEFILENAME AS saveFileName
-             , I.file_path AS filePath
+             , I.FILE_PATH AS filePath
+             , I.SUB_IMAGES AS subFileNames
         FROM SHOP_ITEM I
         WHERE 1=1
         ORDER BY I.REG_DATE DESC
