@@ -1,0 +1,201 @@
+/* ── Shop Detail Modal ── */
+.sd-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.82);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+.sd-overlay.active {
+    display: flex;
+}
+
+.sd-modal {
+    background: #181818;
+    width: 92vw;
+    max-width: 1100px;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    position: relative;
+    scrollbar-width: none;
+}
+.sd-modal::-webkit-scrollbar { display: none; }
+
+/* 닫기 버튼 */
+.sd-close {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: #fff;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    z-index: 10;
+}
+.sd-close:hover { background: rgba(255,255,255,0.22); }
+
+/* ── 좌측: 사진 영역 ── */
+.sd-photos {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: #111;
+}
+
+.sd-main-photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+}
+
+.sd-sub-photos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    padding: 0 4px 4px;
+}
+
+.sd-sub-thumb {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    display: block;
+}
+.sd-sub-thumb:hover,
+.sd-sub-thumb.active {
+    opacity: 1;
+    outline: 2px solid rgba(255,255,255,0.6);
+    outline-offset: -2px;
+}
+
+/* ── 우측: 정보 영역 ── */
+.sd-info {
+    padding: 36px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-left: 1px solid rgba(255,255,255,0.06);
+}
+
+.sd-category {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+}
+
+.sd-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 2.5vw, 32px);
+    font-weight: 400;
+    color: #fff;
+    line-height: 1.25;
+}
+
+.sd-price-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.sd-price {
+    font-size: 26px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: -0.5px;
+}
+.sd-price-note {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+}
+
+.sd-divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+.sd-desc {
+    font-size: 13px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.5);
+    flex: 1;
+}
+
+.sd-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.sd-meta-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+}
+.sd-meta-row span:last-child {
+    color: rgba(255,255,255,0.55);
+}
+
+/* 카트 담기 버튼 */
+.sd-btn-cart {
+    width: 100%;
+    background: #fff;
+    border: none;
+    color: #121212;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background 0.2s;
+    margin-top: auto;
+}
+.sd-btn-cart:hover { background: #e0e0e0; }
+.sd-btn-cart.added {
+    background: #2e2e2e;
+    color: rgba(255,255,255,0.5);
+    cursor: default;
+}
+
+.sd-btn-cart-note {
+    text-align: center;
+    font-size: 10px;
+    color: rgba(255,255,255,0.18);
+    margin-top: 8px;
+    letter-spacing: 0.3px;
+}
+
+/* ── 반응형 ── */
+@media (max-width: 760px) {
+    .sd-modal {
+        grid-template-columns: 1fr;
+        width: 100vw;
+        max-width: 100vw;
+        max-height: 100vh;
+        border-radius: 0;
+    }
+    .sd-sub-photos { grid-template-columns: repeat(4, 1fr); }
+    .sd-info { padding: 24px 20px 24px; }
+}

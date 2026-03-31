@@ -35,19 +35,19 @@
     mainZone.addEventListener('drop', function(e) {
         e.preventDefault();
         mainZone.classList.remove('dragover');
-        var file = e.dataTransfer.files[0];
+        let file = e.dataTransfer.files[0];
         if (file) setMainPreview(file);
     });
 
     /* 추가 사진 슬롯 */
-    var subGrid  = document.getElementById('subGrid');
-    var subCount = document.getElementById('subCount');
-    var MAX_SUB  = 4;
-    var subFiles = new Array(MAX_SUB).fill(null);
+    let subGrid  = document.getElementById('subGrid');
+    let subCount = document.getElementById('subCount');
+    let MAX_SUB  = 4;
+    let subFiles = new Array(MAX_SUB).fill(null);
 
-    for (var i = 0; i < MAX_SUB; i++) {
+    for (let i = 0; i < MAX_SUB; i++) {
         (function(idx) {
-            var slot = document.createElement('div');
+            let slot = document.createElement('div');
                 slot.className = 'sub-photo-slot';
                 slot.dataset.index = idx;
                 slot.innerHTML =
@@ -59,12 +59,12 @@
                     '<span class="slot-plus"><i class="fas fa-plus"></i></span>';
             subGrid.appendChild(slot);
 
-            var input = slot.querySelector('input[type="file"]');
+            let input = slot.querySelector('input[type="file"]');
 
             input.addEventListener('change', function () {
-                var file = this.files[0];
+                let file = this.files[0];
                     if (!file || !file.type.startsWith('image/')) return;
-                var reader = new FileReader();
+                let reader = new FileReader();
                 reader.onload = function(ev) {
                     slot.querySelector('img').src = ev.target.result;
                     slot.classList.add('has-img');
@@ -83,29 +83,29 @@
     }
 
     subGrid.addEventListener('click', function (e) {
-        var btn = e.target.closest('.sub-remove');
+        let btn = e.target.closest('.sub-remove');
         if (!btn) return;
         e.stopPropagation();
-        var idx  = +btn.dataset.idx;
-        var slot = subGrid.querySelector('.sub-photo-slot[data-index="' + idx + '"]');
+        let idx  = +btn.dataset.idx;
+        let slot = subGrid.querySelector('.sub-photo-slot[data-index="' + idx + '"]');
 
             slot.querySelector('img').src = '';
             slot.classList.remove('has-img');
             slot.querySelector('input').value = '';
         subFiles[idx] = null;
         updateSubCount();
-    });
+    });1134567
 
     function updateSubCount() {
-        var n = subFiles.filter(Boolean).length;
+        let n = subFiles.filter(Boolean).length;
         subCount.textContent = '추가 사진 ' + n + ' / ' + MAX_SUB;
     }
 
     /* 태그 입력 */
-    var tagsWrap   = document.getElementById('tagsWrap');
-    var tagInput   = document.getElementById('tagInput');
-    var tagsHidden = document.getElementById('tagsHidden');
-    var tags = [];
+    let tagsWrap   = document.getElementById('tagsWrap');
+    let tagInput   = document.getElementById('tagInput');
+    let tagsHidden = document.getElementById('tagsHidden');
+    let tags = [];
 
     tagsWrap.addEventListener('click', function() { tagInput.focus(); });
 
@@ -134,7 +134,7 @@
     function renderTags() {
         tagsWrap.querySelectorAll('.tag-chip').forEach(function(c) { c.remove(); });
         tags.forEach(function(t, i) {
-            var chip = document.createElement('div');
+            let chip = document.createElement('div');
             chip.className = 'tag-chip';
             chip.innerHTML = t + '<button type="button" data-idx="' + i + '"><i class="fas fa-times"></i></button>';
             chip.querySelector('button').addEventListener('click', function() { removeTag(i); });
@@ -144,15 +144,15 @@
     }
 
     /* 가격 요약 */
-    var itemPriceInput = document.getElementById('itemPriceInput');
-    var summaryPrice   = document.getElementById('summaryPrice');
+    let itemPriceInput = document.getElementById('itemPriceInput');
+    let summaryPrice   = document.getElementById('summaryPrice');
 
     function fmt(n) {
         return '₩ ' + Number(n).toLocaleString('ko-KR');
     }
 
     itemPriceInput.addEventListener('input', function() {
-        var price = parseInt(this.value) || 0;
+        let price = parseInt(this.value) || 0;
         summaryPrice.textContent = price ? fmt(price) : '₩ —';
     });
     /* 할인 계산 */

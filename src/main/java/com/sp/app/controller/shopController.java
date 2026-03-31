@@ -54,6 +54,22 @@ public class shopController {
         }
     }
 
+    // 상품 상세 단건 조회 (모달용 Ajax)
+    @GetMapping("shopDetailJson")
+    @ResponseBody
+    public Item shopDetailJson(@RequestParam long itemSeq) {
+        try {
+            Map<String, Object> map = new HashMap<>();
+            List<Item> list = service.shopList(map);
+            for (Item item : list) {
+                if (item.getItemSeq() == itemSeq) return item;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @GetMapping("image")
     public void shopImage(@RequestParam String saveFileName,
                           HttpServletResponse resp) {
