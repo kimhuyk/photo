@@ -33,8 +33,6 @@ public class shopController {
         try {
             Map<String, Object> map = new HashMap<>();
             model.addAttribute("itemList", service.shopList(map));
-            System.out.println("user.dir: " + System.getProperty("user.dir"));
-            System.out.println("upload exists: " + new java.io.File(System.getProperty("user.dir") + "/uploads/shop").exists());
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("message", "목록 조회 중 오류 발생");
@@ -54,7 +52,7 @@ public class shopController {
         }
     }
 
-    // 상품 상세 단건 조회 (모달용 Ajax)
+    // 상품 상세 단건 조회
     @GetMapping("shopDetailJson")
     @ResponseBody
     public Item shopDetailJson(@RequestParam long itemSeq) {

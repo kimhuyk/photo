@@ -7,7 +7,7 @@ import java.util.List;
 
 @NoArgsConstructor
 @ToString
-public class Order {
+public class OrderMaster {
     private long orderSeq;      // 주문 고유 번호
     private long userSeq;       // 구매자 번호
     private long deNum;         // 배송지 번호

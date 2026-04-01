@@ -81,6 +81,9 @@
             <button class="sd-btn-cart" id="sdBtnCart">
                 <i class="fas fa-shopping-bag"></i> Add to Cart
             </button>
+            <button class="sd-btn-cart" id="goBtnCart">
+                <i class="fas fa-shopping-bag"></i> Go to Cart
+            </button>
             <p class="sd-btn-cart-note"><i class="fas fa-shield-alt"></i> Secure · Instant download after purchase</p>
         </div>
     </div>
@@ -158,7 +161,7 @@
         applyAll();
     }
 
-    /* ── 상세 모달 ── */
+    /* 상세 모달 */
     function openDetail(e, itemSeq) {
         e.stopPropagation();
         $.ajax({
@@ -214,11 +217,20 @@
             '<div class="sd-meta-row"><span>Format</span><span>JPG / PNG</span></div>' +
             '<div class="sd-meta-row"><span>Registered</span><span>' + (item.regDate || '').substring(0, 10) + '</span></div>';
 
-        // 카트 버튼 초기화
+        // 카트 장바구니 담기 버튼
         const btn = document.getElementById('sdBtnCart');
         btn.classList.remove('added');
         btn.innerHTML = '<i class="fas fa-shopping-bag"></i> Add to Cart';
-        btn.onclick = function() { addToCart(item); };
+        btn.onclick = function() {
+            addToCart(item);
+        };
+        // 카트 장바구니 이동 버튼
+        const goBtn = document.getElementById('goBtnCart');
+        if (goBtn) {
+            goBtn.onclick = function() {
+                goToCart();
+            };
+        }
     }
 
     function closeModal() {
@@ -235,7 +247,7 @@
         if (e.key === 'Escape') closeModal();
     });
 
-    /* ── 카트 담기 (Ajax → DB) ── */
+    /* 카트 담기 */
     function addToCart(item) {
         $.ajax({
             url        : contextPath + '/cart/addCart',
@@ -246,6 +258,7 @@
                 const btn = document.getElementById('sdBtnCart');
                 if (res.status === 'ok') {
                     btn.classList.add('added');
+                    alert('장바구니에 담겼습니다.')
                     btn.innerHTML = '<i class="fas fa-check"></i> Added to Cart';
                 } else if (res.status === 'exists') {
                     alert('이미 장바구니에 담긴 상품입니다.');
@@ -258,8 +271,12 @@
             error: function() { alert('서버 오류가 발생했습니다.'); }
         });
     }
+    // 장바구니 이동 — 담기 없이 바로 이동
+    function goToCart() {
+        location.href = contextPath + '/cart/cartList';
+    }
 
-    /* ── 필터 & 정렬 ── */
+    /* 필터 & 정렬 */
     let currentFilter = 'all';
     let currentSort   = 'default';
 
