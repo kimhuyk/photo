@@ -20,8 +20,7 @@ public interface UserMapper {
 	public void updateUser1(User dto) throws SQLException; 
 	public void updateUser2(User dto) throws SQLException; 
 	
-//	public void deleteUser1(Map<String, Object> map) throws SQLException;
-//	public void deleteUser2(Map<String, Object> map) throws SQLException;
+	public void deleteUser1(Map<String, Object> map) throws SQLException;
+	public void deleteUser2(Map<String, Object> map) throws SQLException;
 
-	public void deleteUser(Map<String, Object> map) throws SQLException;
 }

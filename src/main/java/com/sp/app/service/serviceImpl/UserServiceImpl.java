@@ -60,10 +60,12 @@ public class UserServiceImpl implements UserService {
 		return dto;
 	}
 
-	@Override
+  @Transactional
+  @Override
 	public void deleteUser(Map<String, Object> map) throws Exception {
 		try {
-			mapper.deleteUser(map);
+      mapper.deleteUser2(map);
+      mapper.deleteUser1(map);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;

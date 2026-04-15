@@ -101,9 +101,12 @@
 	    WHERE user_seq = #{userSeq}
     </update>
     
-    <delete id="deleteUser" parameterType="map">
+    <delete id="deleteUser1" parameterType="map">
     	DELETE FROM user1 WHERE user_seq = #{userSeq}
-	</delete> 
-	
-	
+	</delete>
+
+    <delete id="deleteUser2" parameterType="map">
+        DELETE FROM user_history WHERE user_seq = #{userSeq}
+    </delete>
+
 </mapper>

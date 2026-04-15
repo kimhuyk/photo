@@ -15,5 +15,5 @@ public interface UserService {
 	// 아디찾기? 뭐에다 쓸랬지
 	public User findById(String userId);
 	// 삭제
-	public void deleteUser(Map<String, Object> map) throws Exception;
+  public void deleteUser(Map<String, Object> map) throws Exception;
 }
