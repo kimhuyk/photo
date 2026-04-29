@@ -21,11 +21,15 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    // 토스 클라이언트 키
+    private static final String TOSS_CLIENT_KEY = "클라이언트 키";
+
     // Checkout 페이지
     @GetMapping("checkout")
-    public String checkout(HttpSession session) {
+    public String checkout(HttpSession session, Model model) {
         SessionInfo info = (SessionInfo) session.getAttribute("loginUser");
         if (info == null) return "redirect:/home";
+        model.addAttribute("tossClientKey", TOSS_CLIENT_KEY);
         return "order/checkout";
     }
 
