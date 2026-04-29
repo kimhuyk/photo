@@ -94,7 +94,7 @@
             slot.querySelector('input').value = '';
         subFiles[idx] = null;
         updateSubCount();
-    });1134567
+    });
 
     function updateSubCount() {
         let n = subFiles.filter(Boolean).length;

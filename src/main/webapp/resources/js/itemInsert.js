@@ -41,35 +41,36 @@ function shopOk() {
         f.enctype = "multipart/form-data";
         f.submit();
     }
+}
 
 // 임시저장
-    function saveDraft() {
-        const draft = {
-            itemName: document.getElementById('itemNameInput').value,
-            category: document.getElementById('categoryInput').value,
-            itemPrice: document.getElementById('itemPriceInput').value,
-            itemStock: document.getElementById('itemStockInput').value,
-            itemDesc: document.getElementById('itemDescInput').value
-        };
+function saveDraft() {
+    const draft = {
+        itemName: document.getElementById('itemNameInput').value,
+        category: document.getElementById('categoryInput').value,
+        itemPrice: document.getElementById('itemPriceInput').value,
+        itemStock: document.getElementById('itemStockInput').value,
+        itemDesc: document.getElementById('itemDescInput').value
+    };
 
-        localStorage.setItem('shopDraft', JSON.stringify(draft));
-        alert('임시저장 되었습니다.');
+    localStorage.setItem('shopDraft', JSON.stringify(draft));
+    alert('임시저장 되었습니다.');
+}
+
+
+window.onload = function () {
+    const draft = localStorage.getItem('shopDraft');
+    if (draft) {
+        const d = JSON.parse(draft);
+        // 사진 복원 제거
+        document.getElementById('itemNameInput').value = d.itemName || '';
+        document.getElementById('categoryInput').value = d.category || '';
+        document.getElementById('itemPriceInput').value = d.itemPrice || '';
+        document.getElementById('itemStockInput').value = d.itemStock || '';
+        document.getElementById('itemDescInput').value = d.itemDesc || '';
+
+        alert('임시저장된 데이터를 불러왔습니다.\n사진은 다시 올려주세요!');
     }
 
 
-    window.onload = function () {
-        const draft = localStorage.getItem('shopDraft');
-        if (draft) {
-            const d = JSON.parse(draft);
-            // 사진 복원 제거
-            document.getElementById('itemNameInput').value = d.itemName || '';
-            document.getElementById('categoryInput').value = d.category || '';
-            document.getElementById('itemPriceInput').value = d.itemPrice || '';
-            document.getElementById('itemStockInput').value = d.itemStock || '';
-            document.getElementById('itemDescInput').value = d.itemDesc || '';
-
-            alert('임시저장된 데이터를 불러왔습니다.\n사진은 다시 올려주세요!');
-        }
-
-    }
 }

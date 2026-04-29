@@ -50,7 +50,7 @@
 					<div style="display: flex; gap: 10px;">
 						<input type="text" id="address" name="address" placeholder="주소" readonly required value="${dto.address}">
 						<!-- 주소 검색 버튼에 클래스 추가 -->
-						<button type="button" onclick="daumPostcode()" class="address-search-button">주소검색</button>
+						<button type="button" onclick="kakaoPostcode()" class="address-search-button">주소검색</button>
 					</div>
 				</div>
 			
@@ -76,13 +76,13 @@
 		</div>
 	</div>
 
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="//t1.kakaocdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-// 주소 Daum API
-function daumPostcode() {
-	new daum.Postcode(
-			{
-				oncomplete : function(data) {
+// 바뀐 카카오 API
+function kakaoPostcode() {
+    new kakao.Postcode(
+        {
+        oncomplete: function(data) {
 					// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
 					// 각 주소의 노출 규칙에 따라 주소를 조합한다.
