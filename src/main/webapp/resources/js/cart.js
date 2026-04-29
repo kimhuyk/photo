@@ -83,7 +83,7 @@ function updateSummary(subtotal) {
 }
 
 function checkout() {
-    alert('결제 기능은 준비 중입니다.');
+    location.href = contextPath + '/order/checkout';
 }
 
 $(document).ready(function() {
