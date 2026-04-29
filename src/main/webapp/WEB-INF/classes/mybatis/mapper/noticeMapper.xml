@@ -99,15 +99,15 @@
 	
 	 <select id="findByNext" parameterType="map" resultType="com.sp.app.domain.Notice">
 		SELECT 
-			notice_seq AS noticeSeq,
-			notice_title AS noticeTitle
+			n.notice_seq AS noticeSeq,
+			n.notice_title AS noticeTitle
 		FROM notice n
 		JOIN user1 u ON n.user_seq = u.user_seq
 		<where>
 			<if test="kwd != null and kwd != '' ">
 				AND <include refid="where-list"/>
 			</if>
-			AND (notice_seq &lt; #{noticeSeq})
+			AND (n.notice_seq &lt; #{noticeSeq})
 		</where> 
 		ORDER BY n.notice_seq DESC, n.notice_reg_date DESC
 		FETCH FIRST 1 ROWS ONLY
