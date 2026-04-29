@@ -83,6 +83,13 @@ function userOk() {
 //	    return;
 //	}
 
+        // 전화번호
+        str = f.tel.value;
+        if (!/^\d{3}-\d{4}-\d{4}$/.test(str)) {
+            alert("전화번호 형식에 맞게 입력해주세요. (예: 010-1234-5678)");
+            f.tel.focus();
+            return;
+        }
 		// 생년월일
 		str = f.birth.value.trim(); // 생년월일 입력값 가져오기
 		if (!str) {
@@ -97,14 +104,7 @@ function userOk() {
 		    f.birth.focus();
 		    return;
 		}
-		
-		// 전화번호
-		str = f.tel.value; 
-		if (!/^\d{3}-\d{4}-\d{4}$/.test(str)) {
-		    alert("전화번호 형식에 맞게 입력해주세요. (예: 010-1234-5678)");
-		    f.tel.focus();
-		    return;
-		}
+
 		//f.action = "${pageContext.request.contextPath}/user/${mode}"
 		f.submit();
 }
