@@ -49,10 +49,12 @@
 	        , 'N/A' AS originalFileName
 	        , 'N/A' AS filePath
 	        , 'N/A' AS saveFileName
+	        , 0 AS itemPrice
+	        , 'N/A' AS itemDesc
 	    FROM NOTICE n
 	    JOIN USER1 u ON n.user_seq = u.user_seq
-	    WHERE	
-	        (NOTICE_TITLE LIKE '%' || #{keyword} || '%' 
+	    WHERE
+	        (NOTICE_TITLE LIKE '%' || #{keyword} || '%'
 	         OR NOTICE_CONTENTS LIKE '%' || #{keyword} || '%')
 	    UNION ALL
 	    SELECT
@@ -66,12 +68,30 @@
 	        , pf.originalfilename AS originalFileName
 	        , pf.file_path AS filePath
 	        , pf.savefilename AS saveFileName
+	        , 0 AS itemPrice
+	        , 'N/A' AS itemDesc
 	    FROM PHOTO_FILE pf
 	    JOIN USER1 u ON pf.user_seq = u.user_seq
+	    WHERE (pf.ORIGINALFILENAME LIKE '%' || #{keyword} || '%')
+	    UNION ALL
+	    SELECT
+	        'shop' AS category
+	        , si.item_seq AS seq
+	        , si.item_name AS title
+	        , si.item_desc AS contents
+	        , TO_CHAR(si.reg_date, 'YYYY-MM-DD') AS regDate
+	        , 'Shop' AS userName
+	        , 0 AS userSeq
+	        , si.originalfilename AS originalFileName
+	        , si.file_path AS filePath
+	        , si.savefilename AS saveFileName
+	        , si.item_price AS itemPrice
+	        , si.item_desc AS itemDesc
+	    FROM SHOP_ITEM si
 	    WHERE
-	        (pf.ORIGINALFILENAME LIKE '%' || #{keyword} || '%')
-	    ORDER BY regDate DESC 
-	    
+	        (si.ITEM_NAME LIKE '%' || #{keyword} || '%'
+	         OR si.ITEM_DESC LIKE '%' || #{keyword} || '%')
+	    ORDER BY regDate DESC
 	</select>  
 
 

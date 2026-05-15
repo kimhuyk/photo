@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.sp.app.common.FileManager;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
@@ -26,6 +28,9 @@ public class shopController {
 
     @Autowired
     private ItemService service;
+
+    @Autowired
+    private FileManager fileManager;
 
     //마이페이지 연동 메소드
     @GetMapping("shoplist")
@@ -114,17 +119,51 @@ public class shopController {
         }
     }
 
-/*    백단 (Java)
-    ItemMapper.java      <- 쿼리 인터페이스 통합
-    itemMapper.xml       <- 쿼리 통합
-    ItemService.java     <- 서비스 인터페이스 통합
-    itemServiceImpl.java <- 서비스 구현 통합
-    ItemInsertController <- 등록 컨트롤러
-    ShopController       <- 목록/상세/다운로드 컨트롤러 (읽기 전용)
+    // 상품 이미지 다운로드
+    @GetMapping("download")
+    public void shopDownload(@RequestParam String saveFileName,
+                             @RequestParam(required = false) String originalFileName,
+                             HttpServletResponse resp) {
+        try {
+            // filePath 조회
+            Map<String, Object> map = new HashMap<>();
+            List<Item> list = service.shopList(map);
+            String filePath = null;
 
-    프론트 (JSP)
-    item/iteminsert.jsp  <- 등록 페이지
-    shop/shoplist.jsp    <- 목록 페이지
-    shop/shopdetail.jsp  <- 상세 페이지 (나중에)
-*/
+            outer:
+            for (Item item : list) {
+                if (saveFileName.equals(item.getSaveFileName())) {
+                    filePath = item.getFilePath();
+                    break;
+                }
+                if (item.getSubFileNames() != null) {
+                    for (String sub : item.getSubFileNames().split(",")) {
+                        if (saveFileName.equals(sub.trim())) {
+                            filePath = item.getFilePath();
+                            break outer;
+                        }
+                    }
+                }
+            }
+
+            if (filePath == null) {
+                resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+                return;
+            }
+
+            // 다운로드 파일명
+            String ext = saveFileName.substring(saveFileName.lastIndexOf("."));
+            String dlName = (originalFileName != null && !originalFileName.isEmpty())
+                            ? originalFileName + ext   // 상품명 + 확장자
+                            : saveFileName;
+
+            boolean ok = fileManager.doFileDownload(saveFileName, dlName, filePath, resp);
+            if (!ok) {
+                resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

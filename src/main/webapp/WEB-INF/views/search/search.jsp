@@ -24,6 +24,7 @@
                 <div class="tab-item active" data-filter="all">전체</div>
                 <div class="tab-item" data-filter="image">이미지</div>
                 <div class="tab-item" data-filter="notice">공지사항</div>
+                <div class="tab-item" data-filter="shop">Shop</div>
             </div>
         </div>
 
@@ -72,58 +73,86 @@ $(document).ready(function() {
         }
 
         const imageResultsContainer = $('<div class="image-results"></div>');
-        const textResultsContainer = $('<div></div>');
-        let imageFound = false;
+        const textResultsContainer  = $('<div class="notice-results"></div>');
+        const shopResultsContainer  = $('<div class="shop-results"></div>');
+        let imageFound  = false;
         let noticeFound = false;
+        let shopFound   = false;
 
         results.forEach(item => {
-            if (item.category === 'image') {
+            const cat = (item.category || '').toLowerCase();
+            if (cat === 'image') {
                 imageFound = true;
-                const path = item.filePath.replace(/\\/g, '/'); 
-                const fileName = path.substring(path.lastIndexOf('/') + 1);     
                 const imageUrl = '${pageContext.request.contextPath}/uploads/photo/' + item.saveFileName;
- 
-                const imageItem = 
-	                '<div class="image-item">' +
-	                    '<img loading="lazy" src="' + imageUrl + '" alt="' + item.originalFileName + '" ' +
-	                         'this.onerror=null; this.src=\'https://placehold.co/300x200/cccccc/333333?text=Image+Not+Found\';">' +
-	                    '<div class="image-info">' +
-	                        '<div class="image-title">' + item.title + '</div>' +
-	                        '<div class="image-source">업로더: ' + item.userName + '</div>' +
-	                    '</div>' +
-	                '</div>';
-
-                imageResultsContainer.append(imageItem);
-            } else if (item.category === 'notice') {
-            	noticeFound = true;
-                const noticeItem =
-                	'<div class="result-item">' +
-	                    '<a href="' + contextPath + '/notice/article?page=1&noticeSeq=' + item.seq + '" class="result-title">' + item.title + '</a>' +
-	                    '<div class="result-url">공지사항 | 작성자: ' + item.userName + '</div>' +
-	                    '<div class="result-description">' + item.contents + '</div>' +
-	                '</div>';
-                textResultsContainer.append(noticeItem);
+                imageResultsContainer.append(
+                    '<div class="image-item">' +
+                        '<img loading="lazy" src="' + imageUrl + '" alt="' + item.originalFileName + '" ' +
+                             'onerror="this.onerror=null;this.src=\'https://placehold.co/300x200/1a1a1a/555?text=No+Image\';">' +
+                        '<div class="image-info">' +
+                            '<div class="image-title">' + item.title + '</div>' +
+                            '<div class="image-source"><i class="fas fa-user"></i> ' + item.userName + '</div>' +
+                        '</div>' +
+                    '</div>'
+                );
+            } else if (cat === 'notice') {
+                noticeFound = true;
+                textResultsContainer.append(
+                    '<div class="result-item">' +
+                        '<a href="' + contextPath + '/notice/article?page=1&noticeSeq=' + item.seq + '" class="result-title">' +
+                            '<i class="fas fa-bullhorn" style="font-size:14px;margin-right:8px;opacity:0.5;"></i>' + item.title +
+                        '</a>' +
+                        '<div class="result-url"><i class="fas fa-user" style="margin-right:4px;"></i>' + item.userName + ' · ' + item.regDate + '</div>' +
+                        '<div class="result-description">' + (item.contents || '') + '</div>' +
+                    '</div>'
+                );
+            } else if (cat === 'shop') {
+                shopFound = true;
+                const imgUrl  = contextPath + '/shop/image?saveFileName=' + encodeURIComponent(item.saveFileName || '');
+                const price   = '₩ ' + Number(item.itemPrice).toLocaleString('ko-KR');
+                shopResultsContainer.append(
+                    '<div class="shop-result-item" onclick="location.href=\'' + contextPath + '/shop/shoplist\'">' +
+                        '<img src="' + imgUrl + '" alt="' + item.title + '" ' +
+                             'onerror="this.onerror=null;this.src=\'https://placehold.co/88x104/1a1a1a/555?text=No+Image\';">' +
+                        '<div class="shop-result-info">' +
+                            '<div class="shop-result-name">' + item.title + '</div>' +
+                            '<div class="shop-result-price"><i class="fas fa-tag" style="margin-right:5px;"></i>' + price + ' (VAT 별도)</div>' +
+                            '<div class="shop-result-desc">' + (item.itemDesc || '') + '</div>' +
+                        '</div>' +
+                        '<i class="fas fa-chevron-right shop-result-arrow"></i>' +
+                    '</div>'
+                );
             }
         });
 
         if (filter === 'all') {
-            if (noticeFound) resultsContainer.append(textResultsContainer);
-            if (imageFound) resultsContainer.append(imageResultsContainer);
+            if (noticeFound) {
+                resultsContainer.append('<div class="section-label"><i class="fas fa-bullhorn"></i> 공지사항</div>');
+                resultsContainer.append(textResultsContainer);
+            }
+            if (imageFound) {
+                resultsContainer.append('<div class="section-label"><i class="fas fa-image"></i> 이미지</div>');
+                resultsContainer.append(imageResultsContainer);
+            }
+            if (shopFound) {
+                resultsContainer.append('<div class="section-label"><i class="fas fa-shopping-bag"></i> Shop</div>');
+                resultsContainer.append(shopResultsContainer);
+            }
+            if (!noticeFound && !imageFound && !shopFound) {
+                resultsContainer.html('<div class="initial-state"><i class="fas fa-search"></i><p>검색 결과가 없습니다</p></div>');
+            }
         } else if (filter === 'image') {
-            resultsContainer.append(imageResultsContainer);
+            if (imageFound) resultsContainer.append(imageResultsContainer);
+            else resultsContainer.html('<div class="initial-state"><i class="fas fa-image"></i><p>이미지 검색 결과가 없습니다</p></div>');
         } else if (filter === 'notice') {
-            resultsContainer.append(textResultsContainer);
-        }
-
-        if (!imageFound && filter === 'image') {
-            resultsContainer.html('<div class="initial-state"><i class="fas fa-search"></i><p>이미지 검색 결과가 없습니다.</p></div>');
-        }
-        if (!noticeFound && filter === 'notice') {
-            resultsContainer.html('<div class="initial-state"><i class="fas fa-search"></i><p>공지사항 검색 결과가 없습니다.</p></div>');
+            if (noticeFound) resultsContainer.append(textResultsContainer);
+            else resultsContainer.html('<div class="initial-state"><i class="fas fa-bullhorn"></i><p>공지사항 검색 결과가 없습니다</p></div>');
+        } else if (filter === 'shop') {
+            if (shopFound) resultsContainer.append(shopResultsContainer);
+            else resultsContainer.html('<div class="initial-state"><i class="fas fa-shopping-bag"></i><p>Shop 검색 결과가 없습니다</p></div>');
         }
     }
 
-    // --- 검색 실행 함수 ---
+    // 검색 실행 함수
     function searchForm() {
         const keyword = $('#searchInput').val();
 

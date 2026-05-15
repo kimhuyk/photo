@@ -62,9 +62,9 @@
                     <span class="nav-icon">◆</span>
                     보안설정
                 </a>
-                <a href="#" class="nav-item">
+                <a href="${pageContext.request.contextPath}/mypage/buyPhoto" class="nav-item">
                     <span class="nav-icon">◆</span>
-                    이력관리
+                    구매한 사진 보기
                 </a>
                 
                 <div class="nav-divider"></div>

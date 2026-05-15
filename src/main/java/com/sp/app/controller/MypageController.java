@@ -7,26 +7,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("mypage")
 public class MypageController {
 
-	//마이페이지 연동 메소드
-	@RequestMapping("")
-	public String list() throws Exception {
-		
-		return "/mypage/mypage";
-	}
-	
-	
-	///////////////////////////////////////////////////////////////
-	//  개인 이용내역 메소드
-	@RequestMapping("privacy")
-	public String privacy() throws Exception {
-		
-		return "/mypage/privacy/privacy";
-	}
-	
-	@RequestMapping("security")
-	public String security() throws Exception {
-		
-		return "/mypage/security/security";
-	}
-	
+    //마이페이지 연동 메소드
+    @RequestMapping("")
+    public String list() throws Exception {
+
+        return "/mypage/mypage";
+    }
+
+
+    /// ////////////////////////////////////////////////////////////
+    //  개인 이용내역 메소드
+    @RequestMapping("privacy")
+    public String privacy() throws Exception {
+
+        return "/mypage/privacy/privacy";
+    }
+
+    @RequestMapping("security")
+    public String security() throws Exception {
+        return "/mypage/security/security";
+    }
+
+    // 구매한 사진 보기
+    @RequestMapping("buyPhoto")
+    public String buyPhoto() throws Exception {
+        return "/mypage/buyPhoto";
+    }
 }

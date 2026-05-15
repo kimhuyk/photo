@@ -16,6 +16,8 @@ public class Search {
     private String saveFileName;
     private String originalFileName;
     private String filePath;
+    private long itemPrice;   // shop 상품 가격
+    private String itemDesc;  // shop 상품 설명
     
 	public String getCategory() {
 		return category;
@@ -76,5 +78,17 @@ public class Search {
 	}
 	public void setSaveFileName(String saveFileName) {
 		this.saveFileName = saveFileName;
+	}
+	public long getItemPrice() {
+		return itemPrice;
+	}
+	public void setItemPrice(long itemPrice) {
+		this.itemPrice = itemPrice;
+	}
+	public String getItemDesc() {
+		return itemDesc;
+	}
+	public void setItemDesc(String itemDesc) {
+		this.itemDesc = itemDesc;
 	}
 }
