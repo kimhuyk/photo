@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sp.app.mapper.SmartChatMapper">
+
+    <!-- 대화 저장 -->
+    <insert id="insertChat" parameterType="com.sp.app.domain.SmartChat">
+        INSERT INTO SMART_CHAT (
+              chat_seq
+            , user_seq
+            , sender
+            , message
+            , reg_date
+        ) VALUES (
+              smart_chat_seq.NEXTVAL
+            , #{userSeq}
+            , #{sender}
+            , #{message}
+            , SYSDATE
+        )
+    </insert>
+
+    <!-- 대화 내역 조회 (최신 50건) -->
+    <select id="chatHistory" parameterType="long" resultType="com.sp.app.domain.SmartChat">
+        SELECT *
+        FROM (
+            SELECT
+                  chat_seq  AS chatSeq
+                , user_seq  AS userSeq
+                , sender
+                , message
+                , TO_CHAR(reg_date, 'HH24:MI') AS regDate
+            FROM SMART_CHAT
+            WHERE user_seq = #{userSeq}
+            ORDER BY chat_seq DESC
+        )
+        WHERE ROWNUM &lt;= 50
+        ORDER BY chatSeq ASC
+    </select>
+
+    <!-- 대화 내역 전체 삭제 -->
+    <delete id="deleteChatHistory" parameterType="long">
+        DELETE FROM SMART_CHAT WHERE user_seq = #{userSeq}
+    </delete>
+
+</mapper>
