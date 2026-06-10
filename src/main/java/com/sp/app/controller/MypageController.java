@@ -1,36 +1,40 @@
 package com.sp.app.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("mypage")
 public class MypageController {
 
-    //마이페이지 연동 메소드
     @RequestMapping("")
-    public String list() throws Exception {
-
+    public String list(Model model) throws Exception {
+        model.addAttribute("activeMenu", "mypage");
         return "/mypage/mypage";
     }
 
-
-    /// ////////////////////////////////////////////////////////////
-    //  개인 이용내역 메소드
     @RequestMapping("privacy")
-    public String privacy() throws Exception {
-
+    public String privacy(Model model) throws Exception {
+        model.addAttribute("activeMenu", "privacy");
         return "/mypage/privacy/privacy";
     }
 
     @RequestMapping("security")
-    public String security() throws Exception {
+    public String security(Model model) throws Exception {
+        model.addAttribute("activeMenu", "security");
         return "/mypage/security/security";
     }
 
-    // 구매한 사진 보기
     @RequestMapping("buyPhoto")
-    public String buyPhoto() throws Exception {
+    public String buyPhoto(Model model) throws Exception {
+        model.addAttribute("activeMenu", "buyPhoto");
         return "/mypage/buyPhoto";
+    }
+
+    @RequestMapping("userTalk")
+    public String userTalk(Model model) throws Exception {
+        model.addAttribute("activeMenu", "userTalk");
+        return "/mypage/userTalk";
     }
 }

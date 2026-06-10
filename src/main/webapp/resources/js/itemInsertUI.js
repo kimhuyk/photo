@@ -132,12 +132,16 @@
     }
 
     function renderTags() {
-        tagsWrap.querySelectorAll('.tag-chip').forEach(function(c) { c.remove(); });
-        tags.forEach(function(t, i) {
+        tagsWrap.querySelectorAll('.tag-chip').forEach(function (c) {
+            c.remove();
+        });
+        tags.forEach(function (t, i) {
             let chip = document.createElement('div');
             chip.className = 'tag-chip';
             chip.innerHTML = t + '<button type="button" data-idx="' + i + '"><i class="fas fa-times"></i></button>';
-            chip.querySelector('button').addEventListener('click', function() { removeTag(i); });
+            chip.querySelector('button').addEventListener('click', function () {
+                removeTag(i);
+            });
             tagsWrap.insertBefore(chip, tagInput);
         });
         tagsHidden.value = tags.join(',');
@@ -145,26 +149,26 @@
 
     /* 가격 요약 */
     let itemPriceInput = document.getElementById('itemPriceInput');
-    let summaryPrice   = document.getElementById('summaryPrice');
+    let summaryPrice = document.getElementById('summaryPrice');
 
     function fmt(n) {
         return '₩ ' + Number(n).toLocaleString('ko-KR');
     }
 
-    itemPriceInput.addEventListener('input', function() {
+    itemPriceInput.addEventListener('input', function () {
         let price = parseInt(this.value) || 0;
         summaryPrice.textContent = price ? fmt(price) : '₩ —';
     });
     /* 할인 계산 */
-    /*         function updateSummary() {
-                 const price    = parseInt(priceInput.value) || 0;
-                 const discount = parseInt(discountInput.value) || 0;
-                 summaryPrice.textContent    = price    ? fmt(price)    : '₩ —';
-                 summaryDiscount.textContent = discount ? '-' + fmt(discount) : '—';
-                 const final = Math.max(0, price - discount);
-                 summaryFinal.textContent    = (price || discount) ? fmt(final) : '₩ —';
-             }
+    function updateSummary() {
+        const price = parseInt(priceInput.value) || 0;
+        const discount = parseInt(discountInput.value) || 0;
+        summaryPrice.textContent = price ? fmt(price) : '₩ —';
+        summaryDiscount.textContent = discount ? '-' + fmt(discount) : '—';
+        const final = Math.max(0, price - discount);
+        summaryFinal.textContent = (price || discount) ? fmt(final) : '₩ —';
+    }
 
-             priceInput.addEventListener('input', updateSummary);
-             discountInput.addEventListener('input', updateSummary); */
+    priceInput.addEventListener('input', updateSummary);
+    discountInput.addEventListener('input', updateSummary);
 })();

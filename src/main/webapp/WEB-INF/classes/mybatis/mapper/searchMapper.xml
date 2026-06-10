@@ -19,7 +19,12 @@
     	    , TO_CHAR(pf.reg_date, 'YYYY-MM-DD') AS regDate
         FROM user1 u
         LEFT JOIN user_history uh ON u.user_seq = uh.user_seq
-    	LEFT JOIN photo_file pf on u.user_seq = pf.user_seq
+    	LEFT JOIN (SELECT DISTINCT
+    	            pf.file_num AS fileNum
+                    , pf.savefilename AS saveFileName
+    	            , pf.originalfilename AS originalFileName
+                    , pf.photo_file AS photoFile  )pf on u.user_seq = pf.user_seq
+
     	WHERE 1=1
     		<if test="userId != null and userId != ''">
     			AND u.user_id = #{userId}
@@ -91,8 +96,8 @@
 	    WHERE
 	        (si.ITEM_NAME LIKE '%' || #{keyword} || '%'
 	         OR si.ITEM_DESC LIKE '%' || #{keyword} || '%')
-	    ORDER BY regDate DESC
-	</select>  
+        ORDER BY regDate DESC
+    </select>
 
 
 </mapper>

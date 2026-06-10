@@ -103,7 +103,7 @@
         <a href="${pageContext.request.contextPath}/shop/shoplist" class="btn-to-shop">
             <i class="fas fa-arrow-left"></i> Continue Shopping
         </a>
-        <a href="${pageContext.request.contextPath}/mypage" class="btn-to-mypage">
+        <a href="${pageContext.request.contextPath}/mypage/buyPhoto" class="btn-to-mypage">
             <i class="fas fa-user"></i> My Orders
         </a>
     </div>

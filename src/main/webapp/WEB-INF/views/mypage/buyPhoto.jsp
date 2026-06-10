@@ -13,55 +13,15 @@
 <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home.js"></script>
-<jsp:include page="/WEB-INF/views/layout/header.jsp"/>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/layout/header.jsp"/>
 
 <div class="container-mypage">
     <h1>마이페이지</h1>
 
     <div class="mypage-layout">
-        <!-- 왼쪽 사이드바 (mypage.jsp 동일) -->
-        <div class="mypage-sidebar">
-            <div class="sidebar-header">
-                <div class="photo-logo">
-                    <span class="logo-text">P</span>
-                    <span class="logo-title">photoID</span>
-                </div>
-            </div>
-            <div class="profile-section">
-                <div class="profile-image-container">
-                    <img src="${pageContext.request.contextPath}/resources/images/story/sajin3.jpg" alt="프로필" class="profile-image">
-                    <div class="edit-icon">✏️</div>
-                </div>
-                <div class="profile-info">
-                    <div class="nickname">${sessionScope.loginUser.userName}</div>
-                    <div class="email">${sessionScope.loginUser.email}</div>
-                </div>
-            </div>
-            <nav class="sidebar-nav">
-                <a href="${pageContext.request.contextPath}/mypage" class="nav-item">
-                    <span class="nav-icon">◆</span> 내프로필
-                </a>
-                <a href="${pageContext.request.contextPath}/mypage/security" class="nav-item">
-                    <span class="nav-icon">◆</span> 보안설정
-                </a>
-                <a href="${pageContext.request.contextPath}/mypage/buyPhoto" class="nav-item active">
-                    <span class="nav-icon">◆</span> 구매한 사진 보기
-                </a>
-                <div class="nav-divider"></div>
-                <a href="#" class="nav-item"><span class="nav-icon">◆</span> 스마트봇 상담</a>
-                <a href="#" class="nav-item"><span class="nav-icon">◆</span> 회원톡톡</a>
-            </nav>
-            <div class="bottom-links">
-                <a href="${pageContext.request.contextPath}/login/logout" class="bottom-link">로그아웃</a>
-                <span class="separator">|</span>
-                <a href="#" class="bottom-link">고객센터</a>
-            </div>
-            <div class="bottom-logo">
-                <span class="photo-text">Photo</span>
-            </div>
-        </div>
+        <jsp:include page="/WEB-INF/views/mypage/sidebar.jsp"/>
 
         <!-- 오른쪽 메인 콘텐츠 -->
         <div class="mypage-main">

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,7 +39,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public long placeOrder(long userSeq, long deNum) throws Exception {
-        // 1. 카트 목록 조회
+        //카트 목록 조회
         Map<String, Object> cartMap = new HashMap<>();
         cartMap.put("userSeq", userSeq);
         List<Cart> cartItems = cartService.cartList(cartMap);
@@ -47,13 +48,13 @@ public class OrderServiceImpl implements OrderService {
             throw new Exception("장바구니가 비어있습니다.");
         }
 
-        // 2. 총 금액 계산
+        //총 금액 계산
         int totalPrice = 0;
         for (Cart item : cartItems) {
             totalPrice += item.getItemPrice() * item.getQuantity();
         }
 
-        // 3. ORDER_MASTER INSERT
+        //ORDER_MASTER INSERT
         long orderSeq = orderMapper.orderSeq();
         OrderMaster master = new OrderMaster();
         master.setOrderSeq(orderSeq);
@@ -63,7 +64,7 @@ public class OrderServiceImpl implements OrderService {
         master.setOrderStatus("결제완료");
         orderMapper.insertOrderMaster(master);
 
-        // 4. ORDER_DETAIL INSERT (카트 아이템 수만큼)
+        //  ORDER_DETAIL INSERT (카트 아이템 수만큼)
         for (Cart item : cartItems) {
             OrderDetail detail = new OrderDetail();
             detail.setOrderSeq(orderSeq);
@@ -73,19 +74,33 @@ public class OrderServiceImpl implements OrderService {
             orderMapper.insertOrderDetail(detail);
         }
 
-        // 5. CART 전체 삭제
+        //CART 전체 삭제
         orderMapper.deleteCartByUser(userSeq);
 
         return orderSeq;
     }
 
     @Override
-    public List<OrderMaster> orderList(Map<String, Object> map) throws Exception {
-        return orderMapper.orderList(map);
+    public List<OrderMaster> orderList(Map<String, Object> map) {
+        List<OrderMaster>  list = null;
+        try {
+            list = orderMapper.orderList(map);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
     @Override
     public List<OrderDetail> orderDetailList(long orderSeq) throws Exception {
-        return orderMapper.orderDetailList(orderSeq);
+        List<OrderDetail>  list = null;
+
+        try {
+            list = orderMapper.orderDetailList(orderSeq);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
+
 }
